@@ -1,0 +1,2266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>bdobus</class>
+ <widget class="QWidget" name="bdobus">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1900</width>
+    <height>902</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="widget_14" native="true">
+   <property name="geometry">
+    <rect>
+     <x>141</x>
+     <y>230</y>
+     <width>1621</width>
+     <height>522</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:color rgb(150,160,186,40%);
+border-radius:10px;</string>
+   </property>
+   <widget class="QLabel" name="lblBDOBUSJ17J21LED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>137</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ19J23LED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>191</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ110J24LED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>247</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ112J26LED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>302</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ114J28LED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>357</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ18J22LED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>137</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ19J110LED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>190</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ111J25LED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>247</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ113J27LED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>302</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ115J29LED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>357</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblShellLoadingLED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>471</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblEmergencyStopLED">
+    <property name="geometry">
+     <rect>
+      <x>1189</x>
+      <y>471</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ17J21">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>137</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ19J23">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>191</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ110J24">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>247</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ112J26">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>302</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ114J28">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>356</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckShellLoading">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>471</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ17J21">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>137</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ19J23">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>191</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ110J24">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>247</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ112J26">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>302</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ114J28">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>356</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossShellLoading">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>471</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ18J22">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>137</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ18J22">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>137</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_107">
+    <property name="geometry">
+     <rect>
+      <x>122</x>
+      <y>73</y>
+      <width>61</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DI's</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_108">
+    <property name="geometry">
+     <rect>
+      <x>309</x>
+      <y>73</y>
+      <width>81</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DO's</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_109">
+    <property name="geometry">
+     <rect>
+      <x>415</x>
+      <y>70</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,0%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Continuty
+ Error</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_110">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>64</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Cross Continuty
+Error</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_111">
+    <property name="geometry">
+     <rect>
+      <x>962</x>
+      <y>73</y>
+      <width>61</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DI's</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_112">
+    <property name="geometry">
+     <rect>
+      <x>1412</x>
+      <y>67</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Cross Continuty
+Error</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_113">
+    <property name="geometry">
+     <rect>
+      <x>1164</x>
+      <y>73</y>
+      <width>81</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DO's</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_114">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>73</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,0%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Continuty
+ Error</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ19J110">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>190</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ19J110">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>190</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ111J25">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>247</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ111J25">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>247</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ113J27">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>302</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ113J27">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>302</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ115J29">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>357</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckBDOBUSJ115J29">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>357</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossEmergencyStop">
+    <property name="geometry">
+     <rect>
+      <x>1496</x>
+      <y>471</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckEmergencyStop">
+    <property name="geometry">
+     <rect>
+      <x>1319</x>
+      <y>471</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbHarness_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>6</y>
+      <width>321</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Test</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ17J21">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>132</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-7 to J2-1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ19J23">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>187</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-9 to J2-3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ110J24">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>242</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-10 to J2-4</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ112J26">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>297</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-12 to J2-6</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ114J28">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>352</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-14 to J2-8</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblShellLoading">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>466</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Shell loading</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ18J22">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>132</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-8 to J2-2</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ19J110">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>187</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-9 to J1-10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ111J25">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>242</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-11 to J2-5</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ113J27">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>297</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-13 to J2-7</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ115J29">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>352</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>J1-15 to J2-9</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblEmergencyStop">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>466</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Emergency stop</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>486</x>
+     <y>93</y>
+     <width>931</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:color rgb(150,160,186,40%);
+border-radius:10px;</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QLabel" name="lblHarnessLED">
+    <property name="geometry">
+     <rect>
+      <x>333</x>
+      <y>84</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbHarness">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>441</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>BDOBUS Harness Check connection</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckHarnessContinutyError">
+    <property name="geometry">
+     <rect>
+      <x>486</x>
+      <y>85</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_103">
+    <property name="geometry">
+     <rect>
+      <x>124</x>
+      <y>42</y>
+      <width>61</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DI's</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_104">
+    <property name="geometry">
+     <rect>
+      <x>308</x>
+      <y>44</y>
+      <width>81</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>DO's</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_105">
+    <property name="geometry">
+     <rect>
+      <x>396</x>
+      <y>44</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Continuty Error</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>30</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHarness">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>260</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+color:rgb(53,74, 131);
+border-radius:5px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Harness</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="lblOPRMODE_2">
+   <property name="geometry">
+    <rect>
+     <x>806</x>
+     <y>10</y>
+     <width>291</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <pointsize>25</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+background:rgb(234, 236, 247);
+
+
+color:rgb(53,74, 131);
+</string>
+   </property>
+   <property name="text">
+    <string>BDOBUS</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>180</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

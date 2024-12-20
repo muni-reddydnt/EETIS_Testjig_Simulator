@@ -15,10 +15,12 @@ modbusComm::modbusComm(QObject *parent) : QObject(parent)
     // Connect the newConnection signal to a slot that will handle incoming client connections
     connect(server, &QTcpServer::newConnection, this, &modbusComm::onNewConnection);
 
-    recevTimer = new QTimer(this);
-    connect(recevTimer, SIGNAL(timeout()), this, SLOT(sendData()));
-    recevTimer->start(100);
+    sendTimer = new QTimer(this);
+    connect(sendTimer, SIGNAL(timeout()), this, SLOT(sendData()));
     status = 0;
+
+
+
 
 }
 
@@ -87,11 +89,16 @@ void modbusComm::onNewConnection()
 
     // Optionally, you can also handle disconnection events:
     connect(clientSocket, &QTcpSocket::disconnected, clientSocket, &QTcpSocket::deleteLater);
+    if(!clientSocket->isOpen())
+    {
+        sendTimer->stop();
+    }
 
 }
 
 void modbusComm::readData()
 {
+    sendTimer->start(50);
     clientSocket = new QTcpSocket(this);
     clientSocket = qobject_cast<QTcpSocket *>(sender());
     if (clientSocket) {
@@ -121,7 +128,7 @@ void modbusComm::sendModbusReadWriteRequest()
 void modbusComm::sendData()
 {
     //qDebug()
-    storeDoDataInRegArray(&dival[0], 4, &sendDOVals[0]);
+   // storeDoDataInRegArray(&dival[0], 4, &sendDOVals[0]);
     sendDiData(dival);
 }
 
@@ -140,7 +147,7 @@ void modbusComm::decodeData(QByteArray responseData)
     {
         //Extract data length
         unsigned char dataLength = responseData.at(11);
-        qDebug()<<"dataLength = "<<dataLength;
+        //qDebug()<<"dataLength = "<<dataLength;
         for (int i = 0; i < (dataLength * 2); i += 2)
         {
             unsigned char lowByte = responseData.at(13+i);
@@ -164,7 +171,7 @@ void modbusComm::decodeData(QByteArray responseData)
             //
             //qDebug()<<"noOfRegToRead = "<<noOfRegToRead;
             storeDoData(noOfRegToRead);
-#if 1
+#if 0
             //qDebug()<<"noOfRegToRead = "<<noOfRegToRead;
             qDebug()<<"dataLength = "<<dataLength;
             qDebug("inputReg[0] = %x\n",inputReg[0]);
@@ -208,6 +215,7 @@ void modbusComm::decodeData(QByteArray responseData)
 
 }
 
+//delete
 void modbusComm::storeDoData(unsigned short noOfRegToRead)
 {
     int index = 0, i = 0, bitPos = 0;

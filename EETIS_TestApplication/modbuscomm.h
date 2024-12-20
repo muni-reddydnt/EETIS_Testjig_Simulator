@@ -57,13 +57,13 @@ public:
 
 
 
-signals:
-
+public slots:
+    void sendData();
 private slots:
     void onNewConnection();
     void readData();
     void sendModbusReadWriteRequest();
-    void sendData();
+
 
 
 private:
@@ -82,6 +82,7 @@ private:
 
 
     QTimer *recevTimer;
+    QTimer *sendTimer;
 };
 
 #endif // MODBUSCOMM_H

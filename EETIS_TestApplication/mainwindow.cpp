@@ -70,6 +70,7 @@ void MainWindow::on_pbBBAT_clicked()
     bbatObj->show();
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbBBAT,1);
+    setFooterBtnStyleSheet(ui->pbBDOBUS,0);
 }
 
 

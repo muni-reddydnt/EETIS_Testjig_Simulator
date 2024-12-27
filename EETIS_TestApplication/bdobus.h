@@ -25,8 +25,8 @@ typedef struct
 typedef struct
 {
     int Result;
-    QString upResult;
-}BODOBUSresultStruct;
+    //QString upResult;
+}BODOBUSDidataStruct;
 #pragma pack(1)
 typedef struct
 {
@@ -107,17 +107,27 @@ public:
 
     BODOBUSdiStruct BDOBUSteststruct;
     QList<BODOBUSdiStruct>diBDOBUSList;
-    BODOBUSresultStruct BDOBUStestResult;
-    QList<BODOBUSresultStruct> BDOBUSresultList;
+    BODOBUSDidataStruct BDOBUSDiResultStruct;
+    QList<BODOBUSDidataStruct> BDOBUSDidataList;
     BODOBUSdoStruct BDOBUStestDOstruct;
     QList<BODOBUSdoStruct>doBDOBUSList;
     char sendDOs[NO_OF_DOs] = {0};
 protected:
     int setBitHigh(int val, int bitPosition, bool highLow);
     void setRegisterHIgh(int bitPosition, bool highLow );
-    void didoUiListappend();
+
+    //void addDiStructInList();
+
+    void uiListappend();
+    void doListappend();
+    void diListappend();
+    void continutyErrorListappend();
+    void crossContinutyErrorListappend();
 
     void addDiStructInList();
+    void addDoStructInList();
+    void addDiDoStructInList();
+
 
     int checkCorrectHarness();
 

@@ -54,6 +54,7 @@ public:
     void setDoValue(int doChannel, char data);
     void storeDoDataInRegArray(short *doDataInRegArray, unsigned short noOfRegToWrite, char *doData);
     char sendDOVals[NO_OF_DOs] = {0};
+    char startSendData = 0;
 
 
 

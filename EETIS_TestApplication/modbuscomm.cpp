@@ -98,7 +98,8 @@ void modbusComm::onNewConnection()
 
 void modbusComm::readData()
 {
-    sendTimer->start(50);
+    //sendTimer->start(50);
+    startSendData = 1;
     clientSocket = new QTcpSocket(this);
     clientSocket = qobject_cast<QTcpSocket *>(sender());
     if (clientSocket) {

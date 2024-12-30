@@ -12,6 +12,8 @@
 #define DEFAULT_BUTTON_STYLESHEET  "background:rgb(234, 236, 247);border: 4px solid rgb(53,74, 131);color:rgb(53,74, 131);\
 border-radius:5px;"
 
+#define DEFAULT_DO_STYLESHEET  "QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}"
+
 #define GREEN_BUTTON_STYLESHEET  "background: rgb(73, 202, 66);border: 4px solid rgb(53,74, 131);color:rgb(53,74, 131);\
 border-radius:5px;"\
 
@@ -127,6 +129,8 @@ protected:
     void addDiStructInList();
     void addDoStructInList();
     void addDiDoStructInList();
+
+    void resetAllDisAndDos();
 
 
     int checkCorrectHarness();

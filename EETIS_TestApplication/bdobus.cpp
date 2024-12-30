@@ -128,6 +128,18 @@ void bdobus::addDiDoStructInList()
     addDoStructInList();
 }
 
+void bdobus::resetAllDisAndDos()
+{
+    if(BDOBUSDidataList[0].Result == 1)
+    {
+        for(int i = 0; i< diLabelList.count(); i++)
+        {
+            diLabelList.at(i)->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+            doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+    }
+}
+
 void bdobus::uiListappend()
 {
     diListappend();
@@ -248,51 +260,47 @@ void bdobus::update()
 void bdobus::processDiToDO()
 {
 
-    for (int i = 0; i < BDOBUSDidataList.count(); i++) {
-        if (BDOBUSDidataList[i].Result == 1 && continutyErrorList.at(i)->isChecked() == 1 && crossContinutyErrorList.at(i)->isChecked() != 1)
+    memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
+    resetAllDisAndDos();
+    for (int i = 0; i < BDOBUSDidataList.count(); i++)
+    {
+        if(BDOBUSDidataList[i].Result == 1 && crossContinutyErrorList.at(i)->isChecked() == 1)
         {
-            memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-            setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
-
-            doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
-        }
-        else if (BDOBUSDidataList[i].Result == 1 && continutyErrorList.at(i)->isChecked() != 1 && crossContinutyErrorList.at(i)->isChecked() == 1)
-        {
-            memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-            setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
-            if (i + 1 < doBDOBUSList.count())
-            {
-                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
-                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-            }
-            if (i + 2 < doBDOBUSList.count())
-            {
-                setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
-                doLabelList[i + 2]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-            }
-            diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        }
-        else if (BDOBUSDidataList[i].Result == 1 && continutyErrorList.at(i)->isChecked() != 1 && crossContinutyErrorList.at(i)->isChecked() != 1)
-        {
-            memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
             setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
             doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-            if (i + 1 < doBDOBUSList.count())
+            if(i  < doBDOBUSList.count() - 4)
             {
-                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 0);
-                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
+                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
+                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[i + 2]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
             }
-            if (i + 2 < doBDOBUSList.count())
+            else if(i == doBDOBUSList.count() - 3)
             {
-                setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 0);
-                doLabelList[i + 2]->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
+                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[0]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            }
+            else if(i == doBDOBUSList.count() - 2)
+            {
+                setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
+                doLabelList[0]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
             }
             diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         }
 
-        else if (BDOBUSDidataList[i].Result == 1)
+        if(BDOBUSDidataList[i].Result == 1 && continutyErrorList.at(i)->isChecked() == 1)
         {
-            memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
+            setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
+            doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
+            diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+        }
+
+        if(BDOBUSDidataList[i].Result == 1  && crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
+        {
             setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
             doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
             diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");

@@ -52,27 +52,15 @@ void modbusComm::sendDiData(short *diVal)
     stream << quint8(SLAVE_ADDRESS);
     stream << quint8(FUNCTION_CODE);
     stream << quint8(04*02);
-    //    stream << quint16(20);
-    //    stream << quint16(04);
-    //    stream << quint8(04*02);
     for(int i = 0 ; i < 4; i++)
     {
         stream << quint16(diVal[i]);
     }
-    //    stream << quint16(02);
-    //    stream << quint16(0);
-    //    stream << quint16(0);
-    //    stream << quint16(0);
-
-    //    if (!clientSocket->waitForBytesWritten(3000)) {
-    //        qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
-    //        return;  // Early exit if write failed
-    //    }
     clientSocket->write(request);
     if (!clientSocket->waitForBytesWritten(3000)) {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
-    //qDebug()<<"data sending = "<<request.toHex();
+    qDebug()<<"data sending = "<<request.toHex();
 }
 
 
@@ -109,7 +97,7 @@ void modbusComm::readData()
         unsigned short transId = (data.at(0) << 8) | data.at(1);
         if(transId == DO_TRANS_ID)
         {
-            qDebug() << "Received received:" << data.toHex();
+            //qDebug() << "Received received:" << data.toHex();
             statusData = 1;
         }
         decodeData(data);

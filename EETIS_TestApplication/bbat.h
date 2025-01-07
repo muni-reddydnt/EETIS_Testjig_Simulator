@@ -2,6 +2,9 @@
 #define BBAT_H
 
 #include <QWidget>
+#include <QTimer>
+#include <QLabel>
+#include <QCheckBox>
 
 #define BBATDO1                      2
 #define BBATDO2                      3
@@ -46,22 +49,40 @@
 #define BBATDO1_20                     41
 
 
+#define BBATAO01                     4
+#define BBATAO02                     5
+#define BBATAO03                     7
+
+
+#define BBATDI_POWEROFF21              30
+#define BBATDI_POWEROFF22              40
+
+
+#define POWER_ON_DI                 60
+
+
+#define HARNESS_BBAT_CHK_DI1        5
+#define HARNESS_BBAT_CHK_DI2        33
+
+#define HARNESS_BBAT_CHK_DO1        0
+#define HARNESS_BBAT_CHK_DO2        1
+
 
 #pragma pack(1)
 typedef struct
 {
-    int diNum;
+    int doNum;
 }BBATdiStruct;
 #pragma pack(1)
 typedef struct
 {
     int Result;
     QString upResult;
-}BBATresultStruct;
+}BBATDiresultStruct;
 #pragma pack(1)
 typedef struct
 {
-    int doNum;
+    int diNum;
 }BBATdoStruct;
 
 
@@ -74,19 +95,47 @@ class BBAT : public QWidget
     Q_OBJECT
 
 public:
-    BBATdiStruct BBATteststruct;
-    QList<BBATdiStruct>diBBATList;
-    BBATresultStruct BBATtestResult;
-    QList<BBATresultStruct> BBATresultList;
+    BBATdiStruct BBATDoStruct;
+    BBATdiStruct BBATDoStruct1;
+    BBATdiStruct BBATPowerOffDoStruct;
+    BBATdoStruct BBATDiStruct;
+    QList<BBATdiStruct>doBBATList;
+    QList<BBATdiStruct>doBBATList1;
+    QList<BBATdiStruct>doBBATPowerOffList;
+    BBATDiresultStruct BBATDiResultStruct;
+    QList<BBATDiresultStruct> BBATDidataList;
     BBATdoStruct BBATtestDOstruct;
-    QList<BBATdoStruct>doBBATList;
+    QList<BBATdoStruct>diBBATList;
+    QList<QLabel*> doLabelList;
+    QList<QCheckBox*> continutyErrorList;
+    QList<QCheckBox*> crossContinutyErrorList;
+    //QList<QLabel*> diLabelList;
     explicit BBAT(QWidget *parent = 0);
     ~BBAT();
 
+    void addDoStructInList();
     void addDiStructInList();
+    short bbatDoval[4] = {0};
+    short bbatAoVal[16] = {0};
+protected:
+    void processHarnessDiDO();
+    int checkCorrectHarness();
+    void processDoVals();
+
+    void uiListappend();
+    void diListappend();
+    void addDiDoStructInList();
+    void sendAiData();
+protected slots:
+    void update();
 
 private:
     Ui::BBAT *ui;
+    QTimer *updateUidata;
+    int inputCount = 0;
+    int startSendAo = 0;
+    void setRegisterHigh(int bitPosition, bool highLow);
+    int powerOffDO = 0;
 };
 
 #endif // BBAT_H

@@ -1,12 +1,15 @@
 #include "bdobus.h"
+#include "mainwindow.h"
 #include "ui_bdobus.h"
 
+
+extern MainWindow *mainAppWin;
 bdobus::bdobus(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::bdobus)
 {
     ui->setupUi(this);
-    modbusCommObj = new modbusComm(this);
+    //modbusCommObj = new modbusComm(this);
     //modbusCommObj->status = 0;
     //btnBDOBUSJ17J21 = true;
     ui->ckCrossShellLoading->hide();
@@ -28,33 +31,25 @@ bdobus::~bdobus()
     delete ui;
 }
 
-int bdobus::setBitHigh(int val, int bitPosition, bool highLow)
-{
-    if (highLow) {
 
-        return val |= (1 << bitPosition);
-    } else {
-        return val &= ~(1 << bitPosition);
-    }
-}
 
 void bdobus::setRegisterHIgh(int bitPosition, bool highLow)
 {
     if(bitPosition > 0 && bitPosition < 16)
     {
-        modbusCommObj->dival[0] = setBitHigh(modbusCommObj->dival[0],bitPosition,highLow);
+        bdobusDoval[0] = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],bitPosition,highLow);
     }
     else if(bitPosition  >= 16 && bitPosition  <32)
     {
-        modbusCommObj->dival[1] = setBitHigh(modbusCommObj->dival[1],(bitPosition - 16),highLow);
+        bdobusDoval[1] = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[1],(bitPosition - 16),highLow);
     }
     else if(bitPosition  >= 32 && bitPosition  <48)
     {
-        modbusCommObj->dival[2] = setBitHigh(modbusCommObj->dival[2],(bitPosition - 32),highLow);
+        bdobusDoval[2] = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[2],(bitPosition - 32),highLow);
     }
     else if(bitPosition  >= 48 && bitPosition  <64)
     {
-        modbusCommObj->dival[3] = setBitHigh(modbusCommObj->dival[3],(bitPosition - 48),highLow);
+        bdobusDoval[3] = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[3],(bitPosition - 48),highLow);
     }
 }
 
@@ -228,17 +223,21 @@ void bdobus::crossContinutyErrorListappend()
 void bdobus::update()
 {
     BDOBUSDidataList.clear();
-    modbusCommObj->transactionId = DI_TRANS_ID;
+    //mainAppWin->modbusCommObj->dotransactionId = DI_TRANS_ID;
+
     for(int i=0 ;i <diBDOBUSList.count();i++)
     {
-        BDOBUSDiResultStruct.Result = modbusCommObj->getDiValue(diBDOBUSList.at(i).diNum);
+        BDOBUSDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diBDOBUSList.at(i).diNum);
         BDOBUSDidataList.append(BDOBUSDiResultStruct);
     }
     processDiToDO();
     processHarnessDiDO();
-    if(modbusCommObj->startSendData == 1)
+    //qDebug("mainAppWin->startSendData: %d",mainAppWin->startSendData);
+    if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 2)
     {
-        modbusCommObj->sendData();
+        //modbusCommObj->sendData();
+        mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval );
+        //mainAppWin->modbusCommObj->sendDiData(bdobusDoval);
     }
     //    processShellLoadingEmgncyStop();
 #if 0
@@ -260,7 +259,7 @@ void bdobus::update()
 void bdobus::processDiToDO()
 {
 
-    memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
+    memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
     resetAllDisAndDos();
     for (int i = 0; i < BDOBUSDidataList.count(); i++)
     {
@@ -268,7 +267,7 @@ void bdobus::processDiToDO()
         {
             setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
             doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-            if(i  < doBDOBUSList.count() - 4)
+            if(i  <= doBDOBUSList.count() - 4)
             {
                 setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
                 setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
@@ -299,10 +298,30 @@ void bdobus::processDiToDO()
             diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         }
 
-        if(BDOBUSDidataList[i].Result == 1  && crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
+        if(BDOBUSDidataList[i].Result == 1  && crossContinutyErrorList.at(i)->isChecked() == 1 && continutyErrorList.at(i)->isChecked() == 1)
         {
-            setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
-            doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+           // doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            if(i  <= doBDOBUSList.count() - 4)
+            {
+                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
+                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[i + 2]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            }
+            else if(i == doBDOBUSList.count() - 3)
+            {
+                setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                doLabelList[i + 1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[0]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            }
+            else if(i == doBDOBUSList.count() - 2)
+            {
+                setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
+                doLabelList[0]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                doLabelList[1]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            }
             diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         }
     }
@@ -315,47 +334,48 @@ void bdobus::processHarnessDiDO()
     if(checkCorrectHarness() == 1 && ui->ckHarnessContinutyError->isChecked() != 1)
     {
         // memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(HARNESS_BDOBUS_CHK_DO1),1);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(HARNESS_BDOBUS_CHK_DO1),1);
         ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
     }
     else if(checkCorrectHarness() == 1 && ui->ckHarnessContinutyError->isChecked() == 1)
     {
         //memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(HARNESS_BDOBUS_CHK_DO1),0);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(HARNESS_BDOBUS_CHK_DO1),0);
         ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
     }
     else
     {
         //memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(HARNESS_BDOBUS_CHK_DO1),0);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(HARNESS_BDOBUS_CHK_DO1),0);
         ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:5px;}");
         ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
     }
 }
 
+#if 0
 void bdobus::processShellLoadingEmgncyStop()
 {
     //shell loading
     if(modbusCommObj->receivDIs[BDOBUS_DI_SHELLCHK] == 1 && ui->ckShellLoading->isChecked() != 1)
     {
         memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DO_SHELLCHK),1);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),1);
         ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
     }
     else if(modbusCommObj->receivDIs[BDOBUS_DI_SHELLCHK] == 1 && ui->ckShellLoading->isChecked() == 1)
     {
         memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DO_SHELLCHK),0);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),0);
         ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
     }
     else
     {
         memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DO_SHELLCHK),0);
+        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),0);
         ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:5px;}");
         ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:15px;}");
     }
@@ -425,13 +445,13 @@ void bdobus::processEnableDisableCkError()
 
 }
 
-
+#endif
 
 
 int bdobus::checkCorrectHarness()
 {
 
-    int value1= modbusCommObj->getDiValue(HARNESS_BDOBUS_CHK_DI1);
+    int value1= mainAppWin->modbusCommObj->getDiValue(HARNESS_BDOBUS_CHK_DI1);
 
 
     // plcCommObj->setDoValue(HARNESS_BDOBUS_CHK_DO1,LOW);

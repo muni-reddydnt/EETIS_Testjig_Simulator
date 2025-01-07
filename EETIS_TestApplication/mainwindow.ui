@@ -191,7 +191,7 @@ border-top-left-radius:00px;</string>
       <string>BDOBUS</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="pbBfcmdf">
      <property name="geometry">
       <rect>
        <x>609</x>
@@ -303,7 +303,7 @@ border-top-left-radius:00px;</string>
       <string>CCU</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_8">
+    <widget class="QPushButton" name="pbRfu">
      <property name="geometry">
       <rect>
        <x>1629</x>

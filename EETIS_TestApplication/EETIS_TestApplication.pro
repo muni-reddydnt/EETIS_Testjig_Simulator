@@ -28,18 +28,24 @@ SOURCES += \
         mainwindow.cpp \
     modbuscomm.cpp \
     bdobus.cpp \
-    bbat.cpp
+    bbat.cpp \
+    bfcmdf.cpp \
+    rfu.cpp
 
 HEADERS += \
         mainwindow.h \
     modbuscomm.h \
     bdobus.h \
-    bbat.h
+    bbat.h \
+    bfcmdf.h \
+    rfu.h
 
 FORMS += \
         mainwindow.ui \
     bdobus.ui \
-    bbat.ui
+    bbat.ui \
+    bfcmdf.ui \
+    rfu.ui
 
 RESOURCES += \
     images.qrc

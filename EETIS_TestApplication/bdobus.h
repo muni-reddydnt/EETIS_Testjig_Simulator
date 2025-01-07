@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <QCheckBox>
-#include "modbuscomm.h"
+//#include "modbuscomm.h"
 //#include "globals.h"
 
 
@@ -101,7 +101,7 @@ class bdobus : public QWidget
 public:
     explicit bdobus(QWidget *parent = 0);
     ~bdobus();
-    modbusComm *modbusCommObj;
+    //modbusComm *modbusCommObj;
     QList<QLabel*> diLabelList;
     QList<QLabel*> doLabelList;
     QList<QCheckBox*> continutyErrorList;
@@ -113,9 +113,9 @@ public:
     QList<BODOBUSDidataStruct> BDOBUSDidataList;
     BODOBUSdoStruct BDOBUStestDOstruct;
     QList<BODOBUSdoStruct>doBDOBUSList;
-    char sendDOs[NO_OF_DOs] = {0};
+    //char sendDOs[NO_OF_DOs] = {0};
+    short bdobusDoval[4] = {0};
 protected:
-    int setBitHigh(int val, int bitPosition, bool highLow);
     void setRegisterHIgh(int bitPosition, bool highLow );
 
     //void addDiStructInList();
@@ -139,8 +139,8 @@ private slots:
     void update();
     void processDiToDO();
     void processHarnessDiDO();
-    void processShellLoadingEmgncyStop();
-    void processEnableDisableCkError();
+    //void processShellLoadingEmgncyStop();
+    //void processEnableDisableCkError();
 
     //void CombineProcessDido();
 private:

@@ -1,12 +1,14 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+MainWindow *mainAppWin;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    mainAppWin = new MainWindow();
+    //MainWindow w;
     //w.show();
-    w.showFullScreen();
+    mainAppWin->showFullScreen();
 
     return a.exec();
 }

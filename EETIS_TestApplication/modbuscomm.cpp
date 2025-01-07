@@ -1,5 +1,7 @@
 #include "modbuscomm.h"
+#include "mainwindow.h"
 
+extern MainWindow *mainAppWin;
 modbusComm::modbusComm(QObject *parent) : QObject(parent)
 {
 
@@ -43,8 +45,8 @@ void modbusComm::sendDiData(short *diVal)
     QByteArray request;
 
     QDataStream stream(&request, QIODevice::ReadWrite);
-
-    stream << quint16(transactionId);
+    //int dotransactionId = DI_TRANS_ID;
+    stream << quint16(dotransactionId);
     stream << quint16(0);                   // Protocol identifier (0 for Modbus TCP/IP)
     //stream << quint16(19);
     stream << quint16(3 + (4*2));        /*(noOfReg * 2)*/
@@ -60,7 +62,77 @@ void modbusComm::sendDiData(short *diVal)
     if (!clientSocket->waitForBytesWritten(3000)) {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
-    qDebug()<<"data sending = "<<request.toHex();
+    //qDebug()<<"data sending = "<<request.toHex();
+}
+
+void modbusComm::sendAoData(short *aoVal)
+{
+    //    if (clientSocket == nullptr) {
+    //        return;
+    //    }
+    //    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
+    //        //        qDebug() << "Socket is not connected!";
+    //        return;
+    //    }
+    int totalRegisters = 16;
+    int aoTransactionId = AI_TRANS_ID;
+    QByteArray request;
+
+    QDataStream stream(&request, QIODevice::ReadWrite);
+
+    stream << quint16(aoTransactionId);
+    stream << quint16(0);                   // Protocol identifier (0 for Modbus TCP/IP)
+    //stream << quint16(19);
+    stream << quint16(3 + (totalRegisters * 2));        /*(noOfReg * 2)*/
+
+    stream << quint8(SLAVE_ADDRESS);
+    stream << quint8(FUNCTION_CODE);
+    stream << quint8(totalRegisters * 02);
+    for(int i = 0 ; i < totalRegisters; i++)
+    {
+        stream << quint16(aoVal[i]);
+    }
+    clientSocket->write(request);
+    if (!clientSocket->waitForBytesWritten(3000)) {
+        qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
+    }
+}
+
+void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
+{
+    if (clientSocket == nullptr) {
+        return;
+    }
+    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
+        //        qDebug() << "Socket is not connected!";
+        return;
+    }
+    //qDebug()<<"hello";
+    QByteArray request;
+
+    QDataStream stream(&request, QIODevice::ReadWrite);
+    //int dotransactionId = DI_TRANS_ID;
+    stream << quint16(transId);
+    stream << quint16(0);                   // Protocol identifier (0 for Modbus TCP/IP)
+    //stream << quint16(19);
+    stream << quint16(3 + (regLength *2));        /*(noOfReg * 2)*/
+
+    stream << quint8(SLAVE_ADDRESS);
+    stream << quint8(FUNCTION_CODE);
+    stream << quint8(regLength * 02);
+    for(int i = 0 ; i < regLength; i++)
+    {
+        stream << quint16(inputArr[i]);
+    }
+    clientSocket->write(request);
+    if (!clientSocket->waitForBytesWritten(3000)) {
+        qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
+    }
+    //qDebug()<<"data sending = "<<request.toHex();
+    if(transId == DI_TRANS_ID)
+    {
+        qDebug()<<"data sending = "<<request.toHex();
+    }
 }
 
 
@@ -87,7 +159,7 @@ void modbusComm::onNewConnection()
 void modbusComm::readData()
 {
     //sendTimer->start(50);
-    startSendData = 1;
+    //startSendData = 1;
     clientSocket = new QTcpSocket(this);
     clientSocket = qobject_cast<QTcpSocket *>(sender());
     if (clientSocket) {
@@ -95,10 +167,13 @@ void modbusComm::readData()
 
         unsigned char funcCode = data.at(7);
         unsigned short transId = (data.at(0) << 8) | data.at(1);
+        //qDebug() << "Received received:" << data.toHex();
+        mainAppWin->startSendData = 1;
         if(transId == DO_TRANS_ID)
         {
             //qDebug() << "Received received:" << data.toHex();
-            statusData = 1;
+
+            //qDebug("in modbus mainAppWin->statusData: %d",mainAppWin->startSendData);
         }
         decodeData(data);
     }
@@ -117,7 +192,7 @@ void modbusComm::sendModbusReadWriteRequest()
 void modbusComm::sendData()
 {
     //qDebug()
-   // storeDoDataInRegArray(&dival[0], 4, &sendDOVals[0]);
+    // storeDoDataInRegArray(&dival[0], 4, &sendDOVals[0]);
     sendDiData(dival);
 }
 
@@ -169,16 +244,16 @@ void modbusComm::decodeData(QByteArray responseData)
             qDebug("inputReg[3] = %x\n",inputReg[3]);
 #endif
 #if 0
-            qDebug("receivDIs[0] = %d\n",receivDIs[0]);
-            qDebug("receivDIs[1] = %d\n",receivDIs[1]);
-            qDebug("receivDIs[2] = %d\n",receivDIs[2]);
-            qDebug("receivDIs[3] = %d\n",receivDIs[3]);
-            qDebug("receivDIs[4] = %d\n",receivDIs[4]);
-            qDebug("receivDIs[5] = %d\n",receivDIs[5]);
+            //            qDebug("receivDIs[0] = %d\n",receivDIs[0]);
+            //            qDebug("receivDIs[1] = %d\n",receivDIs[1]);
+            //            qDebug("receivDIs[2] = %d\n",receivDIs[2]);
+            //            qDebug("receivDIs[3] = %d\n",receivDIs[3]);
+            //            qDebug("receivDIs[4] = %d\n",receivDIs[4]);
+            //            qDebug("receivDIs[5] = %d\n",receivDIs[5]);
             qDebug("receivDIs[6] = %d\n",receivDIs[6]);
-            qDebug("receivDIs[7] = %d\n",receivDIs[7]);
-            qDebug("receivDIs[8] = %d\n",receivDIs[8]);
-            qDebug("receivDIs[9] = %d\n",receivDIs[9]);
+            //            qDebug("receivDIs[7] = %d\n",receivDIs[7]);
+            //            qDebug("receivDIs[8] = %d\n",receivDIs[8]);
+            //            qDebug("receivDIs[9] = %d\n",receivDIs[9]);
 #endif
 #if 0
             qDebug("receivDIs[10] = %d\n",receivDIs[10]);
@@ -199,6 +274,22 @@ void modbusComm::decodeData(QByteArray responseData)
 #endif
 
         }
+
+
+
+
+    }
+    case REQ_MULTIPLE_REGS:
+    {
+        //Check if the data is for DI or AI based on transaction ID
+        unsigned short transId = (responseData.at(0) << 8) | responseData.at(1);
+        if (transId == 0x1f)
+        {
+            aiReqSts = true;
+            qDebug()<<"aiReqSts = "<<aiReqSts;
+
+        }
+        break;
     }
     }
 
@@ -261,6 +352,15 @@ void modbusComm::storeDoDataInRegArray(short *doDataInRegArray, unsigned short n
     }
 }
 
+int modbusComm::setBitHigh(int val, int bitPosition, bool highLow)
+{
+    if (highLow) {
+
+        return val |= (1 << bitPosition);
+    } else {
+        return val &= ~(1 << bitPosition);
+    }
+}
 
 
 

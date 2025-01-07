@@ -8,15 +8,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     storeImage();
+    modbusCommObj = new modbusComm(this);
     bdobusObj = new bdobus(ui->frmMain);
     bbatObj = new BBAT(ui->frmMain);
+    bfcmdfObj = new bfcmdf(ui->frmMain);
+    rfuObj = new rfu(ui->frmMain);
     bdobusObj->hide();
     bbatObj->hide();
-
-
-
-
-
+    bfcmdfObj->hide();
+    rfuObj->hide();
 }
 
 MainWindow::~MainWindow()
@@ -33,31 +33,30 @@ void MainWindow::storeImage()
 void MainWindow::defaultFooterBtnStyleSheet()
 {
     setFooterBtnStyleSheet(ui->pbBDOBUS,0);
-    setFooterBtnStyleSheet(ui->pbBDOBUS,0);
+    setFooterBtnStyleSheet(ui->pbBBAT,0);
+    setFooterBtnStyleSheet(ui->pbBfcmdf,0);
+    setFooterBtnStyleSheet(ui->pbRfu,0);
 }
 
 void MainWindow::setFooterBtnStyleSheet(QPushButton *footerBtn, bool setReset)
 {
     if(setReset)
     {
-        footerBtn->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+        footerBtn->setStyleSheet(SET_BUTTON_STYLESHEET);
     }
     else
     {
-        footerBtn->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        footerBtn->setStyleSheet(DEFAULT_FOOTER_BUTTON_STYLESHEET);
     }
 }
 
-
-
-
-
-
-
-
-
-
-
+void MainWindow::hideAllFrms()
+{
+     bdobusObj->hide();
+     bbatObj->hide();
+     bfcmdfObj->hide();
+     rfuObj->hide();
+}
 
 void MainWindow::on_btnShutDown_clicked()
 {
@@ -66,19 +65,38 @@ void MainWindow::on_btnShutDown_clicked()
 
 void MainWindow::on_pbBBAT_clicked()
 {
-    bdobusObj->hide();
+    hideAllFrms();
     bbatObj->show();
+    unitStatus = BBATUNIT;
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbBBAT,1);
-    setFooterBtnStyleSheet(ui->pbBDOBUS,0);
 }
 
 
 
 void MainWindow::on_pbBDOBUS_clicked()
 {
+    hideAllFrms();
     bdobusObj->show();
-    bbatObj->hide();
+    unitStatus = BDOBUSUNIT;
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbBDOBUS,1);
+}
+
+void MainWindow::on_pbBfcmdf_clicked()
+{
+    hideAllFrms();
+    bfcmdfObj->show();
+    unitStatus = BFCMDFUNIT;
+    defaultFooterBtnStyleSheet();
+    setFooterBtnStyleSheet(ui->pbBfcmdf,1);
+}
+
+void MainWindow::on_pbRfu_clicked()
+{
+    hideAllFrms();
+    rfuObj->show();
+    unitStatus = RFUUNIT;
+    defaultFooterBtnStyleSheet();
+    setFooterBtnStyleSheet(ui->pbRfu,1);
 }

@@ -110,9 +110,9 @@ void BBAT::addDoStructInList()
     BBATDoStruct1.doNum = BBATDO1_20;
     doBBATList1.append(BBATDoStruct1);
 
-    BBATPowerOffDoStruct.doNum = BBATDI_POWEROFF21;
+    BBATPowerOffDoStruct.doNum = BBATDO_POWEROFF21;
     doBBATPowerOffList.append(BBATPowerOffDoStruct);
-    BBATPowerOffDoStruct.doNum = BBATDI_POWEROFF22;
+    BBATPowerOffDoStruct.doNum = BBATDO_POWEROFF22;
     doBBATPowerOffList.append(BBATPowerOffDoStruct);
 
 }
@@ -142,6 +142,23 @@ void BBAT::processHarnessDiDO()
 
 }
 
+void BBAT::processOfPowerOffDOToDI()
+{
+    int poweroffDI1 = mainAppWin->modbusCommObj->getDiValue(HARNESS_BBAT_CHK_DI1);
+    int poweroffDI2 = mainAppWin->modbusCommObj->getDiValue(HARNESS_BBAT_CHK_DI2);
+    if(poweroffDI1 == 1)
+    {
+        setRegisterHigh(doBBATPowerOffList.at(0).doNum, 1);
+        ui->lblPowerOffDi1->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+    }
+    if(poweroffDI2 == 1)
+    {
+        setRegisterHigh(doBBATPowerOffList.at(1).doNum, 1);
+        ui->lblPowerOffDi1->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+    }
+
+}
+
 int BBAT::checkCorrectHarness()
 {
     int value1= mainAppWin->modbusCommObj->getDiValue(HARNESS_BBAT_CHK_DI1);
@@ -162,10 +179,12 @@ void BBAT::processDoVals()
 
 void BBAT::uiListappend()
 {
-    diListappend();
+    //diListappend();
+    doListappend();
 }
 
-void BBAT::diListappend()
+
+void BBAT::doListappend()
 {
     doLabelList.clear();
     doLabelList.append(ui->ledj2atoj2d);
@@ -208,43 +227,74 @@ void BBAT::sendAiData()
 
 void BBAT::update()
 {
+    if(startTimerCount)
+    {
+        powerOffSysCount++;
+    }
     processHarnessDiDO();
-    //mainAppWin->modbusCommObj->dotransactionId = DI_TRANS_ID;
-//    BBATDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diBBATList.at(0).diNum);
-//    BBATDidataList.append(BBATDiResultStruct);
+    //    int poweroffDI1 = mainAppWin->modbusCommObj->getDiValue(HARNESS_BBAT_CHK_DI1);
+    //    int poweroffDI2 = mainAppWin->modbusCommObj->getDiValue(HARNESS_BBAT_CHK_DI2);
+    //    qDebug()<<"poweroffDI1 = "<<poweroffDI1;
+    //    qDebug()<<"poweroffDI2 = "<<poweroffDI2;
     int result1 = mainAppWin->modbusCommObj->getDiValue(POWER_ON_DI);
     if(result1 == 1)
     {
-        inputCount++;
         ui->lblPowerOn->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         startSendAo = 1;
+        powerOffDO = 1;
+        poweroffDI1 = mainAppWin->modbusCommObj->getDiValue(BBATDI_POWEROFF1);
+        poweroffDI2 = mainAppWin->modbusCommObj->getDiValue(BBATDI_POWEROFF2);
+        startTimerCount = true;
+        qDebug()<<"poweroffDI1 = "<<poweroffDI1;
+        qDebug()<<"poweroffDI2 = "<<poweroffDI2;
     }
     if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 1 )
     {
+        //qDebug()<<"result1 = "<<result1;
+        if(powerOffDO == 1)
+        {
+            if(powerOffSysCount >= 1700)
+            {
+                qDebug()<<"poweroffDI1 = "<<poweroffDI1;
+                qDebug()<<"poweroffDI2 = "<<poweroffDI2;
+                if(powerOffSysCount % 100 == 0)
+                {
+                    qDebug()<<"powerOffSysCount = "<<powerOffSysCount;
+                }
+                if(poweroffDI1 == 1)
+                {
+                    setRegisterHigh(doBBATPowerOffList.at(0).doNum, 1);
+                    ui->lblPowerOff1LED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                    ui->lblPowerOffDi1->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+                }
+                if(poweroffDI2 == 1)
+                {
+                    setRegisterHigh(doBBATPowerOffList.at(1).doNum, 1);
+                    ui->lblPowerOff2LED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+                    ui->lblPowerOffDi2->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+                }
+            }
+        }
         if(result1 == 1)
         {
-            processDoVals();
-            powerOffDO = 1;
+
+
+
             //modbusCommObj->sendData();
             //mainAppWin->modbusCommObj->sendDiData(bbatDoval);
-
+            processDoVals();
         }
         else
         {
-           sendAiData();
-           if(powerOffDO == 1)
-           {
-               setRegisterHigh(doBBATPowerOffList.at(0).doNum, 1);
-               setRegisterHigh(doBBATPowerOffList.at(1).doNum, 1);
-           }
-           //memset(&bbatDoval[0], 0 , sizeof(bbatDoval));
+            sendAiData();
+            //memset(&bbatDoval[0], 0 , sizeof(bbatDoval));
         }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
+        mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
     }
-//    else if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 1 && result1 != 1 && startSendAo == 1)
-//    {
+    //    else if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 1 && result1 != 1 && startSendAo == 1)
+    //    {
 
-//    }
+    //    }
 
 }
 

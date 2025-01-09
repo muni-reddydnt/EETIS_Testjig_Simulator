@@ -29,9 +29,9 @@ void rfu::update()
         rfuDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diRfuList.at(i).diNum);
         rfuDidataList.append(rfuDiResultStruct);
     }
-    qDebug()<<"rfuDidataList.at(0).Result = "<<rfuDidataList.at(0).Result;
-    qDebug()<<"rfuDidataList.at(1).Result = "<<rfuDidataList.at(1).Result;
-    qDebug()<<"rfuDidataList.at(2).Result = "<<rfuDidataList.at(2).Result;
+    //qDebug()<<"rfuDidataList.at(0).Result = "<<rfuDidataList.at(0).Result;
+    //qDebug()<<"rfuDidataList.at(1).Result = "<<rfuDidataList.at(1).Result;
+    //qDebug()<<"rfuDidataList.at(2).Result = "<<rfuDidataList.at(2).Result;
     processHarnessDiDO();
     processDiDo();
     if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 4)

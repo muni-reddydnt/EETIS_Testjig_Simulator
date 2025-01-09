@@ -324,6 +324,12 @@ void bdobus::processDiToDO()
             }
             diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         }
+        if(BDOBUSDidataList[i].Result == 1 && crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
+        {
+            setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
+            doLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+            diLabelList[i]->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
+        }
     }
 }
 

@@ -45,7 +45,7 @@ void bfcmdf::processHarnessDiDO()
     {
         // memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
         bfcmdfDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bfcmdfDoval[0],(HARNESS_BFCMD_CHK_DO1),1);
-        qDebug("bfcmdfDoval[0] = %d",bfcmdfDoval[0]);
+        //qDebug("bfcmdfDoval[0] = %d",bfcmdfDoval[0]);
         ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
     }

@@ -244,13 +244,14 @@ void modbusComm::decodeData(QByteArray responseData)
             qDebug("inputReg[3] = %x\n",inputReg[3]);
 #endif
 #if 0
-            //            qDebug("receivDIs[0] = %d\n",receivDIs[0]);
+                        qDebug("receivDIs[5] = %d\n",receivDIs[5]);
+                        qDebug("receivDIs[33] = %d\n",receivDIs[33]);
             //            qDebug("receivDIs[1] = %d\n",receivDIs[1]);
             //            qDebug("receivDIs[2] = %d\n",receivDIs[2]);
             //            qDebug("receivDIs[3] = %d\n",receivDIs[3]);
             //            qDebug("receivDIs[4] = %d\n",receivDIs[4]);
             //            qDebug("receivDIs[5] = %d\n",receivDIs[5]);
-            qDebug("receivDIs[6] = %d\n",receivDIs[6]);
+//            qDebug("receivDIs[6] = %d\n",receivDIs[6]);
             //            qDebug("receivDIs[7] = %d\n",receivDIs[7]);
             //            qDebug("receivDIs[8] = %d\n",receivDIs[8]);
             //            qDebug("receivDIs[9] = %d\n",receivDIs[9]);
@@ -286,7 +287,7 @@ void modbusComm::decodeData(QByteArray responseData)
         if (transId == 0x1f)
         {
             aiReqSts = true;
-            qDebug()<<"aiReqSts = "<<aiReqSts;
+            //qDebug()<<"aiReqSts = "<<aiReqSts;
 
         }
         break;

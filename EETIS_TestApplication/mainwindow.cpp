@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bbatObj->hide();
     bfcmdfObj->hide();
     rfuObj->hide();
+    ui->lblUTMHTMStatus->hide();
 }
 
 MainWindow::~MainWindow()
@@ -71,8 +72,6 @@ void MainWindow::on_pbBBAT_clicked()
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbBBAT,1);
 }
-
-
 
 void MainWindow::on_pbBDOBUS_clicked()
 {

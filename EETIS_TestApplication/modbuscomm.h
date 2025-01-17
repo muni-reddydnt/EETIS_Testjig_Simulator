@@ -13,14 +13,9 @@
 #define READ_HOLDING_REGS           3
 #define WRITE_MULTIPLE_REGS         16
 
-//#define DI_TRANS_ID                 11
 #define DI_TRANS_ID                 11
 #define AI_TRANS_ID                 31
-
-
-//#define DO_TRANS_ID                 31
 #define DO_TRANS_ID                 21
-//#define AI_TRANS_ID                 51
 #define AO_TRANS_ID                 71
 #define NO_OF_REGISTERS             125
 

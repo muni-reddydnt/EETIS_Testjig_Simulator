@@ -486,7 +486,7 @@ color:rgb(53,74, 131);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbHarnessDI1">
+   <widget class="QCheckBox" name="cbContErrHarnessDI1">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -583,7 +583,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbHarnessDI2">
+   <widget class="QCheckBox" name="cbContErrHarnessDI2">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -1397,7 +1397,7 @@ color:rgb(53,74, 131);</string>
      <string>DO</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPowerOff1LED">
+   <widget class="QLabel" name="lblTimerChkDO1">
     <property name="geometry">
      <rect>
       <x>1560</x>
@@ -1414,7 +1414,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPowerOffDi1">
+   <widget class="QLabel" name="lblTimerChkDI2">
     <property name="geometry">
      <rect>
       <x>1306</x>
@@ -1442,13 +1442,13 @@ border-radius:5px;
 </string>
     </property>
     <property name="text">
-     <string>POWER OFF 1</string>
+     <string>TIMER CHECK DI-2</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPowerOffDi2">
+   <widget class="QLabel" name="lblTimerChkDI1">
     <property name="geometry">
      <rect>
       <x>1306</x>
@@ -1476,13 +1476,13 @@ border-radius:5px;
 </string>
     </property>
     <property name="text">
-     <string>POWER OFF 2</string>
+     <string>TIMER CHECK DI-1</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPowerOff2LED">
+   <widget class="QLabel" name="lblTimerChkDO2">
     <property name="geometry">
      <rect>
       <x>1560</x>
@@ -1941,7 +1941,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbPowerOff1">
+   <widget class="QCheckBox" name="cbTimerChkDO1">
     <property name="geometry">
      <rect>
       <x>1681</x>
@@ -2383,7 +2383,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbPowerOff2">
+   <widget class="QCheckBox" name="cbTimerChkDO2">
     <property name="geometry">
      <rect>
       <x>1681</x>

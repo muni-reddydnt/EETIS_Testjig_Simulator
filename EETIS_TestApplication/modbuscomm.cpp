@@ -4,14 +4,16 @@
 extern MainWindow *mainAppWin;
 modbusComm::modbusComm(QObject *parent) : QObject(parent)
 {
-
-
     server = new QTcpServer();
     //  mavSock = new QUdpSocket();
-    if (server->listen(QHostAddress::LocalHost, 502)) {
+
+    if (server->listen(QHostAddress::LocalHost, SERVER_PORT))
+    {
         qDebug() << "Server started. Waiting for connections...";
 
-    } else {
+    }
+    else
+    {
         qDebug() << "Server could not start. Error:" << server->errorString();
     }
     // Connect the newConnection signal to a slot that will handle incoming client connections
@@ -21,9 +23,7 @@ modbusComm::modbusComm(QObject *parent) : QObject(parent)
     connect(sendTimer, SIGNAL(timeout()), this, SLOT(sendData()));
     status = 0;
 
-
-
-
+    clientSocket = new QTcpSocket(this);
 }
 
 void modbusComm::setBaseAddrOfDO(unsigned short regAddr)
@@ -34,10 +34,13 @@ void modbusComm::setBaseAddrOfDO(unsigned short regAddr)
 
 void modbusComm::sendDiData(short *diVal)
 {
-    if (clientSocket == nullptr) {
+    if (clientSocket == nullptr)
+    {
         return;
     }
-    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
+
+    if (clientSocket->state() != QAbstractSocket::ConnectedState)
+    {
         //        qDebug() << "Socket is not connected!";
         return;
     }
@@ -59,7 +62,8 @@ void modbusComm::sendDiData(short *diVal)
         stream << quint16(diVal[i]);
     }
     clientSocket->write(request);
-    if (!clientSocket->waitForBytesWritten(3000)) {
+    if (!clientSocket->waitForBytesWritten(3000))
+    {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
     //qDebug()<<"data sending = "<<request.toHex();
@@ -93,18 +97,21 @@ void modbusComm::sendAoData(short *aoVal)
         stream << quint16(aoVal[i]);
     }
     clientSocket->write(request);
-    if (!clientSocket->waitForBytesWritten(3000)) {
+    if (!clientSocket->waitForBytesWritten(3000))
+    {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
 }
 
 void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
 {
-    if (clientSocket == nullptr) {
+    if (clientSocket == nullptr)
+    {
         return;
     }
-    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
-        //        qDebug() << "Socket is not connected!";
+    if (clientSocket->state() != QAbstractSocket::ConnectedState)
+    {
+//        qDebug() << "Socket is not connected!";
         return;
     }
     //qDebug()<<"hello";
@@ -131,13 +138,9 @@ void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
     //qDebug()<<"data sending = "<<request.toHex();
     if(transId == DI_TRANS_ID)
     {
-        qDebug()<<"data sending = "<<request.toHex();
+//        qDebug()<<"data sending = "<<request.toHex();
     }
 }
-
-
-
-
 
 void modbusComm::onNewConnection()
 {
@@ -355,10 +358,12 @@ void modbusComm::storeDoDataInRegArray(short *doDataInRegArray, unsigned short n
 
 int modbusComm::setBitHigh(int val, int bitPosition, bool highLow)
 {
-    if (highLow) {
-
+    if (highLow)
+    {
         return val |= (1 << bitPosition);
-    } else {
+    }
+    else
+    {
         return val &= ~(1 << bitPosition);
     }
 }

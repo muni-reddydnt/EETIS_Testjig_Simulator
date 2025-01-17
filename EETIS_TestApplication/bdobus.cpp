@@ -218,8 +218,6 @@ void bdobus::crossContinutyErrorListappend()
     //    crossContinutyErrorList.append(ui->ckCrossBDOBUSJ116J210);
 }
 
-
-
 void bdobus::update()
 {
     BDOBUSDidataList.clear();
@@ -255,12 +253,11 @@ void bdobus::update()
 #endif
 }
 
-
 void bdobus::processDiToDO()
 {
-
     memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
     resetAllDisAndDos();
+
     for (int i = 0; i < BDOBUSDidataList.count(); i++)
     {
         if(BDOBUSDidataList[i].Result == 1 && crossContinutyErrorList.at(i)->isChecked() == 1)

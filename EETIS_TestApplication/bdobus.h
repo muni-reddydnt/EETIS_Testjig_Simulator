@@ -15,7 +15,7 @@ border-radius:5px;"
 #define DEFAULT_DO_STYLESHEET  "QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}"
 
 #define GREEN_BUTTON_STYLESHEET  "background: rgb(73, 202, 66);border: 4px solid rgb(53,74, 131);color:rgb(53,74, 131);\
-border-radius:5px;"\
+border-radius:5px;"
 
 
 #pragma pack(1)
@@ -23,12 +23,14 @@ typedef struct
 {
     int diNum;
 }BODOBUSdiStruct;
+
 #pragma pack(1)
 typedef struct
 {
     int Result;
     //QString upResult;
 }BODOBUSDidataStruct;
+
 #pragma pack(1)
 typedef struct
 {

@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QTcpServer>
 
-
+#define SERVER_PORT                 502
 
 #define READ_HOLDING_REGS           3
 #define WRITE_MULTIPLE_REGS         16
@@ -82,7 +82,6 @@ private:
     QTcpServer *tcpServer;
     QTimer *receivReqTimer;
     QTcpServer *server;
-
     QTcpSocket *clientSocket;
     //qint16 dival[4] = {0};
 

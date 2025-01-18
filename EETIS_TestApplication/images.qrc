@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/R.png</file>
+        <file>images/DNT_Logo.png</file>
     </qresource>
 </RCC>

@@ -55,13 +55,12 @@ private slots:
 
     void on_pbBBAT_clicked();
 
-
-
     void on_pbBDOBUS_clicked();
 
     void on_pbBfcmdf_clicked();
 
     void on_pbRfu_clicked();
+    void updateDateTime();
 
 private:
     Ui::MainWindow *ui;
@@ -71,6 +70,7 @@ private:
     bfcmdf *bfcmdfObj;
     rfu *rfuObj;
     quint16 di[8];
+    QTimer *updateDateTimeTimer;
 };
 
 #endif // MAINWINDOW_H

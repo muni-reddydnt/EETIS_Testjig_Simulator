@@ -18,11 +18,21 @@ MainWindow::MainWindow(QWidget *parent) :
     bfcmdfObj->hide();
     rfuObj->hide();
     ui->lblUTMHTMStatus->hide();
+
+    updateDateTimeTimer = new QTimer(this);
+    connect(updateDateTimeTimer, SIGNAL(timeout()), this, SLOT(updateDateTime()));
+    updateDateTimeTimer->start(100);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::updateDateTime()
+{
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    ui->lblDateTime->setText(currentDateTime.toString("dd-mm-yyyy |") + currentDateTime.toString("hh:mm:ss"));
 }
 
 void MainWindow::storeImage()

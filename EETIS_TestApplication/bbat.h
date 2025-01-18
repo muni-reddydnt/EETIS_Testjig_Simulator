@@ -18,6 +18,9 @@ border-radius:5px;}"
 #define GREEN_BUTTON_STYLESHEET  "background: rgb(73, 202, 66);border: 4px solid rgb(53,74, 131);color:rgb(53,74, 131);\
 border-radius:5px;"
 
+#define YELLOW_BUTTON_STYLESHEET  "background: rgb(255, 255, 0);border: 4px solid rgb(53,74, 131);color:rgb(53,74, 131);\
+border-radius:5px;"
+
 #define BBAT_DO1_1                      2
 #define BBAT_DO1_2                      22
 #define BBAT_DO2_1                      3
@@ -77,18 +80,18 @@ border-radius:5px;"
 
 #define MS_TO_SEC                   10
 
-#pragma pack(1)
-typedef struct
-{
-    int diNum;
-}BBATdiStruct;
+//#pragma pack(1)
+//typedef struct
+//{
+//    int diNum;
+//}BBATdiStruct;
 
-#pragma pack(1)
-typedef struct
-{
-    int Result;
-    QString upResult;
-}BBATDiresultStruct;
+//#pragma pack(1)
+//typedef struct
+//{
+//    int Result;
+//    QString upResult;
+//}BBATDiresultStruct;
 
 #pragma pack(1)
 typedef struct
@@ -106,9 +109,7 @@ class BBAT : public QWidget
 
 public:
     BBATdoStruct stBBATDo;
-//    BBATdiStruct BBATDoStruct1;
     BBATdoStruct stBBATTimerchkDo;
-    BBATdiStruct stBBATDi;
 
     QList<BBATdoStruct>do1_1List;
     QList<BBATdoStruct>do1_2List;
@@ -117,19 +118,21 @@ public:
 //    BBATDiresultStruct BBATDiResultStruct;
 //    QList<BBATDiresultStruct> BBATDidataList;
 //    BBATdoStruct BBATtestDOstruct;
-    QList<BBATdiStruct>diBBATList;
 
     QList<QLabel*> diLabelList;
     QList<QLabel*> do1_1LabelList;
     QList<QLabel*> do1_2LabelList;
-    QList<QCheckBox*> continuityErrListForDO1;
-    QList<QCheckBox*> continuityErrListForDO2;
+    QList<QCheckBox*> do1_1ContinuityErrList;
+    QList<QCheckBox*> do1_2ContinuityErrList;
+    QList<QCheckBox*> do1_1OnOffCbList;
+    QList<QCheckBox*> do1_2OnOffCbList;
+
     //QList<QLabel*> diLabelList;
     explicit BBAT(QWidget *parent = 0);
     ~BBAT();
 
     void addDoStructInList();
-    void addDiStructInList();
+//    void addDiStructInList();
     short bbatDoval[4] = {0};
     short bbatAoVal[16] = {0};
 protected:
@@ -146,8 +149,11 @@ protected:
     void addDo2LabelsInList();
     void addContErrForDo1InList();
     void addContErrForDo2InList();
+    void addDo1OnOffCbInList();
+    void addDo2OnOffCbInList();
     void addDiDoStructInList();
     void sendAiData();
+    void checkDoOnOffSelected();
 
 protected slots:
     void startTest();

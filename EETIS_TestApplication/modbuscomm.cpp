@@ -31,7 +31,6 @@ void modbusComm::setBaseAddrOfDO(unsigned short regAddr)
     baseAddrOfDO = regAddr;
 }
 
-
 void modbusComm::sendDiData(short *diVal)
 {
     if (clientSocket == nullptr)
@@ -296,7 +295,6 @@ void modbusComm::decodeData(QByteArray responseData)
         break;
     }
     }
-
 }
 
 //delete
@@ -328,12 +326,10 @@ bool modbusComm::getBitValFrmReg(unsigned short regValue, int bitPosition)
     return(temp);
 }
 
-
 int modbusComm::getDiValue(int diChannel)
 {
     return (receivDIs[diChannel]);
 }
-
 
 void modbusComm::setDoValue(int doChannel, char data)
 {

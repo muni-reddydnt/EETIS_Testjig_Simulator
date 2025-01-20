@@ -35,38 +35,37 @@ class modbusComm : public QObject
 {
     Q_OBJECT
 public:
-    explicit modbusComm(QObject *parent = nullptr);
-    void connectModbusTcpSocket(const QString &host, quint16 port);
+    explicit modbusComm(QObject *parent = nullptr);\
+
+    QTcpSocket *clientSocket;
+
     int status = 0;
     int dotransactionId = 0;
-    //int aoTransactionId = 0;
     unsigned short inputReg[NO_OF_REGISTERS] = {0};
-    void setBaseAddrOfDO(unsigned short regAddr);
+    char sendDOVals[NO_OF_DOs] = {0};
+    bool aiReqSts = false;
     unsigned short baseAddrOfDO;
+    char receivDIs[NO_OF_DIs] = {0};
+    char statusData = 0;
+    short dival[4] = {0};
+
+    void connectModbusTcpSocket(const QString &host, quint16 port);
+    int setBitHigh(int val, int bitPosition, bool highLow);
+    void setBaseAddrOfDO(unsigned short regAddr);
     void sendDiData(short *diVal);
     void sendAoData(short *aoVal);
     void sendDoAoData(int transId, int regLength,  short *inputArr);
     void setBitInRegister(int bitPosition);
-    char receivDIs[NO_OF_DIs] = {0};
-    //char sendDOs[NO_OF_DOs] = {0};
-    char statusData = 0;
-    //int dival[4] = {0}; temp
-    short dival[4] = {0};
     int getDiValue(int diChannel);
     void setDoValue(int doChannel, char data);
     void storeDoDataInRegArray(short *doDataInRegArray, unsigned short noOfRegToWrite, char *doData);
-    char sendDOVals[NO_OF_DOs] = {0};
-    //char startSendData = 0;
-    int setBitHigh(int val, int bitPosition, bool highLow);
-    bool aiReqSts = false;
+
 public slots:
     void sendData();
 private slots:
     void onNewConnection();
     void readData();
     void sendModbusReadWriteRequest();
-
-
 
 private:
     void decodeData(QByteArray responseData);
@@ -78,7 +77,6 @@ private:
     QTcpServer *tcpServer;
     QTimer *receivReqTimer;
     QTcpServer *server;
-    QTcpSocket *clientSocket;
     //qint16 dival[4] = {0};
 
 

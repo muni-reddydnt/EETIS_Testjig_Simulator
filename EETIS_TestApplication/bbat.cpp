@@ -319,13 +319,14 @@ void BBAT::checkCorrectHarness()
 
 void BBAT::checkPowerOnDI()
 {
+    resetAllDisAndDosLabels();
+
     int powerOnDI = mainAppWin->modbusCommObj->getDiValue(POWER_ON_DI);
 
     if(powerOnDI == 1)
     {
         ui->lblPowerOn->setStyleSheet(DI_RECEIVED_STYLESHEET);
 
-        resetAllDisAndDos();
         qDebug()<<"do1_1List.count:"<<do1_1List.count();
 
         for (int i = 0; i < do1_1List.count(); i++)
@@ -377,11 +378,11 @@ void BBAT::checkDoOnOffSelected()
             setRegisterHigh(do1_1List.at(i).doNum, 1);
             do1_1LabelList[i]->setStyleSheet(YELLOW_BUTTON_STYLESHEET);
         }
-//        else if (do1_1ContinuityErrList.at(i)->isChecked() != 1)
-//        {
-//            setRegisterHigh(do1_1List.at(i).doNum, 0);
-//            do1_1LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-//        }
+        //        else if (do1_1ContinuityErrList.at(i)->isChecked() != 1)
+        //        {
+        //            setRegisterHigh(do1_1List.at(i).doNum, 0);
+        //            do1_1LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        //        }
         mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
         //        qDebug()<<"bbatDoval = "<<bbatDoval;
     }
@@ -393,11 +394,11 @@ void BBAT::checkDoOnOffSelected()
             setRegisterHigh(do1_2List.at(i).doNum, 1);
             do1_2LabelList[i]->setStyleSheet(YELLOW_BUTTON_STYLESHEET);
         }
-//        else if (do1_2ContinuityErrList.at(i)->isChecked() != 1)
-//        {
-//            setRegisterHigh(do1_2List.at(i).doNum, 0);
-//            do1_2LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-//        }
+        //        else if (do1_2ContinuityErrList.at(i)->isChecked() != 1)
+        //        {
+        //            setRegisterHigh(do1_2List.at(i).doNum, 0);
+        //            do1_2LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        //        }
         mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
         //        qDebug()<<"bbatDoval = "<<bbatDoval;
     }
@@ -450,12 +451,17 @@ void BBAT::checkTimerChkDIs()
         ui->lblTimerChkDI2->setStyleSheet(DI_RECEIVED_STYLESHEET);
     }
 
-//    qDebug()<<"timerChkCount:"<<timerChkCount;
-
     int timerValue = (ui->dsTimerVal->value()) * MS_TO_SEC;
+
+    if(timerChkCount % 10)
+    {
+        qDebug()<<"timerValue:"<<timerValue<<"timerChkCountInSecs:"<<timerChkCount/10;
+    }
 
     if(timerChkCount >= timerValue)
     {
+        timerChkCount = 0;
+
         if(ui->cbTimerChkDO1->isChecked() == 1)
         {
             setRegisterHigh(timerchkDoList.at(0).doNum, 0);
@@ -493,7 +499,7 @@ void BBAT::sendAiData()
     mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID,16, bbatAoVal);
 }
 
-void BBAT::resetAllDisAndDos()
+void BBAT::resetAllDisAndDosLabels()
 {
     //Reset DIs
     ui->lblPowerOn->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);

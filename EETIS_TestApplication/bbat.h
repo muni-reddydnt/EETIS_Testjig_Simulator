@@ -144,7 +144,7 @@ protected:
     void checkTimerChkDIs();
 
     void uiListappend();
-    void resetAllDisAndDos();
+    void resetAllDisAndDosLabels();
     void addDo1LabelsInList();
     void addDo2LabelsInList();
     void addContErrForDo1InList();

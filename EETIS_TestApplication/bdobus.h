@@ -43,60 +43,49 @@ typedef struct
     int doNum;
 }BODOBUSdoStruct;
 
-
 #define BTN_BDOBUSJ17J21   1
 #define BTN_BDOBUSJ18J22   2
 
-
-
 #define BDOBUSDI1                      17
-#define BDOBUSDI2                      34
-#define BDOBUSDI3                      18
-#define BDOBUSDI4                      35
-#define BDOBUSDI5                      19
-#define BDOBUSDI6                      54
-#define BDOBUSDI7                      20
-#define BDOBUSDI8                      53
-#define BDOBUSDI9                      21
-#define BDOBUSDI10                     37
+#define BDOBUSDI2                      18
+#define BDOBUSDI3                      19
+#define BDOBUSDI4                      20
+#define BDOBUSDI5                      21
+#define BDOBUSDI6                      49
+#define BDOBUSDI7                      50
+#define BDOBUSDI8                      51
+#define BDOBUSDI9                      52
+#define BDOBUSDI10                     53
 
-
-#define BDOBUSDO1                      14
-#define BDOBUSDO2                      47
-#define BDOBUSDO3                      15
-#define BDOBUSDO4                      48
-#define BDOBUSDO5                      16
-#define BDOBUSDO6                      53
-#define BDOBUSDO7                      17
-#define BDOBUSDO8                      52
-#define BDOBUSDO9                      18
-#define BDOBUSDO10                     49
-
-
-////receive from main
-//#define BDOBUS_DO_SHELLCHK         12
-//#define BDOBUS_DO_EMERGNCYCHK      16
-
-////send to main
-//#define BDOBUS_DI_SHELLCHK         12
-//#define BDOBUS_DI_EMERGNCYCHK      13
-
+#define BDOBUSDO1                      52
+#define BDOBUSDO2                      53
+#define BDOBUSDO3                      54
+#define BDOBUSDO4                      55
+#define BDOBUSDO5                      56
+#define BDOBUSDO6                      14
+#define BDOBUSDO7                      15
+#define BDOBUSDO8                      16
+#define BDOBUSDO9                      17
+#define BDOBUSDO10                     18
 
 #define HARNESS_BDOBUS_CHK_DI1     2
+#define HARNESS_BDOBUS_CHK_DO1     41
 
-#define HARNESS_BDOBUS_CHK_DO1     1
+#define BDOBUS_SHELLCHK_DI         15
+#define BDOBUS_SHELLCHK_DO         12
+
+#define BDOBUS_EMERGNCYCHK_DI      16
+#define BDOBUS_EMERGNCYCHK_DO     13
+//#define BDOBUS_DI_EMERGNCYCHK_2      32
+//#define BDOBUS_DO_EMERGNCYCHK_2      42
+
+#define BDOBUS_SAFTEY_DO_1              15
+#define BDOBUS_SAFTEY_DO_2              18
+#define BDOBUS_SAFTEY_DI_1              18
+#define BDOBUS_SAFTEY_DI_2              21
 
 #define HIGH                        1
 #define LOW                         0
-
-#define BDOBUS_DI_SHELLCHK         15
-#define BDOBUS_DI_EMERGNCYCHK      16
-
-
-#define BDOBUS_DO_SHELLCHK         12
-#define BDOBUS_DO_EMERGNCYCHK      13
-
-
 
 namespace Ui {
 class bdobus;
@@ -126,25 +115,21 @@ public:
 protected:
     void setRegisterHIgh(int bitPosition, bool highLow );
 
-    //void addDiStructInList();
-
     void uiListappend();
     void doListappend();
     void diListappend();
     void continutyErrorListappend();
     void crossContinutyErrorListappend();
-
     void addDiStructInList();
     void addDoStructInList();
     void addDiDoStructInList();
-
-    void resetAllDisAndDos();
-
+    void resetAllDisAndDosLabels();
 
     int checkCorrectHarness();
+    void safetyConnectorTest();
 
 private slots:
-    void update();
+    void startTest();
     void processDiToDO();
     void processHarnessDiDO();
     //void processShellLoadingEmgncyStop();

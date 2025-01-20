@@ -61,6 +61,7 @@ private slots:
 
     void on_pbRfu_clicked();
     void updateDateTime();
+    void checkIfClientIsConnected();
 
 private:
     Ui::MainWindow *ui;
@@ -71,6 +72,8 @@ private:
     rfu *rfuObj;
     quint16 di[8];
     QTimer *updateDateTimeTimer;
+    QTimer *commCheckTimer;
+
 };
 
 #endif // MAINWINDOW_H

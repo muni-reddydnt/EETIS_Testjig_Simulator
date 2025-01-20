@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 
 extern MainWindow *mainAppWin;
+
 modbusComm::modbusComm(QObject *parent) : QObject(parent)
 {
     server = new QTcpServer();
@@ -10,7 +11,6 @@ modbusComm::modbusComm(QObject *parent) : QObject(parent)
     if (server->listen(QHostAddress::LocalHost, SERVER_PORT))
     {
         qDebug() << "Server started. Waiting for connections...";
-
     }
     else
     {
@@ -40,10 +40,10 @@ void modbusComm::sendDiData(short *diVal)
 
     if (clientSocket->state() != QAbstractSocket::ConnectedState)
     {
-        //        qDebug() << "Socket is not connected!";
+//        qDebug() << "Socket is not connected!";
         return;
     }
-    //qDebug()<<"hello";
+
     QByteArray request;
 
     QDataStream stream(&request, QIODevice::ReadWrite);
@@ -113,6 +113,7 @@ void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
 //        qDebug() << "Socket is not connected!";
         return;
     }
+
     //qDebug()<<"hello";
     QByteArray request;
 
@@ -164,7 +165,8 @@ void modbusComm::readData()
     //startSendData = 1;
     clientSocket = new QTcpSocket(this);
     clientSocket = qobject_cast<QTcpSocket *>(sender());
-    if (clientSocket) {
+    if (clientSocket)
+    {
         QByteArray data = clientSocket->readAll();
 
         unsigned char funcCode = data.at(7);

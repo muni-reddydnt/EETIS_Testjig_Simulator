@@ -9,6 +9,7 @@
 #include "bbat.h"
 #include "bfcmdf.h"
 #include "rfu.h"
+#include <QDateTime>
 
 
 #define SET_BUTTON_STYLESHEET  "background: rgb(203, 155, 52); color: rgb(255, 255, 255);\
@@ -54,13 +55,13 @@ private slots:
 
     void on_pbBBAT_clicked();
 
-
-
     void on_pbBDOBUS_clicked();
 
     void on_pbBfcmdf_clicked();
 
     void on_pbRfu_clicked();
+    void updateDateTime();
+    void checkIfClientIsConnected();
 
 private:
     Ui::MainWindow *ui;
@@ -70,6 +71,9 @@ private:
     bfcmdf *bfcmdfObj;
     rfu *rfuObj;
     quint16 di[8];
+    QTimer *updateDateTimeTimer;
+    QTimer *commCheckTimer;
+
 };
 
 #endif // MAINWINDOW_H

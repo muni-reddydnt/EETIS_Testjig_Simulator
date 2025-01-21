@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#define COMM_TIMEOUT        50
+
+unsigned char eetisConnected = 0;
+int commCheckCounter = 0;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -17,11 +22,52 @@ MainWindow::MainWindow(QWidget *parent) :
     bbatObj->hide();
     bfcmdfObj->hide();
     rfuObj->hide();
+
+    updateDateTimeTimer = new QTimer(this);
+    connect(updateDateTimeTimer, SIGNAL(timeout()), this, SLOT(updateDateTime()));
+    updateDateTimeTimer->start(100);
+
+    commCheckTimer = new QTimer(this);
+    connect(commCheckTimer, SIGNAL(timeout()), this, SLOT(checkIfClientIsConnected()));
+    commCheckTimer->start(100);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::updateDateTime()
+{
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    ui->lblDateTime->setText(currentDateTime.toString("dd-mm-yyyy |") + currentDateTime.toString("hh:mm:ss"));
+}
+
+void MainWindow::checkIfClientIsConnected()
+{
+    if (modbusCommObj->clientSocket->state() != QAbstractSocket::ConnectedState)
+    {
+//        qDebug() << "Socket is not connected:"<<commCheckCounter;
+        commCheckCounter++;
+        if(commCheckCounter > COMM_TIMEOUT)
+        {
+            eetisConnected = 0;
+            commCheckCounter = 0;
+            ui->lblCommStatus->setStyleSheet("background-color: rgb(255, 0, 0); "
+                                             "color:white;"
+                                             "border-bottom-right-radius:10px;"
+                                             "border-top-left-radius:10px;");
+        }
+    }
+    else
+    {
+        commCheckCounter= 0;
+        eetisConnected = 1;
+        ui->lblCommStatus->setStyleSheet("background-color: rgb(73, 202, 66); "
+                                         "color:white;"
+                                         "border-bottom-right-radius:10px;"
+                                         "border-top-left-radius:10px;");
+    }
 }
 
 void MainWindow::storeImage()
@@ -52,10 +98,10 @@ void MainWindow::setFooterBtnStyleSheet(QPushButton *footerBtn, bool setReset)
 
 void MainWindow::hideAllFrms()
 {
-     bdobusObj->hide();
-     bbatObj->hide();
-     bfcmdfObj->hide();
-     rfuObj->hide();
+    bdobusObj->hide();
+    bbatObj->hide();
+    bfcmdfObj->hide();
+    rfuObj->hide();
 }
 
 void MainWindow::on_btnShutDown_clicked()
@@ -71,8 +117,6 @@ void MainWindow::on_pbBBAT_clicked()
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbBBAT,1);
 }
-
-
 
 void MainWindow::on_pbBDOBUS_clicked()
 {

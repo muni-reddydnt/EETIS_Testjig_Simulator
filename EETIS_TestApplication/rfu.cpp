@@ -54,7 +54,7 @@ void rfu::processHarnessDiDO()
     {
         setRegisterHIgh(HARNESS_RFU_CHK_DO1, 1);
         //rfuDoval[1]  = mainAppWin->modbusCommObj->setBitHigh(rfuDoval[1],(HARNESS_RFU_CHK_DO1),1);
-        qDebug()<<"rfuDoval[1] = "<<rfuDoval[1];
+//        qDebug()<<"rfuDoval[1] = "<<rfuDoval[1];
         ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
         ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
     }

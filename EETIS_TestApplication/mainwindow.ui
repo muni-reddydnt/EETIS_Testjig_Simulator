@@ -44,12 +44,12 @@
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lblUTMHTMStatus">
+   <widget class="QLabel" name="lblCommStatus">
     <property name="geometry">
      <rect>
-      <x>1430</x>
+      <x>1479</x>
       <y>10</y>
-      <width>230</width>
+      <width>181</width>
       <height>52</height>
      </rect>
     </property>
@@ -61,13 +61,13 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(73, 202, 66); 
+     <string notr="true">background-color: rgb(255, 0, 0); 
 color:white;
 border-bottom-right-radius:10px;
 border-top-left-radius:10px;</string>
     </property>
     <property name="text">
-     <string>UTM Connected</string>
+     <string>EETIS</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -84,7 +84,7 @@ border-top-left-radius:10px;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -96,7 +96,7 @@ border-bottom-right-radius:10px;
 border-top-left-radius:10px;</string>
     </property>
     <property name="text">
-     <string>04 -6 - 2024   18:55 </string>
+     <string>18-01-2025 | 12:12:12</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -105,9 +105,9 @@ border-top-left-radius:10px;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>724</x>
+      <x>773</x>
       <y>22</y>
-      <width>451</width>
+      <width>350</width>
       <height>31</height>
      </rect>
     </property>
@@ -395,6 +395,23 @@ border-radius:50px;</string>
       </size>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="lblDntLogo">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>8</y>
+      <width>221</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+background-image: url(:/images/DNT_Logo.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>

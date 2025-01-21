@@ -2,16 +2,18 @@
 #include "mainwindow.h"
 
 extern MainWindow *mainAppWin;
+
 modbusComm::modbusComm(QObject *parent) : QObject(parent)
 {
-
-
     server = new QTcpServer();
     //  mavSock = new QUdpSocket();
-    if (server->listen(QHostAddress::LocalHost, 502)) {
-        qDebug() << "Server started. Waiting for connections...";
 
-    } else {
+    if (server->listen(QHostAddress::LocalHost, SERVER_PORT))
+    {
+        qDebug() << "Server started. Waiting for connections...";
+    }
+    else
+    {
         qDebug() << "Server could not start. Error:" << server->errorString();
     }
     // Connect the newConnection signal to a slot that will handle incoming client connections
@@ -21,9 +23,7 @@ modbusComm::modbusComm(QObject *parent) : QObject(parent)
     connect(sendTimer, SIGNAL(timeout()), this, SLOT(sendData()));
     status = 0;
 
-
-
-
+    clientSocket = new QTcpSocket(this);
 }
 
 void modbusComm::setBaseAddrOfDO(unsigned short regAddr)
@@ -31,17 +31,19 @@ void modbusComm::setBaseAddrOfDO(unsigned short regAddr)
     baseAddrOfDO = regAddr;
 }
 
-
 void modbusComm::sendDiData(short *diVal)
 {
-    if (clientSocket == nullptr) {
+    if (clientSocket == nullptr)
+    {
         return;
     }
-    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
-        //        qDebug() << "Socket is not connected!";
+
+    if (clientSocket->state() != QAbstractSocket::ConnectedState)
+    {
+//        qDebug() << "Socket is not connected!";
         return;
     }
-    //qDebug()<<"hello";
+
     QByteArray request;
 
     QDataStream stream(&request, QIODevice::ReadWrite);
@@ -59,7 +61,8 @@ void modbusComm::sendDiData(short *diVal)
         stream << quint16(diVal[i]);
     }
     clientSocket->write(request);
-    if (!clientSocket->waitForBytesWritten(3000)) {
+    if (!clientSocket->waitForBytesWritten(3000))
+    {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
     //qDebug()<<"data sending = "<<request.toHex();
@@ -93,20 +96,24 @@ void modbusComm::sendAoData(short *aoVal)
         stream << quint16(aoVal[i]);
     }
     clientSocket->write(request);
-    if (!clientSocket->waitForBytesWritten(3000)) {
+    if (!clientSocket->waitForBytesWritten(3000))
+    {
         qDebug() << "Failed to send Modbus request:" << clientSocket->errorString();
     }
 }
 
 void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
 {
-    if (clientSocket == nullptr) {
+    if (clientSocket == nullptr)
+    {
         return;
     }
-    if (clientSocket->state() != QAbstractSocket::ConnectedState) {
-        //        qDebug() << "Socket is not connected!";
+    if (clientSocket->state() != QAbstractSocket::ConnectedState)
+    {
+//        qDebug() << "Socket is not connected!";
         return;
     }
+
     //qDebug()<<"hello";
     QByteArray request;
 
@@ -131,13 +138,9 @@ void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
     //qDebug()<<"data sending = "<<request.toHex();
     if(transId == DI_TRANS_ID)
     {
-        qDebug()<<"data sending = "<<request.toHex();
+//        qDebug()<<"data sending = "<<request.toHex();
     }
 }
-
-
-
-
 
 void modbusComm::onNewConnection()
 {
@@ -162,7 +165,8 @@ void modbusComm::readData()
     //startSendData = 1;
     clientSocket = new QTcpSocket(this);
     clientSocket = qobject_cast<QTcpSocket *>(sender());
-    if (clientSocket) {
+    if (clientSocket)
+    {
         QByteArray data = clientSocket->readAll();
 
         unsigned char funcCode = data.at(7);
@@ -293,7 +297,6 @@ void modbusComm::decodeData(QByteArray responseData)
         break;
     }
     }
-
 }
 
 //delete
@@ -325,12 +328,10 @@ bool modbusComm::getBitValFrmReg(unsigned short regValue, int bitPosition)
     return(temp);
 }
 
-
 int modbusComm::getDiValue(int diChannel)
 {
     return (receivDIs[diChannel]);
 }
-
 
 void modbusComm::setDoValue(int doChannel, char data)
 {
@@ -355,10 +356,12 @@ void modbusComm::storeDoDataInRegArray(short *doDataInRegArray, unsigned short n
 
 int modbusComm::setBitHigh(int val, int bitPosition, bool highLow)
 {
-    if (highLow) {
-
+    if (highLow)
+    {
         return val |= (1 << bitPosition);
-    } else {
+    }
+    else
+    {
         return val &= ~(1 << bitPosition);
     }
 }

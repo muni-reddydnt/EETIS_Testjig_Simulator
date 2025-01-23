@@ -2594,7 +2594,7 @@ color:rgb(53,74, 131);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lblShellLoading_2">
+   <widget class="QLabel" name="lblKeyConnecter1">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -2628,7 +2628,7 @@ border-radius:5px;
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lblBDOBUSJ115J116">
+   <widget class="QLabel" name="lblKeyConnecter2">
     <property name="geometry">
      <rect>
       <x>860</x>
@@ -2662,7 +2662,7 @@ border-radius:5px;
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckCrossBDOBUSJ115J116">
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ115J116_SafetyKeyConnector">
     <property name="geometry">
      <rect>
       <x>1420</x>
@@ -2708,7 +2708,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckBDOBUSJ115J116_OnOff">
+   <widget class="QCheckBox" name="ckDOBUSJ1115J116_SafetyKeyConnector_OnOff">
     <property name="geometry">
      <rect>
       <x>1550</x>
@@ -2754,7 +2754,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckShellLoading_2">
+   <widget class="QCheckBox" name="ckBDOBUSJ19J110_SafetyKeyConnector">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -2800,7 +2800,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckCrossShellLoading_2">
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ19J110_SafetyKeyConnector">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -2846,7 +2846,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblShellLoadingLED_2">
+   <widget class="QLabel" name="lblKeyConnecter1LED">
     <property name="geometry">
      <rect>
       <x>288</x>
@@ -2863,7 +2863,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbShellLoading_OnOff_2">
+   <widget class="QCheckBox" name="ckDOBUSJ19J110_SafetyKeyConnector_OnOff">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -2909,7 +2909,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblBDOBUSJ115J116LED">
+   <widget class="QLabel" name="lblKeyConnecter2LED">
     <property name="geometry">
      <rect>
       <x>1140</x>
@@ -2926,7 +2926,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckBDOBUSJ115J116">
+   <widget class="QCheckBox" name="ckBDOBUSJ115J116_SafetyKeyConnector">
     <property name="geometry">
      <rect>
       <x>1260</x>

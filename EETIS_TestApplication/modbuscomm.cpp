@@ -138,7 +138,7 @@ void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
     //qDebug()<<"data sending = "<<request.toHex();
     if(transId == DI_TRANS_ID)
     {
-//        qDebug()<<"data sending = "<<request.toHex();
+        //qDebug()<<"data sending = "<<request.toHex();
     }
 }
 

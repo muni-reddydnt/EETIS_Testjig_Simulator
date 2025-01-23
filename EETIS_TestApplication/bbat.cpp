@@ -327,7 +327,7 @@ void BBAT::checkPowerOnDI()
     {
         ui->lblPowerOn->setStyleSheet(DI_RECEIVED_STYLESHEET);
 
-        qDebug()<<"do1_1List.count:"<<do1_1List.count();
+        //qDebug()<<"do1_1List.count:"<<do1_1List.count();
 
         for (int i = 0; i < do1_1List.count(); i++)
         {

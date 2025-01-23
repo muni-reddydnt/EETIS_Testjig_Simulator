@@ -142,6 +142,7 @@ private:
     int doData[4] = {0};
     bool btnDiEnalbeDisable[16] = {0};
     QTimer *displayUPdata;
+    int tempSafteyConnectorCheck = 0;
 };
 
 #endif // BDOBUS_H

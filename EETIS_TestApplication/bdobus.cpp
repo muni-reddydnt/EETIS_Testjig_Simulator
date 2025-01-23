@@ -12,6 +12,8 @@ bdobus::bdobus(QWidget *parent) :
 
     ui->ckCrossShellLoading->hide();
     ui->ckCrossEmergencyStop->hide();
+    ui->ckCrossBDOBUSJ19J110_SafetyKeyConnector->hide();
+    ui->ckCrossBDOBUSJ115J116_SafetyKeyConnector->hide();
     for(int i = 0;i<16;i++)
     {
         btnDiEnalbeDisable[i] = true;
@@ -122,6 +124,8 @@ void bdobus::resetAllDisAndDosLabels()
             diLabelList.at(i)->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
             doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
+        //ui->lblKeyConnecter1->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        //ui->lblKeyConnecter2->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
     }
 }
 
@@ -217,7 +221,7 @@ void bdobus::startTest()
         BDOBUSDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diBDOBUSList.at(i).diNum);
         BDOBUSDidataList.append(BDOBUSDiResultStruct);
 
-        qDebug()<<"DI "<<i<<":"<<BDOBUSDiResultStruct.Result;
+        //qDebug()<<"DI "<<i<<":"<<BDOBUSDiResultStruct.Result;
     }
 
     //Check if correct harness is connected
@@ -260,6 +264,11 @@ void bdobus::processDiToDO()
     {
         if(BDOBUSDidataList[i].Result == 1 )
         {
+            if(i == BDOBUSDidataList.count() - 1)
+            {
+                tempSafteyConnectorCheck = 1;
+                qDebug()<<"tempSafteyConnectorCheck = "<<tempSafteyConnectorCheck;
+            }
             if(crossContinutyErrorList.at(i)->isChecked() == 1)
             {
                 setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
@@ -296,32 +305,32 @@ void bdobus::processDiToDO()
                 diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
             }
 
-//            if(crossContinutyErrorList.at(i)->isChecked() == 1 && continutyErrorList.at(i)->isChecked() == 1)
-//            {
-//                if(i  <= doBDOBUSList.count() - 4)
-//                {
-//                    setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
-//                    setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
-//                    doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                    doLabelList[i + 2]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                }
-//                else if(i == doBDOBUSList.count() - 3)
-//                {
-//                    setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
-//                    setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
-//                    doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                    doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                }
-//                else if(i == doBDOBUSList.count() - 2)
-//                {
-//                    setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
-//                    setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
-//                    doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                    doLabelList[1]->setStyleSheet(DO_GREEN_STYLESHEET);
-//                }
+            //            if(crossContinutyErrorList.at(i)->isChecked() == 1 && continutyErrorList.at(i)->isChecked() == 1)
+            //            {
+            //                if(i  <= doBDOBUSList.count() - 4)
+            //                {
+            //                    setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+            //                    setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
+            //                    doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                    doLabelList[i + 2]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                }
+            //                else if(i == doBDOBUSList.count() - 3)
+            //                {
+            //                    setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+            //                    setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+            //                    doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                    doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                }
+            //                else if(i == doBDOBUSList.count() - 2)
+            //                {
+            //                    setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+            //                    setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
+            //                    doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                    doLabelList[1]->setStyleSheet(DO_GREEN_STYLESHEET);
+            //                }
 
-//                diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
-//            }
+            //                diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
+            //            }
 
             if(crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
             {
@@ -330,6 +339,7 @@ void bdobus::processDiToDO()
                 diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
             }
         }
+
     }
 }
 
@@ -354,7 +364,52 @@ void bdobus::processHarnessDiDO()
 
 void bdobus::safetyConnectorTest()
 {
+    int safetyConnectorDI_1 = mainAppWin->modbusCommObj->getDiValue(BDOBUS_SAFTEY_DI_1);
+    int safetyConnectorDI_2 = mainAppWin->modbusCommObj->getDiValue(BDOBUS_SAFTEY_DI_2);
+    if(tempSafteyConnectorCheck == 1)
+    {
+        if(safetyConnectorDI_1 == 1)
+        {
+            ui->lblKeyConnecter1->setStyleSheet(DI_RECEIVED_STYLESHEET);
+            ui->lblKeyConnecter1LED->setStyleSheet(DO_GREEN_STYLESHEET);
+            if(ui->ckDOBUSJ1115J116_SafetyKeyConnector_OnOff->isChecked() == 1)
+            {
+                setRegisterHIgh(BDOBUS_SAFTEY_DO_1, 1);
+                //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_SAFTEY_DO_1),1);
+            }
+            else
+            {
+                //setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 0);
+            }
+            if(ui->ckBDOBUSJ115J116_SafetyKeyConnector->isChecked() == 1)
+            {
+                setRegisterHIgh(BDOBUS_SAFTEY_DO_1, 0);
+                //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_SAFTEY_DO_1),1);
+            }
+            setRegisterHIgh(BDOBUS_SAFTEY_DO_1, 1);
+        }
+        if(safetyConnectorDI_2 == 1)
+        {
+            ui->lblKeyConnecter2->setStyleSheet(DI_RECEIVED_STYLESHEET);
 
+            ui->lblKeyConnecter2LED->setStyleSheet(DO_GREEN_STYLESHEET);
+            if(ui->ckDOBUSJ1115J116_SafetyKeyConnector_OnOff->isChecked() == 1)
+            {
+                setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 1);
+                //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_SAFTEY_DO_1),1);
+            }
+            else
+            {
+                //setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 0);
+            }
+            if(ui->ckBDOBUSJ115J116_SafetyKeyConnector->isChecked() == 1)
+            {
+                setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 0);
+                //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_SAFTEY_DO_1),1);
+            }
+            setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 1);
+        }
+    }
 }
 
 #if 0

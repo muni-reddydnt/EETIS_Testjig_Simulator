@@ -74,8 +74,14 @@ typedef struct
 #define BDOBUS_SHELLCHK_DI         15
 #define BDOBUS_SHELLCHK_DO         12
 
-#define BDOBUS_EMERGNCYCHK_DI      16
-#define BDOBUS_EMERGNCYCHK_DO     13
+#define BDOBUS_EMERGNCYCHK_DI1      16
+#define BDOBUS_EMERGNCYCHK_DO1      13
+#define BDOBUS_EMERGNCYCHK_DI2      32
+#define BDOBUS_EMERGNCYCHK_DO2      42
+
+
+//#define BDOBUS_EMERGNCYCHK_DI      16
+//#define BDOBUS_EMERGNCYCHK_DO     13
 //#define BDOBUS_DI_EMERGNCYCHK_2      32
 //#define BDOBUS_DO_EMERGNCYCHK_2      42
 
@@ -103,6 +109,7 @@ public:
     QList<QLabel*> doLabelList;
     QList<QCheckBox*> continutyErrorList;
     QList<QCheckBox*> crossContinutyErrorList;
+    QList<QCheckBox*> do_OnOffCbList;
 
     BODOBUSdiStruct BDOBUSteststruct;
     QList<BODOBUSdiStruct>diBDOBUSList;
@@ -118,6 +125,7 @@ protected:
     void uiListappend();
     void doListappend();
     void diListappend();
+    void ckDoListAppend();
     void continutyErrorListappend();
     void crossContinutyErrorListappend();
     void addDiStructInList();
@@ -127,11 +135,17 @@ protected:
 
     int checkCorrectHarness();
     void safetyConnectorTest();
+    void addDoOnOffCbInList();
 
 private slots:
     void startTest();
     void processDiToDO();
     void processHarnessDiDO();
+    void ProcessShellEmergencyDiDO();
+    void checkDoOnOffSelected();
+    void checkContinutyDoOnOFFSlected();
+    void checkShellLoadingEmergencyDoOnOffSelected();
+    void checksafetyKeyConnectorDoOnOffSelected();
     //void processShellLoadingEmgncyStop();
     //void processEnableDisableCkError();
 

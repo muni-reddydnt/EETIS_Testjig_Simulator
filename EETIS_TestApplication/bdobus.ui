@@ -2708,7 +2708,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckDOBUSJ1115J116_SafetyKeyConnector_OnOff">
+   <widget class="QCheckBox" name="ckSafetyKeyConnector2_OnOff">
     <property name="geometry">
      <rect>
       <x>1550</x>
@@ -2754,7 +2754,7 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckBDOBUSJ19J110_SafetyKeyConnector">
+   <widget class="QCheckBox" name="ckcontinuty_KeyConnecter1">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -2863,7 +2863,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="ckDOBUSJ19J110_SafetyKeyConnector_OnOff">
+   <widget class="QCheckBox" name="ckSafetyKeyConnector1_OnOff">
     <property name="geometry">
      <rect>
       <x>730</x>

@@ -233,7 +233,6 @@ void modbusComm::decodeData(QByteArray responseData)
         {
             // Data is for DI
             // Process DI data here
-
             unsigned short noOfRegToRead = (((responseData.at(10) << 8) | responseData.at(11)));
             //unsigned short noOfRegToRead = ((((responseData.at(4) << 8) | responseData.at(5))-3) - 2)/2;
             //

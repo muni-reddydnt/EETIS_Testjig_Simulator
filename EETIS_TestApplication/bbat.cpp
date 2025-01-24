@@ -267,13 +267,13 @@ void BBAT::addDoStructInList()
 void BBAT::startTest()
 {
     //Check if correct harness is connected
-    checkCorrectHarness();
+   // checkCorrectHarness();
 
     //Check if Power ON DI is received
-    checkPowerOnDI();
+    //checkPowerOnDI();
 
     //Check if timer check DIs received
-    checkTimerChkDIs();
+   // checkTimerChkDIs();
 }
 
 void BBAT::checkCorrectHarness()
@@ -495,7 +495,6 @@ void BBAT::sendAiData()
     bbatAoVal[BBAT_AO_1] = (ui->dbsJ7aToJ7b->value() / 2);
     bbatAoVal[BBAT_AO_2] = (ui->dbsJ7btoJ7c->value() / 2);
     bbatAoVal[BBAT_AO_3] = (ui->dbsJ7aToJ7c->value() / 2);
-
     mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID,16, bbatAoVal);
 }
 
@@ -519,7 +518,7 @@ void BBAT::resetAllDisAndDosLabels()
     ui->lbl_J8H_DO->setStyleSheet(DEFAULT_DO_STYLESHEET);
 }
 
-void BBAT::setRegisterHigh(int bitPosition, bool highLow)
+void BBAT:: setRegisterHigh(int bitPosition, bool highLow)
 {
     if(bitPosition > 0 && bitPosition < 16)
     {

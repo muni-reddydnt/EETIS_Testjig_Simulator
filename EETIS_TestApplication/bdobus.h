@@ -33,6 +33,12 @@ typedef struct
 #pragma pack(1)
 typedef struct
 {
+    int diNum;
+}BODOBUSdiStructsefty;
+
+#pragma pack(1)
+typedef struct
+{
     int Result;
     //QString upResult;
 }BODOBUSDidataStruct;
@@ -40,8 +46,20 @@ typedef struct
 #pragma pack(1)
 typedef struct
 {
+    int Result;
+    //QString upResult;
+}BODOBUSDiSeftydataStruct;
+#pragma pack(1)
+typedef struct
+{
     int doNum;
 }BODOBUSdoStruct;
+
+#pragma pack(1)
+typedef struct
+{
+    int doNum;
+}BODOBUSdoStructsefty;
 
 #define BTN_BDOBUSJ17J21   1
 #define BTN_BDOBUSJ18J22   2
@@ -87,6 +105,7 @@ typedef struct
 
 #define BDOBUS_SAFTEY_DO_1              15
 #define BDOBUS_SAFTEY_DO_2              18
+
 #define BDOBUS_SAFTEY_DI_1              18
 #define BDOBUS_SAFTEY_DI_2              21
 
@@ -106,17 +125,26 @@ public:
     ~bdobus();
     //modbusComm *modbusCommObj;
     QList<QLabel*> diLabelList;
+    QList<QLabel*> safetyConnectorDiLabelList;
     QList<QLabel*> doLabelList;
+    QList<QLabel*> safetyConnectorDoLabelList;
     QList<QCheckBox*> continutyErrorList;
+    QList<QCheckBox*> safetyContinutyErrorList;
     QList<QCheckBox*> crossContinutyErrorList;
     QList<QCheckBox*> do_OnOffCbList;
 
     BODOBUSdiStruct BDOBUSteststruct;
+    BODOBUSdiStructsefty BODOBUSdiStructseftyObj;
     QList<BODOBUSdiStruct>diBDOBUSList;
+    QList<BODOBUSdiStructsefty>diBDOBUSListsefty;
     BODOBUSDidataStruct BDOBUSDiResultStruct;
+    BODOBUSDiSeftydataStruct BODOBUSDiSeftydataStructObj;
     QList<BODOBUSDidataStruct> BDOBUSDidataList;
+    QList<BODOBUSDiSeftydataStruct> BODOBUSDiSeftydataStructlist;
     BODOBUSdoStruct BDOBUStestDOstruct;
+    BODOBUSdoStructsefty BDOBUStestDOstructseftyobj;
     QList<BODOBUSdoStruct>doBDOBUSList;
+    QList<BODOBUSdoStructsefty>BODOBUSdoStructseftyList;
     //char sendDOs[NO_OF_DOs] = {0};
     short bdobusDoval[4] = {0};
 protected:
@@ -130,6 +158,8 @@ protected:
     void crossContinutyErrorListappend();
     void addDiStructInList();
     void addDoStructInList();
+    void sefty();
+    void seftyDO();
     void addDiDoStructInList();
     void resetAllDisAndDosLabels();
 
@@ -157,6 +187,8 @@ private:
     bool btnDiEnalbeDisable[16] = {0};
     QTimer *displayUPdata;
     int tempSafteyConnectorCheck = 0;
+    int temp = 0;
+    bool flag =false;
 };
 
 #endif // BDOBUS_H

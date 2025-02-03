@@ -1,7 +1,7 @@
 #include "bbat.h"
 #include "mainwindow.h"
 #include "ui_bbat.h"
-
+#include <QThread>
 extern MainWindow *mainAppWin;
 BBAT::BBAT(QWidget *parent) :
     QWidget(parent),
@@ -13,7 +13,9 @@ BBAT::BBAT(QWidget *parent) :
     ui->dbsJ7aToJ7c->setButtonSymbols(QAbstractSpinBox::NoButtons);
     updateUidata = new QTimer(this);
     connect(updateUidata, SIGNAL(timeout()),this, SLOT(startTest()));
-    updateUidata->start(100);
+    //updateUidata->start(100);
+
+
     uiListappend();
     addDiDoStructInList();
 }
@@ -267,13 +269,56 @@ void BBAT::addDoStructInList()
 void BBAT::startTest()
 {
     //Check if correct harness is connected
-   // checkCorrectHarness();
+    checkCorrectHarness();
 
     //Check if Power ON DI is received
-    //checkPowerOnDI();
+    checkPowerOnDI();
 
     //Check if timer check DIs received
-   // checkTimerChkDIs();
+    checkTimerChkDIs();
+}
+
+void BBAT::startTestTimer()
+{
+    //int timerValue = (ui->dsTimerVal->value()) * MS_TO_SEC;
+    int timerValue = (ui->dsTimerVal->value());
+    qDebug()<<"  timerValue"<<timerValue;
+    timerChkCount1++;
+    qDebug()<<"  timerChkCount1"<<  timerChkCount1;
+    if (timerChkCount1 > timerValue)
+    {
+        qDebug()<<"inside"<<timerChkCount1;
+
+        if (ui->cbTimerChkDO1->isChecked())
+        {
+            setRegisterHigh(timerchkDoList.at(0).doNum, 0);
+            ui->lblTimerChkDO1->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+        else
+        {
+            setRegisterHigh(timerchkDoList.at(0).doNum, 1);
+            ui->lblTimerChkDO1->setStyleSheet(DO_GREEN_STYLESHEET);
+        }
+
+        if (ui->cbTimerChkDO2->isChecked())
+        {
+            setRegisterHigh(timerchkDoList.at(1).doNum, 0);
+            ui->lblTimerChkDO2->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+        else
+        {
+            setRegisterHigh(timerchkDoList.at(1).doNum, 1);
+            ui->lblTimerChkDO2->setStyleSheet(DO_GREEN_STYLESHEET);
+        }
+        if(timerChkCount1 /2 == 0)
+        {
+            mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID, 4, bbatDoval);
+        }
+        else
+        {
+            sendAiData();
+        }
+    }
 }
 
 void BBAT::checkCorrectHarness()
@@ -321,6 +366,8 @@ void BBAT::checkPowerOnDI()
 {
     resetAllDisAndDosLabels();
 
+    //  qDebug()<<"do1_1List.count()"<<do1_1List.count();
+    //  qDebug()<<"do1_2List.count()"<<do1_2List.count();
     int powerOnDI = mainAppWin->modbusCommObj->getDiValue(POWER_ON_DI);
 
     if(powerOnDI == 1)
@@ -331,6 +378,7 @@ void BBAT::checkPowerOnDI()
 
         for (int i = 0; i < do1_1List.count(); i++)
         {
+
             if(do1_1ContinuityErrList.at(i)->isChecked() == 1)
             {
                 setRegisterHigh(do1_1List.at(i).doNum, 0);
@@ -414,12 +462,14 @@ void BBAT::checkJ8GDI()
 
         if(ui->cbBBATJ8G->isChecked() == 1)
         {
-            bbatDoval[2]  = mainAppWin->modbusCommObj->setBitHigh(bbatDoval[1],((BBAT_DO_46) - 32),0);
+            //bbatDoval[3]  = mainAppWin->modbusCommObj->setBitHigh(bbatDoval[3],((BBAT_DO_46)),0);
+            setRegisterHigh(BBAT_DO_46, 0);
             ui->lbl_J8H_DO->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
         else if(ui->cbBBATJ8G->isChecked() !=1)
         {
-            bbatDoval[2]  = mainAppWin->modbusCommObj->setBitHigh(bbatDoval[1],((BBAT_DO_46) - 32),1);
+            // bbatDoval[3]  = mainAppWin->modbusCommObj->setBitHigh(bbatDoval[3],((BBAT_DO_46)),1);
+            setRegisterHigh(BBAT_DO_46, 1);
             ui->lbl_J8H_DO->setStyleSheet(DO_GREEN_STYLESHEET);
         }
     }
@@ -434,68 +484,27 @@ void BBAT::checkTimerChkDIs()
     int timerChkDI1 = mainAppWin->modbusCommObj->getDiValue(BBAT_TIMERCHK_DI_1);
     int timerChkDI2 = mainAppWin->modbusCommObj->getDiValue(BBAT_TIMERCHK_DI_2);
 
-    if(timerChkDI1 == 1 && timerChkDI2 == 1)
+    if (timerChkDI1 == 1 && timerChkDI2 == 1 && flag == false)
     {
+        flag = true;
         ui->dsTimerVal->setEnabled(false);
-        timerChkCount++;
-    }
-
-    if(timerChkDI1 == 1)
-    {
-        setRegisterHigh(timerchkDoList.at(0).doNum, 1);
-        ui->lblTimerChkDI1->setStyleSheet(DI_RECEIVED_STYLESHEET);
-    }
-    if(timerChkDI2 == 1)
-    {
-        setRegisterHigh(timerchkDoList.at(1).doNum, 1);
-        ui->lblTimerChkDI2->setStyleSheet(DI_RECEIVED_STYLESHEET);
-    }
-
-    int timerValue = (ui->dsTimerVal->value()) * MS_TO_SEC;
-
-    if(timerChkCount % 10)
-    {
-        qDebug()<<"timerValue:"<<timerValue<<"timerChkCountInSecs:"<<timerChkCount/10;
-    }
-
-    if(timerChkCount >= timerValue)
-    {
-        timerChkCount = 0;
-
-        if(ui->cbTimerChkDO1->isChecked() == 1)
-        {
-            setRegisterHigh(timerchkDoList.at(0).doNum, 0);
-            ui->lblTimerChkDO1->setStyleSheet(DEFAULT_DO_STYLESHEET);
-        }
-        else if(ui->cbTimerChkDO1->isChecked() != 1)
-        {
-            setRegisterHigh(timerchkDoList.at(0).doNum, 1);
-            ui->lblTimerChkDO1->setStyleSheet(DO_GREEN_STYLESHEET);
-        }
-
-        if(ui->cbTimerChkDO2->isChecked() == 1)
-        {
-            setRegisterHigh(timerchkDoList.at(1).doNum, 0);
-            ui->lblTimerChkDO2->setStyleSheet(DEFAULT_DO_STYLESHEET);
-        }
-        else if(ui->cbTimerChkDO2->isChecked() != 1)
-        {
-            setRegisterHigh(timerchkDoList.at(1).doNum, 1);
-            ui->lblTimerChkDO2->setStyleSheet(DO_GREEN_STYLESHEET);
-        }
-
-        mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
-
-        sendAiData();
+        updateUidataTimer = new QTimer(this);
+        connect(updateUidataTimer, SIGNAL(timeout()),this, SLOT(startTestTimer()));
+        updateUidataTimer->start(1000);
     }
 }
 
 void BBAT::sendAiData()
 {
-    bbatAoVal[BBAT_AO_1] = (ui->dbsJ7aToJ7b->value() / 2);
-    bbatAoVal[BBAT_AO_2] = (ui->dbsJ7btoJ7c->value() / 2);
-    bbatAoVal[BBAT_AO_3] = (ui->dbsJ7aToJ7c->value() / 2);
-    mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID,16, bbatAoVal);
+    bbatAoVal[BBAT_AO_1] = ui->dbsJ7aToJ7b->value();
+    bbatAoVal[BBAT_AO_2] = ui->dbsJ7btoJ7c->value();
+    bbatAoVal[BBAT_AO_3] = ui->dbsJ7aToJ7c->value();
+
+    qDebug() << "bbatAoVal[BBAT_AO_1]:" << bbatAoVal[BBAT_AO_1]
+                << "bbatAoVal[BBAT_AO_2]:" << bbatAoVal[BBAT_AO_2]
+                   << "bbatAoVal[BBAT_AO_3]:" << bbatAoVal[BBAT_AO_3];
+
+    mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID, 16, bbatAoVal);
 }
 
 void BBAT::resetAllDisAndDosLabels()
@@ -518,7 +527,7 @@ void BBAT::resetAllDisAndDosLabels()
     ui->lbl_J8H_DO->setStyleSheet(DEFAULT_DO_STYLESHEET);
 }
 
-void BBAT:: setRegisterHigh(int bitPosition, bool highLow)
+void BBAT::setRegisterHigh(int bitPosition, bool highLow)
 {
     if(bitPosition > 0 && bitPosition < 16)
     {

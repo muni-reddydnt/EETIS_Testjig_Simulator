@@ -157,11 +157,14 @@ protected:
 
 protected slots:
     void startTest();
+    void startTestTimer();
 
 private:
     Ui::BBAT *ui;
     QTimer *updateUidata;
+    QTimer *updateUidataTimer;
     int timerChkCount = 0;
+    int timerChkCount1 = 0;
     int startSendAo = 0;
     void setRegisterHigh(int bitPosition, bool highLow);
     int timerChkDO1 = 0;
@@ -169,6 +172,7 @@ private:
     int timerChkDI1 = 0;
     int timerChkDI2 = 0;
     bool startTimerCount = false;
+    bool flag  = false;
 };
 
 #endif // BBAT_H

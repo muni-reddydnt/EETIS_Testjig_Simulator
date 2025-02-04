@@ -143,8 +143,13 @@ void bdobus::resetAllDisAndDosLabels()
             diLabelList.at(i)->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
             doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
-        //ui->lblKeyConnecter1->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-        //ui->lblKeyConnecter2->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+
+        for(int i = 0; i< safetyConnectorDiLabelList.count(); i++)
+        {
+            safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+            safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+
     }
 }
 
@@ -154,7 +159,8 @@ void bdobus::uiListappend()
     doListappend();
     continutyErrorListappend();
     crossContinutyErrorListappend();
-    ckDoListAppend();
+    ckForceDoOnListAppend();
+    ckForceDoOnOffListAppend();
 }
 
 void bdobus::doListappend()
@@ -199,19 +205,39 @@ void bdobus::diListappend()
     safetyConnectorDiLabelList.append(ui->lblKeyConnecter2);
 }
 
-void bdobus::ckDoListAppend()
+void bdobus::ckForceDoOnListAppend()
 {
-    do_OnOffCbList.clear();
-    do_OnOffCbList.append(ui->cbJ17ToJ21_OnOff);
-    do_OnOffCbList.append(ui->cbJ18ToJ22_OnOff);
-    do_OnOffCbList.append(ui->cbJ19ToJ23_OnOff);
-    do_OnOffCbList.append(ui->cbJ19ToJ110_OnOff);
-    do_OnOffCbList.append(ui->cbJ110ToJ24_OnOff);
-    do_OnOffCbList.append(ui->cbJ111ToJ25_OnOff);
-    do_OnOffCbList.append(ui->cbJ112ToJ26_OnOff);
-    do_OnOffCbList.append(ui->cbJ113ToJ27_OnOff);
-    do_OnOffCbList.append(ui->cbJ114ToJ28_OnOff);
-    do_OnOffCbList.append(ui->cbJ115ToJ29_OnOff);
+    do_OnCbList.clear();
+    safetyConnecotdo_OnCbList.clear();
+    do_OnCbList.append(ui->cbJ17ToJ21_On);
+    do_OnCbList.append(ui->cbJ18ToJ22_On);
+    do_OnCbList.append(ui->cbJ19ToJ23_On);
+    do_OnCbList.append(ui->cbJ19ToJ110_On);
+    do_OnCbList.append(ui->cbJ110ToJ24_On);
+    do_OnCbList.append(ui->cbJ111ToJ25_On);
+    do_OnCbList.append(ui->cbJ112ToJ26_On);
+    do_OnCbList.append(ui->cbJ113ToJ27_On);
+    do_OnCbList.append(ui->cbJ114ToJ28_On);
+    do_OnCbList.append(ui->cbJ115ToJ29_On);
+    safetyConnecotdo_OnCbList.append(ui->ckSafetyKeyConnector1_On);
+    safetyConnecotdo_OnCbList.append(ui->ckSafetyKeyConnector2_On);
+}
+
+void bdobus::ckForceDoOnOffListAppend()
+{
+    do_OffCbList.clear();
+    do_OffCbList.append(ui->cbJ17ToJ21_Off);
+    do_OffCbList.append(ui->cbJ18ToJ22_Off);
+    do_OffCbList.append(ui->cbJ19ToJ23_Off);
+    do_OffCbList.append(ui->cbJ19ToJ110_Off);
+    do_OffCbList.append(ui->cbJ110ToJ24_Off);
+    do_OffCbList.append(ui->cbJ111ToJ25_Off);
+    do_OffCbList.append(ui->cbJ112ToJ26_Off);
+    do_OffCbList.append(ui->cbJ113ToJ27_Off);
+    do_OffCbList.append(ui->cbJ114ToJ28_Off);
+    do_OffCbList.append(ui->cbJ115ToJ29_Off);
+    safetyConnecotdo_OffCbList.append(ui->ckSafetyKeyConnector1_Off);
+    safetyConnecotdo_OffCbList.append(ui->ckSafetyKeyConnector2_Off);
 }
 
 void bdobus::continutyErrorListappend()
@@ -257,7 +283,6 @@ void bdobus::startTest()
 {
     BDOBUSDidataList.clear();
     BODOBUSDiSeftydataStructlist.clear();
-
     for(int i=0 ;i <diBDOBUSList.count();i++)
     {
         BDOBUSDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diBDOBUSList.at(i).diNum);
@@ -282,15 +307,8 @@ void bdobus::startTest()
     //DI-DO test
     processDiToDO();
 
-    //Safety connector test
-   //safetyConnectorTest();
 
-    if(mainAppWin->unitStatus == 2)
-    {
-        //modbusCommObj->sendData();
-        //mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-    }
-     checkDoOnOffSelected();
+    //checkDoOnOffSelected();
 
 
 
@@ -312,98 +330,142 @@ void bdobus::startTest()
 
 void bdobus::processDiToDO()
 {
-    resetAllDisAndDosLabels();
-    // memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
-
+    // resetAllDisAndDosLabels();
     if(flag == false)
     {
+        //qDebug()<< "flag = "<< flag ;
+
         for (int i = 0; i < BDOBUSDidataList.count(); i++)
         {
 
-            //checkContinutyDoOnOFFSlected();
-            if(BDOBUSDidataList[i].Result == 1 )
+            if(do_OnCbList.at(i)->isChecked() == 1)
             {
-                memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
-                if(crossContinutyErrorList.at(1)->isChecked() == 1)
+                setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
+                doLabelList[i]->setStyleSheet(YELLOW_DO_STYLESHEET);
+            }
+            else if(do_OffCbList.at(i)->isChecked() == 1)
+            {
+                setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
+                doLabelList[i]->setStyleSheet(DEFAULT_DO_STYLESHEET);
+            }
+            else
+            {
+                if(BDOBUSDidataList[i].Result == 1 )
                 {
-                    setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
-                    qDebug()<<"doBDOBUSList"<<doBDOBUSList.count();
-                    doLabelList[i]->setStyleSheet(DO_GREEN_STYLESHEET);
+                    //qDebug()<< "i = "<< i ;
+                    tempSafteyConnectorCheck = i;
+                    //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+                    if(crossContinutyErrorList.at(i)->isChecked() == 1)   //1 in insted
+                    {
+                        setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
+                        doLabelList[i]->setStyleSheet(DO_GREEN_STYLESHEET);
 
-                    if(i  <= /*7*/doBDOBUSList.count() - 3)
-                    {
-                        setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
-                        setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
-                        doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
-                        doLabelList[i + 2]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        if(i  <= doBDOBUSList.count() - 3)
+                        {
+                            setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                            setRegisterHIgh(doBDOBUSList.at(i + 2).doNum, 1);
+                            doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
+                            doLabelList[i + 2]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        }
+                        else if(i == doBDOBUSList.count() - 2)
+                        {
+                            setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
+                            setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                            doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
+                            doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        }
+                        else if(i == /*9*/doBDOBUSList.count() - 2)
+                        {
+                            setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
+                            setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
+                            doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
+                            doLabelList[1]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        }
+                        diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
                     }
-                    else if(i == /*8*/doBDOBUSList.count() - 2)
+
+                    if(continutyErrorList.at(i)->isChecked() == 1)
                     {
-                        setRegisterHIgh(doBDOBUSList.at(i + 1).doNum, 1);
-                        setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
-                        doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
-                        doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
+                        doLabelList[i]->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                        diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
                     }
-                    else if(i == /*9*/doBDOBUSList.count() - 2)
+                    if(crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
                     {
-                        setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
-                        setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);
-                        doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
-                        doLabelList[1]->setStyleSheet(DO_GREEN_STYLESHEET);
+
+                        setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
+                        doLabelList[i]->setStyleSheet(DO_GREEN_STYLESHEET);
+                        diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
                     }
-                    diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                    //setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
+
                 }
-
-                if(continutyErrorList.at(i)->isChecked() == 1)
+                else
                 {
+                    //qDebug()<<"doBDOBUSList :"<<doBDOBUSList.at(i).doNum<<" i:"<<i;
+                    //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
                     setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
                     doLabelList[i]->setStyleSheet(DEFAULT_DO_STYLESHEET);
-                    diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                    diLabelList[i]->setStyleSheet(DEFAULT_STYLESHEET);
                 }
-                if(crossContinutyErrorList.at(i)->isChecked() != 1 && continutyErrorList.at(i)->isChecked() != 1)
-                {
-                    //qDebug()<<"doBDOBUSList.at(i).doNum"<<doBDOBUSList.at(i).doNum<<i;
-                    setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
-                    doLabelList[i]->setStyleSheet(DO_GREEN_STYLESHEET);
-                    diLabelList[i]->setStyleSheet(DI_RECEIVED_STYLESHEET);
-                }
-                tempSafteyConnectorCheck = i;
             }
             mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-
-
-            //    qDebug()<<"bdobusDoval[1] = "<<bdobusDoval[1];
-            //    qDebug()<<"bdobusDoval[2] = "<<bdobusDoval[2];
-            //    qDebug()<<"bdobusDoval[3] = "<<bdobusDoval[3];
         }
     }
-    if(tempSafteyConnectorCheck >= 9)
+
+    // After the loop, explicitly turn off the last DO (index 9)
+
+    if(tempSafteyConnectorCheck >= 9 /*&& BODOBUSDiSeftydataStructlist[0].Result == 1*/)
     {
+        int temp = 0;
+        temp = BODOBUSDiSeftydataStructObj.Result = mainAppWin->modbusCommObj->getDiValue(BDOBUS_SAFTEY_DI_1);
+        //        memset(&bdobusDoval, 0,sizeof(bdobusDoval));
         flag =true;
-        //        qDebug()<<"omksr";
-        safetyConnectorTest();
-        //checkContinutyDoOnOFFSlected();
-        //        checkDoOnOffSelected();
+//        if(temp == 1)
+//        {
+            //setRegisterHIgh(doBDOBUSList.at(9).doNum, 0);
+            //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+            safetyConnectorTest();
+        //}
+
     }
-    //checkContinutyDoOnOFFSlected();
 }
 
 void bdobus::processHarnessDiDO()
 {
-    if(checkCorrectHarness() == 1)
+    if(ui->ckHarnessForceDoOn->isChecked() == 1)
     {
-        if(ui->ckHarnessContinutyError->isChecked() != 1)
+        setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 1);
+        ui->lblHarnessLED->setStyleSheet(YELLOW_DO_STYLESHEET);
+    }
+    else if(ui->ckHarnessForceDoOff->isChecked() == 1)
+    {
+        setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 0);
+        ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+    }
+    else
+    {
+        if(checkCorrectHarness() == 1)
         {
-            setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 1);
-            //bdobusDoval[2]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[2],(HARNESS_BDOBUS_CHK_DO1 - 32),1);
-            ui->lblHarness->setStyleSheet(DI_RECEIVED_STYLESHEET);
-            ui->lblHarnessLED->setStyleSheet(DO_GREEN_STYLESHEET);
+            if(ui->ckHarnessContinutyError->isChecked() != 1)
+            {
+                setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 1);
+                //bdobusDoval[2]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[2],(HARNESS_BDOBUS_CHK_DO1 - 32),1);
+                ui->lblHarness->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                ui->lblHarnessLED->setStyleSheet(DO_GREEN_STYLESHEET);
+            }
+            else if(ui->ckHarnessContinutyError->isChecked() == 1)
+            {
+                setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 0);
+                //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(HARNESS_BDOBUS_CHK_DO1),0);
+                ui->lblHarness->setStyleSheet(DEFAULT_STYLESHEET);
+                ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+            }
         }
-        else if(ui->ckHarnessContinutyError->isChecked() == 1)
+        else
         {
             setRegisterHIgh(HARNESS_BDOBUS_CHK_DO1, 0);
-            //bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(HARNESS_BDOBUS_CHK_DO1),0);
-            ui->lblHarness->setStyleSheet(DI_RECEIVED_STYLESHEET);
+            ui->lblHarness->setStyleSheet(DEFAULT_STYLESHEET);
             ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
     }
@@ -417,297 +479,184 @@ void bdobus::ProcessShellEmergencyDiDO()
     int shellLoading  = mainAppWin->modbusCommObj->getDiValue(BDOBUS_SHELLCHK_DI);
 
     //shell loading
-    if(shellLoading == 1)
+    if(ui->cbShellLoading_On->isChecked() == 1)
     {
-        if(ui->ckShellLoading->isChecked() != 1)
+        setRegisterHIgh(BDOBUS_SHELLCHK_DO, 1);
+        ui->lblShellLoadingLED->setStyleSheet(YELLOW_DO_STYLESHEET);
+    }
+    else if(ui->cbShellLoading_Off->isChecked() == 1)
+    {
+        setRegisterHIgh(BDOBUS_SHELLCHK_DO, 0);
+        ui->lblShellLoadingLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+    }
+    else
+    {
+        if(shellLoading == 1)
         {
-            ui->lblShellLoading->setStyleSheet(DI_RECEIVED_STYLESHEET);
-            ui->lblShellLoadingLED->setStyleSheet(DO_GREEN_STYLESHEET);
-            setRegisterHIgh(BDOBUS_SHELLCHK_DO, 1);
+            if(ui->ckShellLoading->isChecked() != 1)
+            {
+                ui->lblShellLoading->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                ui->lblShellLoadingLED->setStyleSheet(DO_GREEN_STYLESHEET);
+                setRegisterHIgh(BDOBUS_SHELLCHK_DO, 1);
+            }
+            else if(ui->ckShellLoading->isChecked() == 1)
+            {
+                ui->lblShellLoadingLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                setRegisterHIgh(BDOBUS_SHELLCHK_DO, 0);
+            }
         }
-        else if(ui->ckShellLoading->isChecked() == 1)
+        else
         {
             ui->lblShellLoadingLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
             setRegisterHIgh(BDOBUS_SHELLCHK_DO, 0);
+            ui->lblShellLoading->setStyleSheet(DEFAULT_STYLESHEET);
         }
     }
 
+
     //Emergency stop1
-    if(emergency1 == 1)
+    if(ui->cbEmgStop1_On->isChecked() == 1)
     {
-        if(ui->ckEmergencyStop1->isChecked() != 1)
+        ui->lblEmergencyStop1LED->setStyleSheet(YELLOW_DO_STYLESHEET);
+        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 1);
+    }
+    else if(ui->cbEmgStop1_Off->isChecked() == 1)
+    {
+        ui->lblEmergencyStop1LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 0);
+    }
+    else
+    {
+        if(emergency1 == 1)
         {
-            ui->lblEmergencyStop1->setStyleSheet(DI_RECEIVED_STYLESHEET);
-            ui->lblEmergencyStop1LED->setStyleSheet(DO_GREEN_STYLESHEET);
-            setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 1);
+            if(ui->ckEmergencyStop1->isChecked() != 1)
+            {
+                ui->lblEmergencyStop1->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                ui->lblEmergencyStop1LED->setStyleSheet(DO_GREEN_STYLESHEET);
+                setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 1);
+            }
+            else if(ui->ckEmergencyStop1->isChecked() == 1)
+            {
+                ui->lblEmergencyStop1LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 0);
+            }
         }
-        else if(ui->ckEmergencyStop1->isChecked() == 1)
+        else
         {
             ui->lblEmergencyStop1LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
             setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 0);
+            ui->lblEmergencyStop1->setStyleSheet(DEFAULT_STYLESHEET);
         }
     }
 
-
     //Emergency stop2
-    //shell loading
-    if(emergency2 == 1)
+    if(ui->cbEmgStop2_On->isChecked() == 1)
     {
-        if(ui->ckEmergencyStop2->isChecked() != 1)
+        ui->lblEmergencyStop2LED->setStyleSheet(YELLOW_DO_STYLESHEET);
+        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 1);
+    }
+    else if(ui->cbEmgStop2_Off->isChecked() == 1)
+    {
+        ui->lblEmergencyStop2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 0);
+    }
+    else
+    {
+        if(emergency2 == 1)
         {
-            ui->lblEmergencystop2->setStyleSheet(DI_RECEIVED_STYLESHEET);
-            ui->lblEmergencyStop2LED->setStyleSheet(DO_GREEN_STYLESHEET);
-            setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 1);
+            if(ui->ckEmergencyStop2->isChecked() != 1)
+            {
+                ui->lblEmergencystop2->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                ui->lblEmergencyStop2LED->setStyleSheet(DO_GREEN_STYLESHEET);
+                setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 1);
+            }
+            else if(ui->ckEmergencyStop1->isChecked() == 1)
+            {
+                ui->lblEmergencyStop2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 0);
+            }
         }
-        else if(ui->ckEmergencyStop1->isChecked() == 1)
+        else
         {
             ui->lblEmergencyStop2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
             setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 0);
+            ui->lblEmergencystop2->setStyleSheet(DEFAULT_STYLESHEET);
         }
     }
 
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
+#if 0
     qDebug("before didoonoff");
     qDebug("bdobusDoval[0] = %x",bdobusDoval[0]);
     qDebug("bdobusDoval[1] = %x",bdobusDoval[1]);
     qDebug("bdobusDoval[2] = %x",bdobusDoval[2]);
     qDebug("bdobusDoval[3] = %x",bdobusDoval[3]);
-   // QThread::msleep(2000);
-    checkShellLoadingEmergencyDoOnOffSelected();
+    // QThread::msleep(2000);
+    //checkShellLoadingEmergencyDoOnOffSelected();
     qDebug("after didoonoff");
     qDebug("bdobusDoval[0] = %x",bdobusDoval[0]);
     qDebug("bdobusDoval[1] = %x",bdobusDoval[1]);
     qDebug("bdobusDoval[2] = %x",bdobusDoval[2]);
     qDebug("bdobusDoval[3] = %x",bdobusDoval[3]);
     //mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
+#endif
 }
 
 void bdobus::checkDoOnOffSelected()
 {
     //qDebug()<<"In checkDoOnOffSelected";
-     checkShellLoadingEmergencyDoOnOffSelected();
-    checkContinutyDoOnOFFSlected();
-    checksafetyKeyConnectorDoOnOffSelected();
+    //    checkShellLoadingEmergencyDoOnOffSelected();
+    //    checkContinutyDoOnOFFSlected();
+    //    checksafetyKeyConnectorDoOnOffSelected();
 }
-
-void bdobus::checkContinutyDoOnOFFSlected()
-{
-    int continutyCount[doBDOBUSList.count()] = {0};
-    for (int i = 0; i < doBDOBUSList.count(); i++)
-    {
-        if(do_OnOffCbList.at(i)->isChecked() == 1)
-        {
-            continutyCount[i] = 1;
-            setRegisterHIgh(doBDOBUSList.at(i).doNum, 1);
-            doLabelList[i]->setStyleSheet(YELLOW_BUTTON_STYLESHEET);
-        }
-        else if (continutyCount[i] == 1 && do_OnOffCbList.at(i)->isChecked() != 1)
-        {
-            continutyCount[i] = 0;
-            setRegisterHIgh(doBDOBUSList.at(i).doNum, 0);
-            doLabelList[i]->setStyleSheet(DEFAULT_DO_STYLESHEET);
-            qDebug()<<"hellodefault StyleSheet";
-        }
-    }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-}
-
-void bdobus::checkShellLoadingEmergencyDoOnOffSelected()
-{
-    int shellCount = 0,Emergency1Count = 0, Emergency2Count = 0;
-    if(ui->cbShellLoading_OnOff->isChecked() == 1)
-    {
-        shellCount = 1;
-        setRegisterHIgh(BDOBUS_SHELLCHK_DO, 1);
-        ui->lblShellLoadingLED->setStyleSheet(DO_GREEN_STYLESHEET);
-    }
-    else if(shellCount == 1 && ui->cbShellLoading_OnOff->isChecked() != 1)
-    {
-        setRegisterHIgh(BDOBUS_SHELLCHK_DO, 0);
-        ui->lblShellLoadingLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-        shellCount = 0;
-    }
-
-    if(ui->cbEmgStop1_OnOff->isChecked() == 1)
-    {
-        Emergency1Count = 1;
-        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 1);
-        ui->lblEmergencyStop1LED->setStyleSheet(DO_GREEN_STYLESHEET);
-    }
-    else if(Emergency1Count == 1 && ui->cbEmgStop1_OnOff->isChecked() != 1)
-    {
-        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO1, 0);
-        ui->lblEmergencyStop1LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-        Emergency1Count = 0;
-    }
-
-    if(ui->cbEmgStop2_OnOff->isChecked() == 1)
-    {
-        Emergency2Count = 1;
-        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 1);
-        ui->lblEmergencyStop2LED->setStyleSheet(DO_GREEN_STYLESHEET);
-    }
-    else if(Emergency2Count == 1 && ui->cbEmgStop2_OnOff->isChecked() != 1)
-    {
-        setRegisterHIgh(BDOBUS_EMERGNCYCHK_DO2, 0);
-        ui->lblEmergencyStop2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-        Emergency2Count = 0;
-    }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-}
-
-void bdobus::checksafetyKeyConnectorDoOnOffSelected()
-{
-    int safteyCounter1 = 0, safteyCounter2 = 0;
-    if(ui->ckSafetyKeyConnector1_OnOff->isChecked() == 1)
-    {
-        safteyCounter1 = 1;
-        setRegisterHIgh(BDOBUS_SAFTEY_DO_1, 1);
-        ui->lblKeyConnecter1LED->setStyleSheet(DO_GREEN_STYLESHEET);
-    }
-    else if(safteyCounter1  == 1 && ui->ckSafetyKeyConnector1_OnOff->isChecked() != 1)
-    {
-        safteyCounter1  = 0;
-        setRegisterHIgh(BDOBUS_SAFTEY_DO_1, 0);
-        ui->lblKeyConnecter2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-    }
-
-    if(ui->ckSafetyKeyConnector2_OnOff->isChecked() == 1)
-    {
-        safteyCounter2 = 1;
-        setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 1);
-        ui->lblKeyConnecter2LED->setStyleSheet(DO_GREEN_STYLESHEET);
-    }
-    else if(safteyCounter2 == 1 && ui->ckSafetyKeyConnector2_OnOff->isChecked() != 1)
-    {
-        safteyCounter2 = 0;
-        setRegisterHIgh(BDOBUS_SAFTEY_DO_2, 0);
-        ui->lblKeyConnecter2LED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-    }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-}
-
 void bdobus::safetyConnectorTest()
 {
-
     for (int i = 0; i < BODOBUSDiSeftydataStructlist.count(); i++)
-    {
-        if(BODOBUSDiSeftydataStructlist[i].Result == 1 /*&& safetyContinutyErrorList.at(i)->isChecked() != 1*/)
         {
-            if(safetyContinutyErrorList.at(i)->isChecked() != 1)
+            qDebug()<< "i : "<< i;
+            //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+            if(safetyConnecotdo_OnCbList.at(i)->isChecked() == 1)
             {
-                safetyConnectorDiLabelList.at(i)->setStyleSheet(DI_RECEIVED_STYLESHEET);
-                memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
                 setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 1);
-                safetyConnectorDoLabelList.at(i)->setStyleSheet(DO_GREEN_STYLESHEET);
+                safetyConnectorDoLabelList.at(i)->setStyleSheet(YELLOW_DO_STYLESHEET);
             }
-            else if(safetyContinutyErrorList.at(i)->isChecked() == 1)
+            else if(safetyConnecotdo_OffCbList.at(i)->isChecked() == 1)
             {
-                safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_STYLESHEET);
-                memset(&bdobusDoval[0], 0 , sizeof(bdobusDoval));
                 setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 0);
                 safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
             }
-
+            else
+            {
+                if(BODOBUSDiSeftydataStructlist[i].Result == 1)
+                {
+                    memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+                    if(safetyContinutyErrorList.at(i)->isChecked() == 1)
+                    {
+                        safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_STYLESHEET);
+                        setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 0);
+                        safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                    }
+                    else
+                    {
+                        if(i == 1)
+                        {
+                            memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+                        }
+                        safetyConnectorDiLabelList.at(i)->setStyleSheet(DI_RECEIVED_STYLESHEET);
+                        setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 1);
+                        safetyConnectorDoLabelList.at(i)->setStyleSheet(DO_GREEN_STYLESHEET);
+                    }
+                }
+    //            else
+    //            {
+    //                //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+    //                safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_STYLESHEET);
+    //                setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 0);
+    //                safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+    //            }
+            }
         }
-        temp = i;
-    }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
 }
-
-void bdobus::addDoOnOffCbInList()
-{
-
-}
-
-#if 0
-void bdobus::processShellLoadingEmgncyStop()
-{
-    //shell loading
-    if(modbusCommObj->receivDIs[BDOBUS_DI_SHELLCHK] == 1 && ui->ckShellLoading->isChecked() != 1)
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),1);
-        ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-    }
-    else if(modbusCommObj->receivDIs[BDOBUS_DI_SHELLCHK] == 1 && ui->ckShellLoading->isChecked() == 1)
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),0);
-        ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
-    }
-    else
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        bdobusDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bdobusDoval[0],(BDOBUS_DO_SHELLCHK),0);
-        ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:5px;}");
-        ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:15px;}");
-    }
-
-    //Shell loading
-    if(modbusCommObj->receivDIs[BDOBUS_DI_SHELLCHK] == 1 && ui->ckEmergencyStop->isChecked() != 1 )
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        //modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DO_SHELLCHK),1);
-        setRegisterHIgh(BDOBUS_DO_SHELLCHK, 1);
-        ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-    }
-    else
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        ui->lblShellLoading->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:5px;}");
-        // modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DO_SHELLCHK),0);
-        setRegisterHIgh(BDOBUS_DO_SHELLCHK, 0);
-        ui->lblShellLoadingLED->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:15px;}");
-
-    }
-
-
-    //Emergency stop
-    if(modbusCommObj->receivDIs[BDOBUS_DI_EMERGNCYCHK] == 1)
-    {
-        //qDebug()<<"Shell Loading true";
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        ui->lblEmergencyStop->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        //modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DI_EMERGNCYCHK),1);
-        setRegisterHIgh(BDOBUS_DO_EMERGNCYCHK, 1);
-        ui->lblEmergencyStopLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
-    }
-    else
-    {
-        memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        ui->lblEmergencyStop->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:5px;}");
-        //modbusCommObj->dival[0]  = setBitHigh(modbusCommObj->dival[0],(BDOBUS_DI_EMERGNCYCHK),0);
-        setRegisterHIgh(BDOBUS_DO_EMERGNCYCHK, 0);
-        ui->lblEmergencyStopLED->setStyleSheet("QLabel { color : white; background-color : rgb(233, 69, 69); border-radius:15px;}");
-
-    }
-
-}
-
-
-//check box enable disable
-void bdobus::processEnableDisableCkError()
-{
-    for(int i = 0; i<13; i++)
-    {
-        if(continutyErrorList.at(i)->isChecked() == 1)
-        {
-            crossContinutyErrorList.at(i)->setEnabled(false);
-        }
-        else if(crossContinutyErrorList.at(i)->isChecked() == 1)
-        {
-            continutyErrorList.at(i)->setEnabled(false);
-        }
-
-    }
-
-}
-
-#endif
 
 
 int bdobus::checkCorrectHarness()

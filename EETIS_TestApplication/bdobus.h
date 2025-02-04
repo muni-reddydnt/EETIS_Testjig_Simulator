@@ -24,6 +24,7 @@ border-radius:5px;}"
 
 #define YELLOW_DO_STYLESHEET    "QLabel { color : white; background-color : rgb(255, 255, 0); border-radius:15px;}"
 
+
 #pragma pack(1)
 typedef struct
 {
@@ -131,7 +132,10 @@ public:
     QList<QCheckBox*> continutyErrorList;
     QList<QCheckBox*> safetyContinutyErrorList;
     QList<QCheckBox*> crossContinutyErrorList;
-    QList<QCheckBox*> do_OnOffCbList;
+    QList<QCheckBox*> do_OnCbList;
+    QList<QCheckBox*> do_OffCbList;
+    QList<QCheckBox*> safetyConnecotdo_OnCbList;
+    QList<QCheckBox*> safetyConnecotdo_OffCbList;
 
     BODOBUSdiStruct BDOBUSteststruct;
     BODOBUSdiStructsefty BODOBUSdiStructseftyObj;
@@ -153,7 +157,8 @@ protected:
     void uiListappend();
     void doListappend();
     void diListappend();
-    void ckDoListAppend();
+    void ckForceDoOnListAppend();
+    void ckForceDoOnOffListAppend();
     void continutyErrorListappend();
     void crossContinutyErrorListappend();
     void addDiStructInList();
@@ -165,7 +170,6 @@ protected:
 
     int checkCorrectHarness();
     void safetyConnectorTest();
-    void addDoOnOffCbInList();
 
 private slots:
     void startTest();
@@ -173,9 +177,9 @@ private slots:
     void processHarnessDiDO();
     void ProcessShellEmergencyDiDO();
     void checkDoOnOffSelected();
-    void checkContinutyDoOnOFFSlected();
-    void checkShellLoadingEmergencyDoOnOffSelected();
-    void checksafetyKeyConnectorDoOnOffSelected();
+//    void checkContinutyDoOnOFFSlected();
+//    void checkShellLoadingEmergencyDoOnOffSelected();
+//    void checksafetyKeyConnectorDoOnOffSelected();
     //void processShellLoadingEmgncyStop();
     //void processEnableDisableCkError();
 
@@ -189,6 +193,9 @@ private:
     int tempSafteyConnectorCheck = 0;
     int temp = 0;
     bool flag =false;
+    int shellCount = 0, Emergency1Count = 0, Emergency2Count = 0, safteyCounter1 = 0, safteyCounter2 = 0;
+    int continutyCount[12] = {0};
+    int safteyKeyConnector1 = 0, safteyKeyConnector2 = 0;
 };
 
 #endif // BDOBUS_H

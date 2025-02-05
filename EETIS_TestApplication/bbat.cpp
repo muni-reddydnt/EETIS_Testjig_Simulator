@@ -13,7 +13,7 @@ BBAT::BBAT(QWidget *parent) :
     ui->dbsJ7aToJ7c->setButtonSymbols(QAbstractSpinBox::NoButtons);
     updateUidata = new QTimer(this);
     connect(updateUidata, SIGNAL(timeout()),this, SLOT(startTest()));
-    //updateUidata->start(100);
+    updateUidata->start(100);
 
 
     uiListappend();
@@ -106,6 +106,8 @@ void BBAT::addContErrForDo2InList()
     do1_2ContinuityErrList.append(ui->cbBBATJ8E);
 }
 
+
+
 void BBAT::addContErrForDo1InList()
 {
     do1_1ContinuityErrList.clear();
@@ -129,51 +131,112 @@ void BBAT::addContErrForDo1InList()
     do1_1ContinuityErrList.append(ui->cbBBATJ8F);
 }
 
+void BBAT::addDo1OnCbInList()
+{
+    do1_1OnCbList.clear();
+    do1_1OnCbList.append(ui->cbJ2D_On);
+    do1_1OnCbList.append(ui->cbJ2E_On);
+    do1_1OnCbList.append(ui->cbJ2F_On);
+    do1_1OnCbList.append(ui->cbJ2K_On);
+    do1_1OnCbList.append(ui->cbJ2L_On);
+    do1_1OnCbList.append(ui->cbJ2M_On);
+    do1_1OnCbList.append(ui->cbJ3C_On);
+    do1_1OnCbList.append(ui->cbJ3D_On);
+    do1_1OnCbList.append(ui->cbJ4B_On);
+    do1_1OnCbList.append(ui->cbJ5C_On);
+    do1_1OnCbList.append(ui->cbJ5D_On);
+    do1_1OnCbList.append(ui->cbJ5G_On);
+    do1_1OnCbList.append(ui->cbJ62_On);
+    do1_1OnCbList.append(ui->cbJ7C_On);
+    do1_1OnCbList.append(ui->cbJ7D_On);
+    do1_1OnCbList.append(ui->cbJ8D_On);
+    do1_1OnCbList.append(ui->cbJ8B_On);
+    do1_1OnCbList.append(ui->cbJ8F_On);
+
+}
+
+void BBAT::addDo1OffCbInList()
+{
+    do1_1OffCbList.clear();
+    do1_1OffCbList.append(ui->cbJ2D_Off);
+    do1_1OffCbList.append(ui->cbJ2E_Off);
+    do1_1OffCbList.append(ui->cbJ2F_Off);
+    do1_1OffCbList.append(ui->cbJ2K_Off);
+    do1_1OffCbList.append(ui->cbJ2L_Off);
+    do1_1OffCbList.append(ui->cbJ2M_Off);
+    do1_1OffCbList.append(ui->cbJ3C_Off);
+    do1_1OffCbList.append(ui->cbJ3D_Off);
+    do1_1OffCbList.append(ui->cbJ4B_Off);
+    do1_1OffCbList.append(ui->cbJ5C_Off);
+    do1_1OffCbList.append(ui->cbJ5D_Off);
+    do1_1OffCbList.append(ui->cbJ5G_Off);
+    do1_1OffCbList.append(ui->cbJ62_Off);
+    do1_1OffCbList.append(ui->cbJ7C_Off);
+    do1_1OffCbList.append(ui->cbJ7D_Off);
+    do1_1OffCbList.append(ui->cbJ8D_Off);
+    do1_1OffCbList.append(ui->cbJ8B_Off);
+    do1_1OffCbList.append(ui->cbJ8F_Off);
+}
+
+void BBAT::addDo2OnCbInList()
+{
+    do1_2OnCbList.clear();
+    do1_2OnCbList.append(ui->cbJ2A_On);
+    do1_2OnCbList.append(ui->cbJ2B_On);
+    do1_2OnCbList.append(ui->cbJ2C_On);
+    do1_2OnCbList.append(ui->cbJ2G_On);
+    do1_2OnCbList.append(ui->cbJ2H_On);
+    do1_2OnCbList.append(ui->cbJ2J_On);
+    do1_2OnCbList.append(ui->cbJ3A_On);
+    do1_2OnCbList.append(ui->cbJ3B_On);
+    do1_2OnCbList.append(ui->cbJ4A_On);
+    do1_2OnCbList.append(ui->cbJ5A_On);
+    do1_2OnCbList.append(ui->cbJ5B_On);
+    do1_2OnCbList.append(ui->cbJ5E_On);
+    do1_2OnCbList.append(ui->cbJ5F_On);
+    do1_2OnCbList.append(ui->cbJ61_On);
+    do1_2OnCbList.append(ui->cbJ7A_On);
+    do1_2OnCbList.append(ui->cbJ7B_On);
+    do1_2OnCbList.append(ui->cbJ8A_On);
+    do1_2OnCbList.append(ui->cbJ8C_On);
+    do1_2OnCbList.append(ui->cbJ8E_On);
+
+}
+
+void BBAT::addDo2OffCbInList()
+{
+    do1_2OffCbList.clear();
+    do1_2OffCbList.append(ui->cbJ2A_Off);
+    do1_2OffCbList.append(ui->cbJ2B_Off);
+    do1_2OffCbList.append(ui->cbJ2C_Off);
+    do1_2OffCbList.append(ui->cbJ2G_Off);
+    do1_2OffCbList.append(ui->cbJ2H_Off);
+    do1_2OffCbList.append(ui->cbJ2J_Off);
+    do1_2OffCbList.append(ui->cbJ3A_Off);
+    do1_2OffCbList.append(ui->cbJ3B_Off);
+    do1_2OffCbList.append(ui->cbJ4A_Off);
+    do1_2OffCbList.append(ui->cbJ5A_Off);
+    do1_2OffCbList.append(ui->cbJ5B_Off);
+    do1_2OffCbList.append(ui->cbJ5E_Off);
+    do1_2OffCbList.append(ui->cbJ5F_Off);
+    do1_2OffCbList.append(ui->cbJ61_Off);
+    do1_2OffCbList.append(ui->cbJ7A_Off);
+    do1_2OffCbList.append(ui->cbJ7B_Off);
+    do1_2OffCbList.append(ui->cbJ8A_Off);
+    do1_2OffCbList.append(ui->cbJ8C_Off);
+    do1_2OffCbList.append(ui->cbJ8E_Off);
+}
+
 void BBAT::addDo1OnOffCbInList()
 {
-    do1_1OnOffCbList.clear();
-    do1_1OnOffCbList.append(ui->cbJ2D_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ2E_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ2F_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ2K_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ2L_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ2M_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ3C_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ3D_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ4B_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ5C_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ5D_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ5G_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ62_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ7C_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ7D_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ8D_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ8B_OnOff);
-    do1_1OnOffCbList.append(ui->cbJ8F_OnOff);
+    addDo1OnCbInList();
+    addDo1OffCbInList();
 }
 
 void BBAT::addDo2OnOffCbInList()
 {
-    do1_2OnOffCbList.clear();
-    do1_2OnOffCbList.append(ui->cbJ2A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ2B_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ2C_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ2G_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ2H_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ2J_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ3A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ3B_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ4A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ5A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ5B_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ5E_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ5F_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ61_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ7A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ7B_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ8A_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ8C_OnOff);
-    do1_2OnOffCbList.append(ui->cbJ8E_OnOff);
+    addDo2OffCbInList();
+    addDo2OnCbInList();
 }
 
 void BBAT::addDiDoStructInList()
@@ -294,6 +357,16 @@ void BBAT::startTestTimer()
             setRegisterHigh(timerchkDoList.at(0).doNum, 0);
             ui->lblTimerChkDO1->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
+        else if(ui->cbTimerChkDO1_On->isChecked() == 1)
+        {
+            setRegisterHigh(timerchkDoList.at(0).doNum, 1);
+            ui->lblTimerChkDO1->setStyleSheet(YELLOW_DO_STYLESHEET);
+        }
+        else if(ui->cbTimerChkDO1_Off->isChecked() == 1)
+        {
+            setRegisterHigh(timerchkDoList.at(0).doNum, 0);
+            ui->lblTimerChkDO1->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
         else
         {
             setRegisterHigh(timerchkDoList.at(0).doNum, 1);
@@ -301,6 +374,16 @@ void BBAT::startTestTimer()
         }
 
         if (ui->cbTimerChkDO2->isChecked())
+        {
+            setRegisterHigh(timerchkDoList.at(1).doNum, 0);
+            ui->lblTimerChkDO2->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+        else if(ui->cbTimerChkDO2_On->isChecked() == 1)
+        {
+            setRegisterHigh(timerchkDoList.at(1).doNum, 1);
+            ui->lblTimerChkDO2->setStyleSheet(YELLOW_DO_STYLESHEET);
+        }
+        else if(ui->cbTimerChkDO2_Off->isChecked() == 1)
         {
             setRegisterHigh(timerchkDoList.at(1).doNum, 0);
             ui->lblTimerChkDO2->setStyleSheet(DEFAULT_DO_STYLESHEET);
@@ -342,6 +425,11 @@ void BBAT::checkCorrectHarness()
             ui->lblHarnessDO1->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
         }
     }
+    else
+    {
+        ui->lblCorrectHDI1->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        ui->lblHarnessDO1->setStyleSheet(DEFAULT_DO_STYLESHEET);
+    }
 
     if(harnessChkDI2 == 1)
     {
@@ -358,6 +446,11 @@ void BBAT::checkCorrectHarness()
             bbatDoval[3] = mainAppWin->modbusCommObj->setBitHigh(bbatDoval[3],((HARNESS_BBAT_CHK_DO2) - 48),1);
             ui->lblHarnessDO2->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
         }
+    }
+    else
+    {
+        ui->lblCorrectHDI2->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        ui->lblHarnessDO2->setStyleSheet(DEFAULT_DO_STYLESHEET);
     }
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
 }
@@ -421,32 +514,33 @@ void BBAT::checkDoOnOffSelected()
 {
     for (int i = 0; i < do1_1List.count(); i++)
     {
-        if(do1_1OnOffCbList.at(i)->isChecked() == 1)
+        if(do1_1OnCbList.at(i)->isChecked() == 1)
         {
             setRegisterHigh(do1_1List.at(i).doNum, 1);
             do1_1LabelList[i]->setStyleSheet(YELLOW_BUTTON_STYLESHEET);
+            qDebug()<<"hello";
         }
-        //        else if (do1_1ContinuityErrList.at(i)->isChecked() != 1)
-        //        {
-        //            setRegisterHigh(do1_1List.at(i).doNum, 0);
-        //            do1_1LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-        //        }
+        else if (do1_1OffCbList.at(i)->isChecked() == 1)
+        {
+            setRegisterHigh(do1_1List.at(i).doNum, 0);
+            do1_1LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        }
         mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
         //        qDebug()<<"bbatDoval = "<<bbatDoval;
     }
 
     for(int i = 0; i< do1_2List.count(); i++)
     {
-        if(do1_2OnOffCbList.at(i)->isChecked() == 1)
+        if(do1_2OnCbList.at(i)->isChecked() == 1)
         {
             setRegisterHigh(do1_2List.at(i).doNum, 1);
             do1_2LabelList[i]->setStyleSheet(YELLOW_BUTTON_STYLESHEET);
         }
-        //        else if (do1_2ContinuityErrList.at(i)->isChecked() != 1)
-        //        {
-        //            setRegisterHigh(do1_2List.at(i).doNum, 0);
-        //            do1_2LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-        //        }
+        else if (do1_2OffCbList.at(i)->isChecked() == 1)
+        {
+            setRegisterHigh(do1_2List.at(i).doNum, 0);
+            do1_2LabelList[i]->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        }
         mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bbatDoval);
         //        qDebug()<<"bbatDoval = "<<bbatDoval;
     }
@@ -496,9 +590,9 @@ void BBAT::checkTimerChkDIs()
 
 void BBAT::sendAiData()
 {
-    bbatAoVal[BBAT_AO_1] = ui->dbsJ7aToJ7b->value();
-    bbatAoVal[BBAT_AO_2] = ui->dbsJ7btoJ7c->value();
-    bbatAoVal[BBAT_AO_3] = ui->dbsJ7aToJ7c->value();
+    bbatAoVal[BBAT_AO_1] = ((ui->dbsJ7aToJ7b->value()) / 2);
+    bbatAoVal[BBAT_AO_2] = ((ui->dbsJ7btoJ7c->value()) / 2);
+    bbatAoVal[BBAT_AO_3] = ((ui->dbsJ7aToJ7c->value()) / 3);
 
     qDebug() << "bbatAoVal[BBAT_AO_1]:" << bbatAoVal[BBAT_AO_1]
                 << "bbatAoVal[BBAT_AO_2]:" << bbatAoVal[BBAT_AO_2]

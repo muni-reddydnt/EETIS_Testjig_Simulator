@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>disPopup</class>
+ <widget class="QWidget" name="disPopup">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:rgb(234, 236, 247);
+border: 4px solid rgb(53,74, 131);
+
+color:rgb(53,74, 131);
+border-radius:20px;</string>
+  </property>
+  <widget class="QLabel" name="lblError">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>50</y>
+     <width>531</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(234, 236, 247);
+border: 0px solid rgb(53,74, 131);
+
+color:rgb(53,74, 131);
+border-radius:20px;</string>
+   </property>
+   <property name="text">
+    <string>    TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buddy">
+    <cstring>lblError</cstring>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnPopupOK">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>210</y>
+     <width>191</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(53, 74, 131); 
+color:white;
+border-bottom-right-radius:5px;
+border-top-right-radius:5px;
+border-bottom-left-radius:5px;
+border-top-left-radius:5px;</string>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

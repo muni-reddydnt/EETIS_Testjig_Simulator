@@ -30,7 +30,8 @@ SOURCES += \
     bdobus.cpp \
     bbat.cpp \
     bfcmdf.cpp \
-    rfu.cpp
+    rfu.cpp \
+    dispopup.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,14 +39,16 @@ HEADERS += \
     bdobus.h \
     bbat.h \
     bfcmdf.h \
-    rfu.h
+    rfu.h \
+    dispopup.h
 
 FORMS += \
         mainwindow.ui \
     bdobus.ui \
     bbat.ui \
     bfcmdf.ui \
-    rfu.ui
+    rfu.ui \
+    dispopup.ui
 
 RESOURCES += \
     images.qrc

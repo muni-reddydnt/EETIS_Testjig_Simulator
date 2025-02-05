@@ -176,14 +176,6 @@ private slots:
     void processDiToDO();
     void processHarnessDiDO();
     void ProcessShellEmergencyDiDO();
-    void checkDoOnOffSelected();
-//    void checkContinutyDoOnOFFSlected();
-//    void checkShellLoadingEmergencyDoOnOffSelected();
-//    void checksafetyKeyConnectorDoOnOffSelected();
-    //void processShellLoadingEmgncyStop();
-    //void processEnableDisableCkError();
-
-    //void CombineProcessDido();
 private:
     Ui::bdobus *ui;
     int diData[4] = {0};

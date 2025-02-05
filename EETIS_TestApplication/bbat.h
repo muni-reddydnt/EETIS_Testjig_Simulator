@@ -124,8 +124,12 @@ public:
     QList<QLabel*> do1_2LabelList;
     QList<QCheckBox*> do1_1ContinuityErrList;
     QList<QCheckBox*> do1_2ContinuityErrList;
-    QList<QCheckBox*> do1_1OnOffCbList;
-    QList<QCheckBox*> do1_2OnOffCbList;
+   // QList<QCheckBox*> do1_1OnOffCbList;
+    QList<QCheckBox*> do1_1OnCbList;
+    QList<QCheckBox*> do1_1OffCbList;
+    //QList<QCheckBox*> do1_2OnOffCbList;
+    QList<QCheckBox*> do1_2OnCbList;
+    QList<QCheckBox*> do1_2OffCbList;
 
     //QList<QLabel*> diLabelList;
     explicit BBAT(QWidget *parent = 0);
@@ -149,11 +153,16 @@ protected:
     void addDo2LabelsInList();
     void addContErrForDo1InList();
     void addContErrForDo2InList();
+    void addDo1OnCbInList();
+    void addDo1OffCbInList();
+    void addDo2OnCbInList();
+    void addDo2OffCbInList();
     void addDo1OnOffCbInList();
     void addDo2OnOffCbInList();
     void addDiDoStructInList();
     void sendAiData();
     void checkDoOnOffSelected();
+
 
 protected slots:
     void startTest();

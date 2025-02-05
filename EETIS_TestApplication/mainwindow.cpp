@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+int showPopupIndex = 0;
+
 #define COMM_TIMEOUT        50
+
 
 unsigned char eetisConnected = 0;
 int commCheckCounter = 0;

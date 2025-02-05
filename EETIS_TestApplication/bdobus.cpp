@@ -21,7 +21,7 @@ bdobus::bdobus(QWidget *parent) :
     }
     displayUPdata = new QTimer(this);
     connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
-    displayUPdata->start(100);
+    //displayUPdata->start(100);
 
     uiListappend();
     addDiDoStructInList();
@@ -308,7 +308,6 @@ void bdobus::startTest()
     processDiToDO();
 
 
-    //checkDoOnOffSelected();
 
 
 
@@ -583,32 +582,10 @@ void bdobus::ProcessShellEmergencyDiDO()
             ui->lblEmergencystop2->setStyleSheet(DEFAULT_STYLESHEET);
         }
     }
-
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-#if 0
-    qDebug("before didoonoff");
-    qDebug("bdobusDoval[0] = %x",bdobusDoval[0]);
-    qDebug("bdobusDoval[1] = %x",bdobusDoval[1]);
-    qDebug("bdobusDoval[2] = %x",bdobusDoval[2]);
-    qDebug("bdobusDoval[3] = %x",bdobusDoval[3]);
-    // QThread::msleep(2000);
-    //checkShellLoadingEmergencyDoOnOffSelected();
-    qDebug("after didoonoff");
-    qDebug("bdobusDoval[0] = %x",bdobusDoval[0]);
-    qDebug("bdobusDoval[1] = %x",bdobusDoval[1]);
-    qDebug("bdobusDoval[2] = %x",bdobusDoval[2]);
-    qDebug("bdobusDoval[3] = %x",bdobusDoval[3]);
-    //mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bdobusDoval);
-#endif
 }
 
-void bdobus::checkDoOnOffSelected()
-{
-    //qDebug()<<"In checkDoOnOffSelected";
-    //    checkShellLoadingEmergencyDoOnOffSelected();
-    //    checkContinutyDoOnOFFSlected();
-    //    checksafetyKeyConnectorDoOnOffSelected();
-}
+
 void bdobus::safetyConnectorTest()
 {
     for (int i = 0; i < BODOBUSDiSeftydataStructlist.count(); i++)
@@ -647,13 +624,13 @@ void bdobus::safetyConnectorTest()
                         safetyConnectorDoLabelList.at(i)->setStyleSheet(DO_GREEN_STYLESHEET);
                     }
                 }
-    //            else
-    //            {
-    //                //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
-    //                safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_STYLESHEET);
-    //                setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 0);
-    //                safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
-    //            }
+                else
+                {
+                    //memset(&bdobusDoval, 0,sizeof(bdobusDoval));
+                    safetyConnectorDiLabelList.at(i)->setStyleSheet(DEFAULT_STYLESHEET);
+                    //setRegisterHIgh(BODOBUSdoStructseftyList.at(i).doNum, 0);
+                    safetyConnectorDoLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                }
             }
         }
 }

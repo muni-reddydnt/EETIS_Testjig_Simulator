@@ -31,7 +31,8 @@ SOURCES += \
     bbat.cpp \
     bfcmdf.cpp \
     rfu.cpp \
-    dispopup.cpp
+    dispopup.cpp \
+    stdp.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     bbat.h \
     bfcmdf.h \
     rfu.h \
-    dispopup.h
+    dispopup.h \
+    stdp.h
 
 FORMS += \
         mainwindow.ui \
@@ -48,7 +50,8 @@ FORMS += \
     bbat.ui \
     bfcmdf.ui \
     rfu.ui \
-    dispopup.ui
+    dispopup.ui \
+    stdp.ui
 
 RESOURCES += \
     images.qrc

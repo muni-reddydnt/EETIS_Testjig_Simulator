@@ -219,7 +219,7 @@ border-top-left-radius:00px;</string>
       <string>BFCMDF</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="pbStdp">
      <property name="geometry">
       <rect>
        <x>864</x>

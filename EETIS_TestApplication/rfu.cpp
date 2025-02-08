@@ -38,7 +38,7 @@ void rfu::update()
     {
         //processContinutyProcess();
         mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, rfuDoval);
-        qDebug()<<"done";
+        //qDebug()<<"done";
     }
 }
 

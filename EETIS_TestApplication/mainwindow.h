@@ -4,12 +4,14 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QPushButton>
+#include <QDateTime>
 #include "modbuscomm.h"
 #include "bdobus.h"
 #include "bbat.h"
 #include "bfcmdf.h"
 #include "rfu.h"
-#include <QDateTime>
+#include "stdp.h"
+
 
 
 #define SET_BUTTON_STYLESHEET  "background: rgb(203, 155, 52); color: rgb(255, 255, 255);\
@@ -29,6 +31,7 @@ border-top-left-radius:00px;"
 #define BDOBUSUNIT      2
 #define BFCMDFUNIT      3
 #define RFUUNIT         4
+#define STDPUNIT        5
 
 namespace Ui {
 class MainWindow;
@@ -63,6 +66,8 @@ private slots:
     void updateDateTime();
     void checkIfClientIsConnected();
 
+    void on_pbStdp_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -70,6 +75,7 @@ private:
     BBAT *bbatObj;
     bfcmdf *bfcmdfObj;
     rfu *rfuObj;
+    stdp *stdpObj;
     quint16 di[8];
     QTimer *updateDateTimeTimer;
     QTimer *commCheckTimer;

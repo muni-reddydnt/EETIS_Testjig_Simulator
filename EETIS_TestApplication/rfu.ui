@@ -53,7 +53,7 @@ color:rgb(53,74, 131);
    <property name="geometry">
     <rect>
      <x>476</x>
-     <y>120</y>
+     <y>80</y>
      <width>931</width>
      <height>149</height>
     </rect>
@@ -267,7 +267,7 @@ border-radius:5px;
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>300</y>
+     <y>230</y>
      <width>1621</width>
      <height>381</height>
     </rect>
@@ -808,6 +808,195 @@ border-radius:5px;
     </property>
     <property name="text">
      <string>BREECH CLOSING </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>630</y>
+     <width>1821</width>
+     <height>203</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:color rgb(150,160,186,40%);
+border-radius:10px;</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="pbHarness_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>441</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Push Buttons</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnGRFD">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>200</width>
+      <height>55</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+color:white;
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>GRFD</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBDOBUSJ17J21LED_3">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>82</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(234, 236, 247);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnGRFD_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>200</width>
+      <height>55</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(53, 74, 131); 
+color:white;
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>GRFD</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckCrossBDOBUSJ17J21_3">
+    <property name="geometry">
+     <rect>
+      <x>387</x>
+      <y>105</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_117">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>35</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Cross Continuity
+Error</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

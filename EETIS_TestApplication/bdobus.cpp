@@ -373,7 +373,7 @@ void bdobus::processDiToDO()
                             doLabelList[i + 1]->setStyleSheet(DO_GREEN_STYLESHEET);
                             doLabelList[0]->setStyleSheet(DO_GREEN_STYLESHEET);
                         }
-                        else if(i == /*9*/doBDOBUSList.count() - 2)
+                        else if(i == /*9*/doBDOBUSList.count() - 1)
                         {
                             setRegisterHIgh(doBDOBUSList.at(0).doNum, 1);
                             setRegisterHIgh(doBDOBUSList.at(1).doNum, 1);

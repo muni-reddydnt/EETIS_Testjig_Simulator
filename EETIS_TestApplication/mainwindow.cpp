@@ -21,10 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     bbatObj = new BBAT(ui->frmMain);
     bfcmdfObj = new bfcmdf(ui->frmMain);
     rfuObj = new rfu(ui->frmMain);
+    stdpObj = new stdp(ui->frmMain);
     bdobusObj->hide();
     bbatObj->hide();
     bfcmdfObj->hide();
     rfuObj->hide();
+    stdpObj->hide();
 
     updateDateTimeTimer = new QTimer(this);
     connect(updateDateTimeTimer, SIGNAL(timeout()), this, SLOT(updateDateTime()));
@@ -105,6 +107,7 @@ void MainWindow::hideAllFrms()
     bbatObj->hide();
     bfcmdfObj->hide();
     rfuObj->hide();
+    stdpObj->hide();
 }
 
 void MainWindow::on_btnShutDown_clicked()
@@ -146,4 +149,13 @@ void MainWindow::on_pbRfu_clicked()
     unitStatus = RFUUNIT;
     defaultFooterBtnStyleSheet();
     setFooterBtnStyleSheet(ui->pbRfu,1);
+}
+
+void MainWindow::on_pbStdp_clicked()
+{
+    hideAllFrms();
+    stdpObj->show();
+    unitStatus = RFUUNIT;
+    defaultFooterBtnStyleSheet();
+    setFooterBtnStyleSheet(ui->pbStdp,1);
 }

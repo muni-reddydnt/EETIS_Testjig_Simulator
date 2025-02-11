@@ -18,6 +18,9 @@ stdp::stdp(QWidget *parent) :
 
 
     uiListappend();
+
+    //clear pbStatus
+    memset(&pbSts[0], 0, sizeof(pbSts));
 }
 
 stdp::~stdp()
@@ -44,7 +47,7 @@ void stdp::checkCorrectHarness()
     {
         if(harnessChkDI1 == 1)
         {
-            qDebug()<<"start test1";
+            //qDebug()<<"start test1";
             ui->lblCorrectHDI1->setStyleSheet(DI_RECEIVED_STYLESHEET);
 
             //Check if continuity error for DI1 is selected
@@ -114,6 +117,7 @@ void stdp::checkContinuty()
     {
         setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,1);
         ui->lblContinutyCheckLED->setStyleSheet(YELLOW_DO_STYLESHEET);
+        ui->lblAnalogLeftTrailUp->setValue(5);
     }
     else if(ui->ckContinutyCheck_Off->isChecked() == 1)
     {
@@ -129,7 +133,8 @@ void stdp::checkContinuty()
             {
                 setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,0);
                 ui->lblContinutyCheckLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-            }
+                ui->lblAnalogLeftTrailUp->setValue(2);
+               }
             else
             {
                 setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,1);
@@ -141,6 +146,7 @@ void stdp::checkContinuty()
             ui->lblContinutyCheck->setStyleSheet(DEFAULT_STYLESHEET);
             setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,0);
             ui->lblContinutyCheckLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+            ui->lblAnalogLeftTrailUp->setValue(1);
 
         }
     }
@@ -169,60 +175,24 @@ void stdp::setRegisterHIgh(int bitPosition, bool highLow)
 
 void stdp::checkPushButtonData()
 {
-    //memset(&stdpDoval, 0,sizeof(stdpDoval));
+    //
     for(int i = 0; i < doSTDPList.count(); i++)
     {
         if(pbSts[i] == 1)
         {
-            if(crossContinutyErrorList.at(i)->isChecked() == 1)
-            {
-                setRegisterHIgh(doSTDPList.at(i).doNum, 1);
-
-                doLblsList[i]->setStyleSheet(YELLOW_DO_STYLESHEET);
-                pbList.at(i)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                if(i <= 12 - 3  /*doSTDPList.count() - 3*/)
-                {
-                    //qDebug("crossContinuityErrorList.at(%d)->isChecked() = %d", i, crossContinutyErrorList.at(i)->isChecked());
-                    //qDebug("crossContinuityErrorList.at(%d)->isChecked() = %d", i + 1, crossContinutyErrorList.at(i + 1)->isChecked());
-                    //qDebug("crossContinuityErrorList.at(%d)->isChecked() = %d", i, crossContinutyErrorList.at(i + 2)->isChecked());
-                    setRegisterHIgh(doSTDPList.at(i + 1).doNum, 1);
-                    setRegisterHIgh(doSTDPList.at(i + 2).doNum, 1);
-                    doLblsList.at(i + 1)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                    doLblsList.at(i + 2)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                }
-                else if(i <= 12 - 2 /*doSTDPList.count() - 2*/)
-                {
-                    setRegisterHIgh(doSTDPList.at(i + 1).doNum, 1);
-                    setRegisterHIgh(doSTDPList.at(0).doNum, 1);
-                    pbList.at(i + 1)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                    pbList.at(0)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                    doLblsList.at(i + 1)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                    doLblsList.at(0)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                }
-                else if(i == 12 /*doSTDPList.count() - 1*/)
-                {
-                    setRegisterHIgh(doSTDPList.at(0).doNum, 1);
-                    setRegisterHIgh(doSTDPList.at(1).doNum, 1);
-                    pbList.at(0)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                    pbList.at(1)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                    doLblsList.at(0)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                    doLblsList.at(1)->setStyleSheet(YELLOW_DO_STYLESHEET);
-                }
-            }
-
-            if(crossContinutyErrorList.at(i)->isChecked()  != 1)
-            {
-                setRegisterHIgh(doSTDPList.at(i).doNum, 1);
-                pbList.at(i)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
-                doLblsList.at(i)->setStyleSheet(YELLOW_DO_STYLESHEET);
-            }
+            //memset(&stdpDoval, 0,sizeof(stdpDoval));
+            setRegisterHIgh(doSTDPList.at(i).doNum, 1);
+            pbList.at(i)->setStyleSheet(PUSHBUTTON_YELLOW_STYLESHEET);
+            doLblsList.at(i)->setStyleSheet(YELLOW_DO_STYLESHEET);
         }
         else
         {
-            //setRegisterHIgh(doSTDPList.at(i).doNum, 0);
+            setRegisterHIgh(doSTDPList.at(i).doNum, 0);
             pbList.at(i)->setStyleSheet(PUSHBUTTON_DEFAULT_STYLESHEET);
             doLblsList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
         }
+//        qDebug()<<"hello"<<i;
+//        qDebug()<<"pbSts : "<<i<<pbSts[i];
     }
 
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, stdpDoval);
@@ -230,8 +200,14 @@ void stdp::checkPushButtonData()
 
 void stdp::startTest()
 {
-    //qDebug()<<"Di Timer";
-
+    qDebug()<<"Di Timer";
+    STDPdiResultList.clear();
+    Aidata = mainAppWin->modbusCommObj->getAiValue(STDP_AI);
+    for(int i = 0; i < diSTDPList.count(); i++)
+    {
+        stdpDidataStructResult.Result = mainAppWin->modbusCommObj->getDiValue(diSTDPList.at(i).diNum);
+        STDPdiResultList.append(stdpDidataStructResult);
+    }
     //harness
     checkCorrectHarness();
     //Emergency
@@ -240,11 +216,12 @@ void stdp::startTest()
     checkPowerOnDi();
     //Continuty check
     checkContinuty();
+    diData();
+    checkPushButtonData();
+
     if(powerOnDI == 1)
     {
         aiStartCount++;
-        diData();
-        checkPushButtonData();
     }
     else
     {
@@ -261,14 +238,13 @@ void stdp::startTest()
     }
 
 
+
 }
 
 void stdp::on_pbDeadman_clicked()
 {
-    deadManSts = !deadManSts;
+    //deadManSts = !deadManSts;
     pbSts[0] = !pbSts[0];
-    qDebug()<<"pbSts[0] = "<<pbSts[0];
-
 }
 
 void stdp::on_pbUnlocking_clicked()
@@ -317,6 +293,7 @@ void stdp::on_pbRCWdn_clicked()
 {
     //rcwDnSts = !rcwDnSts;
     pbSts[8] = !pbSts[8];
+
 }
 
 void stdp::on_pbLSup_clicked()
@@ -333,7 +310,7 @@ void stdp::on_pbLSdn_clicked()
 
 void stdp::on_pbRSup_clicked()
 {
-    rsUpSts = !rsUpSts;
+    //rsUpSts = !rsUpSts;
     pbSts[11] = !pbSts[11];
 }
 
@@ -395,6 +372,7 @@ void stdp::addPbInList()
 
 void stdp::addDiStructInList()
 {
+    diSTDPList.clear();
     STDPdiStructObj.diNum = BFLI_STDP_DI;
     diSTDPList.append(STDPdiStructObj);
     STDPdiStructObj.diNum = ACLI_STDP_DI;
@@ -418,7 +396,7 @@ void stdp::diData()
 {
     for(int i = 0; i < diSTDPList.count(); i++)
     {
-        if(diSTDPList.at(i).diNum == 1)
+        if(STDPdiResultList.at(i).Result == 1)
         {
             diLblsList.at(i)->setStyleSheet(GREEN_BUTTON_STYLESHEET);
         }
@@ -502,26 +480,35 @@ void stdp::checkEmergency()
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, stdpDoval);
 }
 
+
+
 void stdp::sendAoData()
 {
+    //memset(&stdpDoval[0], 0, sizeof(stdpDoval));
+    int Aidata = mainAppWin->modbusCommObj->getAiValue(STDP_AI);
     qDebug()<<"AI Timer";
-    qDebug()<<"with out aiStopCount = "<<aiStopCount;
+    //qDebug()<<"with out aiStopCount = "<<aiStopCount;
     aiStopCount++;
     aiStartCount++;
-    stdpAoVal[STDP_AO_1] = 2;
-    stdpAoVal[STDP_AO_2] = 4;
-    stdpAoVal[STDP_AO_3] = 2;
-    stdpAoVal[STDP_AO_4] = 4;
-
-    mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID, 16, stdpAoVal);
-    if(aiStartCount >= AI_TIME_OUT)
+    //float left = 2.5;
+    // memcpy(&left, &stdpAoVal[STDP_AO_1], sizeof(float));
+    stdpAoVal[STDP_AO_1] = 25;
+    stdpAoVal[STDP_AO_2] = 45;
+    stdpAoVal[STDP_AO_3] = 25;
+    stdpAoVal[STDP_AO_4] = 45;
+    if(Aidata == 5)
+    {
+        //qDebug()<<"Ai sending";
+        mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID, 16, stdpAoVal);
+    }
+    if(aiStartCount >= AI_TIME_OUT - 30)
     {
         updateUidata->start(100);
         aiSendTimer->stop();
         aiSend = true;
-        //aiStopCount = 0;
-        qDebug()<<"if aiStopCount = "<<aiStopCount;
-        qDebug()<<"if aiStartCount = "<<aiStartCount;
+        aiStopCount = 0;
+        //qDebug()<<"if aiStopCount = "<<aiStopCount;
+        //qDebug()<<"if aiStartCount = "<<aiStartCount;
         aiStartCount = 0;
     }
     else

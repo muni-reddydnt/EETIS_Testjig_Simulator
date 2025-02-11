@@ -281,6 +281,7 @@ void bdobus::crossContinutyErrorListappend()
 
 void bdobus::startTest()
 {
+    qDebug()<<"hi";
     BDOBUSDidataList.clear();
     BODOBUSDiSeftydataStructlist.clear();
     for(int i=0 ;i <diBDOBUSList.count();i++)

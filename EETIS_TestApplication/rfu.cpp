@@ -12,7 +12,7 @@ rfu::rfu(QWidget *parent) :
     uiListappend();
     displayUPdata = new QTimer(this);
     connect(displayUPdata, SIGNAL(timeout()),this, SLOT(update()));
-    displayUPdata->start(100);
+    //displayUPdata->start(100);
 }
 
 rfu::~rfu()

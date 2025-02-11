@@ -331,6 +331,7 @@ void BBAT::addDoStructInList()
 
 void BBAT::startTest()
 {
+    qDebug()<<"hello";
     //Check if correct harness is connected
     checkCorrectHarness();
 
@@ -343,6 +344,7 @@ void BBAT::startTest()
 
 void BBAT::startTestTimer()
 {
+    qDebug()<<"hiHello";
     //int timerValue = (ui->dsTimerVal->value()) * MS_TO_SEC;
     int timerValue = (ui->dsTimerVal->value());
     qDebug()<<"  timerValue"<<timerValue;

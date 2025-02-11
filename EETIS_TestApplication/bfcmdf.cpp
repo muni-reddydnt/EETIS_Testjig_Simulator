@@ -10,7 +10,7 @@ bfcmdf::bfcmdf(QWidget *parent) :
     ui->setupUi(this);
     displayUPdata = new QTimer(this);
     connect(displayUPdata, SIGNAL(timeout()),this, SLOT(update()));
-    displayUPdata->start(100);
+    //displayUPdata->start(100);
 }
 
 bfcmdf::~bfcmdf()

@@ -74,7 +74,9 @@ border-radius:5px;}"
 #define STDP_EMERGENCY_DI2          27
 #define STDP_EMERGENCY_DO2          25
 
-#define AI_TIME_OUT             100
+#define AI_TIME_OUT             50
+
+#define STDP_AI               1
 
 #pragma pack(1)
 typedef struct
@@ -89,6 +91,11 @@ typedef struct
 }STDPdiStruct;
 
 
+#pragma pack(1)
+typedef struct
+{
+    int Result;
+}stdpDidataStruct;
 
 namespace Ui {
 class stdp;
@@ -102,10 +109,13 @@ public:
     explicit stdp(QWidget *parent = 0);
     ~stdp();
     short stdpDoval[4] = {0};
+    //short stdpAoVal[16] = {0};
     short stdpAoVal[16] = {0};
     QList<QCheckBox*> crossContinutyErrorList;
     STDPdoStruct STDPdoStructDOstruct;
     STDPdiStruct STDPdiStructObj;
+    stdpDidataStruct stdpDidataStructResult;
+    QList<stdpDidataStruct> STDPdiResultList;
     QList<STDPdiStruct> diSTDPList;
     QList<STDPdoStruct> doSTDPList;
     QList<QLabel*> doLblsList;
@@ -173,6 +183,7 @@ private:
     int aiStopCount = 0;
     int powerOnDI = 0;
     bool aiSend = false;
+    int Aidata = 0;
 };
 
 

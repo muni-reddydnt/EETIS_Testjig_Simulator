@@ -22,10 +22,13 @@
 
 #define NO_OF_DI_REG                4
 #define NO_OF_DO_REG                4
+#define NO_OF_AI_REG                16
 #define WRITE_MULTIPLE_REGS         16
 #define REQ_MULTIPLE_REGS           3
 #define NO_OF_DIs                   16*NO_OF_DI_REG
 #define NO_OF_DOs                   16*NO_OF_DO_REG
+#define NO_OF_BYTES_AI              2*NO_OF_AI_REG
+#define BYTES_IN_REG                2
 #define MAX_BITS_IN_REG             16
 
 #define SLAVE_ADDRESS               0
@@ -48,6 +51,7 @@ public:
     char receivDIs[NO_OF_DIs] = {0};
     char statusData = 0;
     short dival[4] = {0};
+    short plcAIs[NO_OF_BYTES_AI] = {0};
 
     void connectModbusTcpSocket(const QString &host, quint16 port);
     int setBitHigh(int val, int bitPosition, bool highLow);
@@ -57,6 +61,7 @@ public:
     void sendDoAoData(int transId, int regLength,  short *inputArr);
     void setBitInRegister(int bitPosition);
     int getDiValue(int diChannel);
+    int getAiValue(int aiChannel);
     void setDoValue(int doChannel, char data);
     void storeDoDataInRegArray(short *doDataInRegArray, unsigned short noOfRegToWrite, char *doData);
 
@@ -70,6 +75,7 @@ private slots:
 private:
     void decodeData(QByteArray responseData);
     void storeDoData(unsigned short noOfRegToRead);
+    void storeAiData(unsigned short noOfRegToRead);
     bool getBitValFrmReg(unsigned short regValue, int bitPosition);
 //    void setBitInRegister(int bitPosition);
     QTcpSocket *modbusTcpSocket;

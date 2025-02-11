@@ -179,6 +179,10 @@ void modbusComm::readData()
 
             //qDebug("in modbus mainAppWin->statusData: %d",mainAppWin->startSendData);
         }
+        if(transId == AO_TRANS_ID)
+        {
+            //qDebug() << "Received received:" << data.toHex();
+        }
         decodeData(data);
     }
     else
@@ -235,6 +239,11 @@ void modbusComm::decodeData(QByteArray responseData)
             unsigned short noOfRegToRead = (((responseData.at(10) << 8) | responseData.at(11)));
             storeDoData(noOfRegToRead);
         }
+        if(transId == AO_TRANS_ID)
+        {
+            unsigned short noOfRegToRead = (((responseData.at(10) << 8) | responseData.at(11)));
+            storeAiData(noOfRegToRead);
+        }
     }
     case REQ_MULTIPLE_REGS:
     {
@@ -275,6 +284,22 @@ void modbusComm::storeDoData(unsigned short noOfRegToRead)
     }
 }
 
+void modbusComm::storeAiData(unsigned short noOfRegToRead)
+{
+    if (noOfRegToRead <= (NO_OF_BYTES_AI / BYTES_IN_REG))
+    {
+        for (int i = 0; i < noOfRegToRead; i++)
+        {
+            plcAIs[i] = inputReg[i];
+            //qDebug() << "plcAIs " << i << ": " << ((int)(plcAIs[i]));
+        }
+    }
+    else
+    {
+        qDebug("Number of registers exceeds available AI channels.");
+    }
+}
+
 bool modbusComm::getBitValFrmReg(unsigned short regValue, int bitPosition)
 {
     int temp = ( (regValue & (1 << bitPosition)) != 0 );
@@ -284,6 +309,11 @@ bool modbusComm::getBitValFrmReg(unsigned short regValue, int bitPosition)
 int modbusComm::getDiValue(int diChannel)
 {
     return (receivDIs[diChannel]);
+}
+
+int modbusComm::getAiValue(int aiChannel)
+{
+    return (plcAIs[aiChannel]);
 }
 
 void modbusComm::setDoValue(int doChannel, char data)

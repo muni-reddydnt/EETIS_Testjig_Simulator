@@ -9,8 +9,8 @@ bfcmdf::bfcmdf(QWidget *parent) :
 {
     ui->setupUi(this);
     displayUPdata = new QTimer(this);
-    connect(displayUPdata, SIGNAL(timeout()),this, SLOT(update()));
-    //displayUPdata->start(100);
+    connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
+    displayUPdata->start(100);
 }
 
 bfcmdf::~bfcmdf()
@@ -27,35 +27,62 @@ int bfcmdf::checkCorrectHarness()
     return (value1);
 }
 
-void bfcmdf::update()
+void bfcmdf::startTest()
 {
     processHarnessDiDO();
     //qDebug("mainAppWin->startSendData = %d",mainAppWin->startSendData);
     //qDebug()<<"mainAppWin->unitStatus = "<<mainAppWin->unitStatus;
     if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 3)
     {
-        processContinutyProcess();
-        mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
+        //processContinutyProcess();
+        //mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
     }
 }
 
 void bfcmdf::processHarnessDiDO()
 {
-    if(checkCorrectHarness() == 1 && ui->ckHarnessContinutyError->isChecked() != 1)
+    if(ui->ckHarnessForceDoOn->isChecked() == 1)
     {
-        // memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        bfcmdfDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bfcmdfDoval[0],(HARNESS_BFCMD_CHK_DO1),1);
-        //qDebug("bfcmdfDoval[0] = %d",bfcmdfDoval[0]);
-        ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+        mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 1,bfcmdfDoval);
+        qDebug()<<"bfcmdfDoval 0 : "<<bfcmdfDoval[0];
+        qDebug()<<"bfcmdfDoval 1 : "<<bfcmdfDoval[1];
+        qDebug()<<"bfcmdfDoval 2 : "<<bfcmdfDoval[2];
+        qDebug()<<"bfcmdfDoval 3 : "<<bfcmdfDoval[3];
+        ui->lblHarnessLED->setStyleSheet(YELLOW_DO_STYLESHEET);
     }
-    else if(checkCorrectHarness() == 1 && ui->ckHarnessContinutyError->isChecked() == 1)
+    else if(ui->ckHarnessForceDoOff->isChecked() == 1)
     {
-        //memset(&modbusCommObj->dival[0], 0 , sizeof(modbusCommObj->dival));
-        bfcmdfDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bfcmdfDoval[0],(HARNESS_BFCMD_CHK_DO1),0);
-        ui->lblHarness->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:5px;}");
-        ui->lblHarnessLED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
+        mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 0, bfcmdfDoval);
+        ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
     }
+    else
+    {
+        if(checkCorrectHarness() == 1 )
+        {
+            ui->lblHarness->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+            if(ui->ckHarnessContinutyError->isChecked() == 1)
+            {
+                mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 0, bfcmdfDoval);
+                ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+            }
+            else
+            {
+                mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 1, bfcmdfDoval);
+                ui->lblHarnessLED->setStyleSheet(DO_GREEN_STYLESHEET);
+            }
+        }
+        else
+        {
+            qDebug()<<"else bfcmdfDoval 0 : "<<bfcmdfDoval[0];
+            qDebug()<<"else bfcmdfDoval 1 : "<<bfcmdfDoval[1];
+            qDebug()<<"else bfcmdfDoval 2 : "<<bfcmdfDoval[2];
+            qDebug()<<"else bfcmdfDoval 3 : "<<bfcmdfDoval[3];
+            ui->lblHarness->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+            mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 0, bfcmdfDoval);
+            ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+    }
+    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
 
 }
 

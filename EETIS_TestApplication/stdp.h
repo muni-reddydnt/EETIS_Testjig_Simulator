@@ -139,6 +139,7 @@ protected:
     //void sendAoData();
     void checkPowerOnDi();
     void checkEmergency();
+    void setDataInAO();
 
 protected slots:
     void startTest();

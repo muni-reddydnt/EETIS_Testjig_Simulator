@@ -64,6 +64,7 @@ public:
     int getAiValue(int aiChannel);
     void setDoValue(int doChannel, char data);
     void storeDoDataInRegArray(short *doDataInRegArray, unsigned short noOfRegToWrite, char *doData);
+    void setRegisterHIgh(int bitPosition, bool highLow, short arr[]);
 
 public slots:
     void sendData();

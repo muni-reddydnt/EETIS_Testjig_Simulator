@@ -87,6 +87,7 @@ void MainWindow::defaultFooterBtnStyleSheet()
     setFooterBtnStyleSheet(ui->pbBBAT,0);
     setFooterBtnStyleSheet(ui->pbBfcmdf,0);
     setFooterBtnStyleSheet(ui->pbRfu,0);
+    setFooterBtnStyleSheet(ui->pbStdp,0);
 }
 
 void MainWindow::setFooterBtnStyleSheet(QPushButton *footerBtn, bool setReset)

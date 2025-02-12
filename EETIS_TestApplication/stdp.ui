@@ -49,9 +49,9 @@ color:rgb(53,74, 131);
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>522</x>
+     <x>137</x>
      <y>80</y>
-     <width>740</width>
+     <width>1125</width>
      <height>175</height>
     </rect>
    </property>
@@ -65,7 +65,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="lblHarnessDO1">
     <property name="geometry">
      <rect>
-      <x>289</x>
+      <x>488</x>
       <y>83</y>
       <width>30</width>
       <height>30</height>
@@ -82,7 +82,7 @@ border-radius:15px;</string>
    <widget class="QLabel" name="lblCorrectHDI1">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>259</x>
       <y>77</y>
       <width>160</width>
       <height>40</height>
@@ -138,7 +138,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_103">
     <property name="geometry">
      <rect>
-      <x>124</x>
+      <x>323</x>
       <y>40</y>
       <width>61</width>
       <height>38</height>
@@ -163,7 +163,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QLabel" name="label_104">
     <property name="geometry">
      <rect>
-      <x>265</x>
+      <x>464</x>
       <y>43</y>
       <width>81</width>
       <height>33</height>
@@ -191,7 +191,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QLabel" name="label_114">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>549</x>
       <y>37</y>
       <width>191</width>
       <height>38</height>
@@ -219,7 +219,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QCheckBox" name="cbContErrHarnessDO1">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>629</x>
       <y>86</y>
       <width>31</width>
       <height>31</height>
@@ -265,7 +265,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="lblCorrectHDI2">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>259</x>
       <y>127</y>
       <width>160</width>
       <height>40</height>
@@ -299,7 +299,7 @@ border-radius:5px;
    <widget class="QLabel" name="lblHarnessDO2">
     <property name="geometry">
      <rect>
-      <x>289</x>
+      <x>488</x>
       <y>130</y>
       <width>30</width>
       <height>30</height>
@@ -316,7 +316,7 @@ border-radius:15px;</string>
    <widget class="QCheckBox" name="cbContErrHarnessDO2">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>629</x>
       <y>130</y>
       <width>31</width>
       <height>31</height>
@@ -362,7 +362,7 @@ color:rgb(53,74, 131);
    <widget class="QCheckBox" name="cbHarnessD2_On">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>779</x>
       <y>130</y>
       <width>31</width>
       <height>31</height>
@@ -408,7 +408,7 @@ color:rgb(53,74, 131);
    <widget class="QCheckBox" name="cbHarnessD1_On">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>779</x>
       <y>86</y>
       <width>31</width>
       <height>31</height>
@@ -454,7 +454,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="label_105">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>749</x>
       <y>37</y>
       <width>81</width>
       <height>41</height>
@@ -483,7 +483,7 @@ DO ON</string>
    <widget class="QCheckBox" name="cbHarnessD1_Off">
     <property name="geometry">
      <rect>
-      <x>661</x>
+      <x>860</x>
       <y>86</y>
       <width>31</width>
       <height>31</height>
@@ -529,7 +529,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="label_106">
     <property name="geometry">
      <rect>
-      <x>631</x>
+      <x>830</x>
       <y>37</y>
       <width>81</width>
       <height>41</height>
@@ -558,7 +558,7 @@ DO OFF</string>
    <widget class="QCheckBox" name="cbHarnessD2_Off">
     <property name="geometry">
      <rect>
-      <x>661</x>
+      <x>860</x>
       <y>130</y>
       <width>31</width>
       <height>31</height>
@@ -605,9 +605,9 @@ color:rgb(53,74, 131);
   <widget class="QWidget" name="widget_14" native="true">
    <property name="geometry">
     <rect>
-     <x>459</x>
+     <x>137</x>
      <y>260</y>
-     <width>801</width>
+     <width>1125</width>
      <height>351</height>
     </rect>
    </property>
@@ -618,7 +618,7 @@ border-radius:10px;</string>
    <widget class="QLabel" name="lblEmergency1LED">
     <property name="geometry">
      <rect>
-      <x>288</x>
+      <x>478</x>
       <y>139</y>
       <width>30</width>
       <height>30</height>
@@ -635,7 +635,7 @@ border-radius:15px;</string>
    <widget class="QLabel" name="lblEmergency2LED">
     <property name="geometry">
      <rect>
-      <x>288</x>
+      <x>478</x>
       <y>204</y>
       <width>30</width>
       <height>30</height>
@@ -652,7 +652,7 @@ border-radius:15px;</string>
    <widget class="QCheckBox" name="ckEmergencyStop1">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>600</x>
       <y>133</y>
       <width>40</width>
       <height>40</height>
@@ -698,7 +698,7 @@ color:rgb(53,74, 131);
    <widget class="QCheckBox" name="ckEmergencyStop2">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>600</x>
       <y>200</y>
       <width>40</width>
       <height>40</height>
@@ -744,7 +744,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="label_107">
     <property name="geometry">
      <rect>
-      <x>101</x>
+      <x>291</x>
       <y>65</y>
       <width>41</width>
       <height>38</height>
@@ -769,7 +769,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QLabel" name="label_108">
     <property name="geometry">
      <rect>
-      <x>264</x>
+      <x>454</x>
       <y>65</y>
       <width>81</width>
       <height>38</height>
@@ -797,7 +797,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QLabel" name="label_109">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>560</x>
       <y>55</y>
       <width>121</width>
       <height>61</height>
@@ -848,7 +848,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="lblEmergency1">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>210</x>
       <y>133</y>
       <width>200</width>
       <height>40</height>
@@ -882,7 +882,7 @@ border-radius:5px;
    <widget class="QLabel" name="lblEmergency2">
     <property name="geometry">
      <rect>
-      <x>19</x>
+      <x>209</x>
       <y>200</y>
       <width>200</width>
       <height>40</height>
@@ -916,7 +916,7 @@ border-radius:5px;
    <widget class="QCheckBox" name="cbEmgStop1_On">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>740</x>
       <y>133</y>
       <width>40</width>
       <height>40</height>
@@ -962,7 +962,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="lblForceDoOn">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>710</x>
       <y>67</y>
       <width>81</width>
       <height>38</height>
@@ -991,7 +991,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QCheckBox" name="cbEmgStop2_On">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>740</x>
       <y>200</y>
       <width>40</width>
       <height>40</height>
@@ -1037,7 +1037,7 @@ color:rgb(53,74, 131);
    <widget class="QCheckBox" name="cbEmgStop2_Off">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>880</x>
       <y>199</y>
       <width>40</width>
       <height>40</height>
@@ -1083,7 +1083,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="lblForceDoOff">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>860</x>
       <y>67</y>
       <width>81</width>
       <height>38</height>
@@ -1112,7 +1112,7 @@ color:rgb(53,74, 131);</string>
    <widget class="QCheckBox" name="cbEmgStop1_Off">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>880</x>
       <y>135</y>
       <width>40</width>
       <height>40</height>
@@ -1217,7 +1217,7 @@ border-radius:5px;
    <widget class="QLabel" name="lblContinutyCheck">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>210</x>
       <y>268</y>
       <width>200</width>
       <height>40</height>
@@ -1251,7 +1251,7 @@ border-radius:5px;
    <widget class="QCheckBox" name="ckContinutyCheck">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>600</x>
       <y>270</y>
       <width>40</width>
       <height>40</height>
@@ -1297,7 +1297,7 @@ color:rgb(53,74, 131);
    <widget class="QLabel" name="lblContinutyCheckLED">
     <property name="geometry">
      <rect>
-      <x>287</x>
+      <x>477</x>
       <y>276</y>
       <width>30</width>
       <height>30</height>
@@ -1314,7 +1314,7 @@ border-radius:15px;</string>
    <widget class="QCheckBox" name="ckContinutyCheck_On">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>740</x>
       <y>270</y>
       <width>40</width>
       <height>40</height>
@@ -1360,7 +1360,7 @@ color:rgb(53,74, 131);
    <widget class="QCheckBox" name="ckContinutyCheck_Off">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>880</x>
       <y>272</y>
       <width>40</width>
       <height>40</height>
@@ -2835,7 +2835,7 @@ border-radius:15px;</string>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>137</x>
      <y>760</y>
      <width>1125</width>
      <height>128</height>
@@ -2874,7 +2874,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>65</y>
+      <y>77</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -2902,12 +2902,15 @@ border-radius:5px;
     <property name="maximum">
      <double>1000.000000000000000</double>
     </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
    </widget>
    <widget class="QDoubleSpinBox" name="lblAnalogRightTrailDn">
     <property name="geometry">
      <rect>
       <x>990</x>
-      <y>65</y>
+      <y>77</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -2939,8 +2942,8 @@ border-radius:5px;
    <widget class="QDoubleSpinBox" name="lblAnalogLeftTrailDN">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>65</y>
+      <x>340</x>
+      <y>77</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -2972,8 +2975,8 @@ border-radius:5px;
    <widget class="QDoubleSpinBox" name="lblAnalogRightTrailUp">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>65</y>
+      <x>650</x>
+      <y>77</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -3000,6 +3003,156 @@ border-radius:5px;
     </property>
     <property name="maximum">
      <double>1000.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_270">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>40</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>Left Trail</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_273">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>79</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>UP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_274">
+    <property name="geometry">
+     <rect>
+      <x>278</x>
+      <y>82</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>DN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_275">
+    <property name="geometry">
+     <rect>
+      <x>588</x>
+      <y>80</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>UP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_276">
+    <property name="geometry">
+     <rect>
+      <x>925</x>
+      <y>81</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>DN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_272">
+    <property name="geometry">
+     <rect>
+      <x>802</x>
+      <y>40</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(53,74, 131);
+background-color: rgb(150,160,186,1%);</string>
+    </property>
+    <property name="text">
+     <string>Right Trail</string>
     </property>
    </widget>
   </widget>

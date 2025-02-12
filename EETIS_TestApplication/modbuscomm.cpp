@@ -337,6 +337,27 @@ void modbusComm::storeDoDataInRegArray(short *doDataInRegArray, unsigned short n
     }
 }
 
+void modbusComm::setRegisterHIgh(int bitPosition, bool highLow, short arr[])
+{
+    if(bitPosition > 0 && bitPosition < 16)
+    {
+        arr[0] = setBitHigh(arr[0],bitPosition,highLow);
+    }
+    else if(bitPosition  >= 16 && bitPosition  < 32)
+    {
+        arr[1] = setBitHigh(arr[1],(bitPosition - 16),highLow);
+    }
+    else if(bitPosition  >= 32 && bitPosition  <48)
+    {
+        arr[2] = setBitHigh(arr[2],(bitPosition - 32),highLow);
+    }
+    else if(bitPosition  >= 48 && bitPosition  <64)
+    {
+        arr[3] = setBitHigh(arr[3],(bitPosition - 48),highLow);
+    }
+    //return arr;
+}
+
 int modbusComm::setBitHigh(int val, int bitPosition, bool highLow)
 {
     if (highLow)
@@ -348,6 +369,8 @@ int modbusComm::setBitHigh(int val, int bitPosition, bool highLow)
         return val &= ~(1 << bitPosition);
     }
 }
+
+
 
 
 

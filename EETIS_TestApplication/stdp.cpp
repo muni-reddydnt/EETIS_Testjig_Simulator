@@ -11,7 +11,7 @@ stdp::stdp(QWidget *parent) :
     ui->setupUi(this);
     updateUidata = new QTimer(this);
     connect(updateUidata, SIGNAL(timeout()),this, SLOT(startTest()));
-    updateUidata->start(100);
+    //updateUidata->start(100);
 
     aiSendTimer = new QTimer(this);
     connect(aiSendTimer, SIGNAL(timeout()),this, SLOT(sendAoData()));
@@ -21,6 +21,7 @@ stdp::stdp(QWidget *parent) :
 
     //clear pbStatus
     memset(&pbSts[0], 0, sizeof(pbSts));
+
 }
 
 stdp::~stdp()
@@ -117,7 +118,6 @@ void stdp::checkContinuty()
     {
         setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,1);
         ui->lblContinutyCheckLED->setStyleSheet(YELLOW_DO_STYLESHEET);
-        ui->lblAnalogLeftTrailUp->setValue(5);
     }
     else if(ui->ckContinutyCheck_Off->isChecked() == 1)
     {
@@ -133,7 +133,6 @@ void stdp::checkContinuty()
             {
                 setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,0);
                 ui->lblContinutyCheckLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-                ui->lblAnalogLeftTrailUp->setValue(2);
                }
             else
             {
@@ -146,7 +145,6 @@ void stdp::checkContinuty()
             ui->lblContinutyCheck->setStyleSheet(DEFAULT_STYLESHEET);
             setRegisterHIgh(CONTINUTY_CHECK_STDP_DO,0);
             ui->lblContinutyCheckLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
-            ui->lblAnalogLeftTrailUp->setValue(1);
 
         }
     }
@@ -200,7 +198,7 @@ void stdp::checkPushButtonData()
 
 void stdp::startTest()
 {
-    qDebug()<<"Di Timer";
+    //qDebug()<<"Di Timer";
     STDPdiResultList.clear();
     Aidata = mainAppWin->modbusCommObj->getAiValue(STDP_AI);
     for(int i = 0; i < diSTDPList.count(); i++)
@@ -218,6 +216,10 @@ void stdp::startTest()
     checkContinuty();
     diData();
     checkPushButtonData();
+
+    //set Ao data
+    setDataInAO();
+
 
     if(powerOnDI == 1)
     {
@@ -480,25 +482,38 @@ void stdp::checkEmergency()
     mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, stdpDoval);
 }
 
+void stdp::setDataInAO()
+{
+    //set Ao value
+
+    stdpAoVal[STDP_AO_1] = ((ui->lblAnalogLeftTrailUp->value()) * 2048) / 10.0;
+    stdpAoVal[STDP_AO_2] = (ui->lblAnalogLeftTrailDN->value() * 2048) / 10.0;
+    stdpAoVal[STDP_AO_3] = (ui->lblAnalogRightTrailUp->value() * 2048) / 10.0;
+    stdpAoVal[STDP_AO_4] = (ui->lblAnalogRightTrailDn->value() * 2048) / 10.0;
+    qDebug()<< "stdpAoVal[STDP_AO_1] = " <<stdpAoVal[STDP_AO_1];
+    qDebug()<< "ui->lblAnalogLeftTrailUp->value() = " <<ui->lblAnalogLeftTrailUp->value();
+
+}
+
 
 
 void stdp::sendAoData()
 {
-    //memset(&stdpDoval[0], 0, sizeof(stdpDoval));
     int Aidata = mainAppWin->modbusCommObj->getAiValue(STDP_AI);
     qDebug()<<"AI Timer";
-    //qDebug()<<"with out aiStopCount = "<<aiStopCount;
     aiStopCount++;
     aiStartCount++;
-    //float left = 2.5;
-    // memcpy(&left, &stdpAoVal[STDP_AO_1], sizeof(float));
-    stdpAoVal[STDP_AO_1] = 25;
-    stdpAoVal[STDP_AO_2] = 45;
-    stdpAoVal[STDP_AO_3] = 25;
-    stdpAoVal[STDP_AO_4] = 45;
+//    ui->lblAnalogLeftTrailUp->setValue(25);
+//    ui->lblAnalogLeftTrailDN->setValue(45);
+//    ui->lblAnalogRightTrailUp->setValue(25);
+//    ui->lblAnalogRightTrailDn->setValue(45);
+    //set Ai value
+    stdpAoVal[STDP_AO_1] = ui->lblAnalogLeftTrailUp->value();
+    stdpAoVal[STDP_AO_2] = ui->lblAnalogLeftTrailDN->value();
+    stdpAoVal[STDP_AO_3] = ui->lblAnalogRightTrailUp->value();
+    stdpAoVal[STDP_AO_4] = ui->lblAnalogRightTrailDn->value();
     if(Aidata == 5)
     {
-        //qDebug()<<"Ai sending";
         mainAppWin->modbusCommObj->sendDoAoData(AI_TRANS_ID, 16, stdpAoVal);
     }
     if(aiStartCount >= AI_TIME_OUT - 30)

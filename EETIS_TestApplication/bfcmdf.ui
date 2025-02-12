@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>462</x>
+     <x>282</x>
      <y>130</y>
-     <width>761</width>
+     <width>941</width>
      <height>155</height>
     </rect>
    </property>
@@ -106,7 +106,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>121</x>
-      <y>52</y>
+      <y>49</y>
       <width>61</width>
       <height>38</height>
      </rect>
@@ -131,7 +131,7 @@ color:rgb(53,74, 131);</string>
     <property name="geometry">
      <rect>
       <x>335</x>
-      <y>54</y>
+      <y>49</y>
       <width>81</width>
       <height>33</height>
      </rect>
@@ -159,9 +159,9 @@ color:rgb(53,74, 131);</string>
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>51</y>
+      <y>41</y>
       <width>191</width>
-      <height>41</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -226,13 +226,163 @@ color:rgb(53,74, 131);
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_115">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>41</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Force
+DO OFF</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_108">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>41</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:color rgb(150,160,186,1%);
+color:rgb(53,74, 131);</string>
+    </property>
+    <property name="text">
+     <string>Force
+DO ON</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckHarnessForceDoOn">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>95</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ckHarnessForceDoOff">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>95</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 18px; /* Adjust spacing between the checkbox and text */
+    font-size: 28px; /* Set the font size */
+    background-color: rgba(150, 160, 186, 1%); /* Background color */
+ color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator {
+    width: 30px; /* Adjust the width of the checkbox indicator */
+    height: 30px; /* Adjust the height of the checkbox indicator */
+    border-radius: 30px; /* Make the indicator circular */
+    border: 2px solid #cccccc; /* Add a border around the indicator */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #000000; /* Change the background color of the indicator when checked */
+    border: 2px solid #ffffff; /* Add a border around the indicator when checked */
+color:rgb(53,74, 131);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Change the background color of the indicator when unchecked */
+color:rgb(53,74, 131);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>280</x>
      <y>300</y>
-     <width>761</width>
+     <width>941</width>
      <height>155</height>
     </rect>
    </property>

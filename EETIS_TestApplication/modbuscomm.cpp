@@ -273,7 +273,7 @@ void modbusComm::storeDoData(unsigned short noOfRegToRead)
             for(i = index, bitPos = 0; bitPos < MAX_BITS_IN_REG, i < (index + MAX_BITS_IN_REG); bitPos++, i++)
             {
                 receivDIs[i] = getBitValFrmReg(inputReg[j] , bitPos);
-                //qDebug() << "receivDIs " << i << ": " << ((int)(receivDIs[i]));
+                qDebug() << "receivDIs " << i << ": " << ((int)(receivDIs[i]));
             }
             index = i;
         }

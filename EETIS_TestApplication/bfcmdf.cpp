@@ -11,6 +11,7 @@ bfcmdf::bfcmdf(QWidget *parent) :
     displayUPdata = new QTimer(this);
     connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
     displayUPdata->start(100);
+    uiListappend();
 }
 
 bfcmdf::~bfcmdf()
@@ -27,16 +28,173 @@ int bfcmdf::checkCorrectHarness()
     return (value1);
 }
 
+void bfcmdf::diListappend()
+{
+    diLabelList.clear();
+    diLabelList.append(ui->lblFireButton1);
+    diLabelList.append(ui->lblFireButton2);
+    diLabelList.append(ui->lblBreechClosing1);
+    diLabelList.append(ui->lblBreechClosing2);
+    diLabelList.append(ui->lblSwitch);
+}
+
+void bfcmdf::doListappend()
+{
+    doLabelList.clear();
+    doLabelList.append(ui->lblFireButton1_LED);
+    doLabelList.append(ui->lblFireButton2_LED);
+    doLabelList.append(ui->lblBreechClosing1_LED);
+    doLabelList.append(ui->lblBreechClosing2_LED);
+    doLabelList.append(ui->lblSwitch_LED);
+}
+
+void bfcmdf::continutyErrorListappend()
+{
+    continutyErrorList.clear();
+    continutyErrorList.append(ui->cbContinutyFireButton1);
+    continutyErrorList.append(ui->cbContinutyFireButton2);
+    continutyErrorList.append(ui->cbContinutyBreechClosing1);
+    continutyErrorList.append(ui->cbContinutyBreechClosing2);
+    continutyErrorList.append(ui->cbContinutySwitch);
+}
+
+void bfcmdf::crossContinutyErrorListappend()
+{
+    crossContinutyErrorList.clear();
+    crossContinutyErrorList.append(ui->cbCrossContinutyFireButton1);
+    crossContinutyErrorList.append(ui->cbCrossContinutyFireButton2);
+    crossContinutyErrorList.append(ui->cbCrossContinutyBreechClosing1);
+    crossContinutyErrorList.append(ui->cbCrossContinutyBreechClosing2);
+    crossContinutyErrorList.append(ui->cbCrossContinutySwitch);
+}
+
+void bfcmdf::ckForceDoOnListAppend()
+{
+    do_OnCbList.clear();
+    do_OnCbList.append(ui->cbFireButton1_On);
+    do_OnCbList.append(ui->cbFireButton2_On);
+    do_OnCbList.append(ui->cbBreechClosing1_On);
+    do_OnCbList.append(ui->cbBreechClosing2_On);
+    do_OnCbList.append(ui->cbSwitch_On);
+}
+
+void bfcmdf::ckForceDoOnOffListAppend()
+{
+    do_OffCbList.clear();
+    do_OffCbList.append(ui->cbFireButton1_Off);
+    do_OffCbList.append(ui->cbFireButton2_Off);
+    do_OffCbList.append(ui->cbBreechClosing1_Off);
+    do_OffCbList.append(ui->cbBreechClosing2_Off);
+    do_OffCbList.append(ui->cbSwitch_Off);
+}
+
+void bfcmdf::addDiStructInList()
+{
+    diBFCMDFDiList.clear();
+    BFCMDFDiStrut.diNum = BFCMDF_FIRE_BUTTON_DI1;
+    diBFCMDFDiList.append(BFCMDFDiStrut);
+    BFCMDFDiStrut.diNum = BFCMDF_FIRE_BUTTON_DI2;
+    diBFCMDFDiList.append(BFCMDFDiStrut);
+    BFCMDFDiStrut.diNum = BFCMDF_BREECHCLOSING_DI1;
+    diBFCMDFDiList.append(BFCMDFDiStrut);
+    BFCMDFDiStrut.diNum = BFCMDF_BREECHCLOSING_DI2;
+    diBFCMDFDiList.append(BFCMDFDiStrut);
+    BFCMDFDiStrut.diNum = BFCMDF_CONTINUITY_DI;
+    diBFCMDFDiList.append(BFCMDFDiStrut);
+}
+
+void bfcmdf::addDoStructInList()
+{
+    doBFCMDFList.clear();
+    BFCMDFDoStrut.doNum = BFCMDF_FIRE_BUTTON_DO1;
+    doBFCMDFList.append(BFCMDFDoStrut);
+    BFCMDFDoStrut.doNum = BFCMDF_FIRE_BUTTON_DO2;
+    doBFCMDFList.append(BFCMDFDoStrut);
+    BFCMDFDoStrut.doNum = BFCMDF_BREECHCLOSING_DO1;
+    doBFCMDFList.append(BFCMDFDoStrut);
+    BFCMDFDoStrut.doNum = BFCMDF_BREECHCLOSING_DO2;
+    doBFCMDFList.append(BFCMDFDoStrut);
+    BFCMDFDoStrut.doNum = BFCMDF_CONTINUITY_DO;
+    doBFCMDFList.append(BFCMDFDoStrut);
+}
+
+void bfcmdf::uiListappend()
+{
+     diListappend();
+     doListappend();
+     continutyErrorListappend();
+     crossContinutyErrorListappend();
+     ckForceDoOnListAppend();
+     ckForceDoOnOffListAppend();
+     addDiStructInList();
+     addDoStructInList();
+}
+
+void bfcmdf::checkPoweronDI()
+{
+    int powerOn = mainAppWin->modbusCommObj->getDiValue(BFCMDF_POWERON_DI);
+    if(powerOn == 1)
+    {
+        ui->lblPowerOn->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 1,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 1,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 1,bfcmdfDoval);
+    }
+    else
+    {
+        ui->lblPowerOn->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 0,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 0,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 0,bfcmdfDoval);
+    }
+    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
+}
+
+void bfcmdf::checkDIs()
+{
+    int fireReadyLed = mainAppWin->modbusCommObj->getDiValue(BFCMDF_FIRE_READY_DI);
+    int fireForbiddenLed = mainAppWin->modbusCommObj->getDiValue(BFCMDF_FIRE_FORBIDDEN_DI);
+    int shellLoadedLed = mainAppWin->modbusCommObj->getDiValue(BFCMDF_SHELLLOADING_LED_DI);
+    if(fireReadyLed == 1)
+    {
+        ui->lblFireReady->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+    }
+    else
+    {
+        ui->lblFireReady->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+    }
+
+    if(fireForbiddenLed == 1)
+    {
+        ui->lblFireForbidden->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+    }
+    else
+    {
+        ui->lblFireForbidden->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+    }
+
+    if(shellLoadedLed == 1)
+    {
+        ui->lblShellLoaded->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+    }
+    else
+    {
+        ui->lblShellLoaded->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
+    }
+}
+
 void bfcmdf::startTest()
 {
-    processHarnessDiDO();
-    //qDebug("mainAppWin->startSendData = %d",mainAppWin->startSendData);
-    //qDebug()<<"mainAppWin->unitStatus = "<<mainAppWin->unitStatus;
-    if(mainAppWin->startSendData == 1 && mainAppWin->unitStatus == 3)
+    BFCMDFResultList.clear();
+    for(int i =0; i< doBFCMDFList.count(); i++)
     {
-        //processContinutyProcess();
-        //mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
+        BFCMDFDiResultStruct.Result = mainAppWin->modbusCommObj->getDiValue(diBFCMDFDiList.at(i).diNum);
+        BFCMDFResultList.append(BFCMDFDiResultStruct);
     }
+    processHarnessDiDO();
+    checkPoweronDI();
+    checkDIs();
+    processContinutyProcess();
 }
 
 void bfcmdf::processHarnessDiDO()
@@ -44,10 +202,10 @@ void bfcmdf::processHarnessDiDO()
     if(ui->ckHarnessForceDoOn->isChecked() == 1)
     {
         mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 1,bfcmdfDoval);
-        qDebug()<<"bfcmdfDoval 0 : "<<bfcmdfDoval[0];
-        qDebug()<<"bfcmdfDoval 1 : "<<bfcmdfDoval[1];
-        qDebug()<<"bfcmdfDoval 2 : "<<bfcmdfDoval[2];
-        qDebug()<<"bfcmdfDoval 3 : "<<bfcmdfDoval[3];
+//        qDebug()<<"bfcmdfDoval 0 : "<<bfcmdfDoval[0];
+//        qDebug()<<"bfcmdfDoval 1 : "<<bfcmdfDoval[1];
+//        qDebug()<<"bfcmdfDoval 2 : "<<bfcmdfDoval[2];
+//        qDebug()<<"bfcmdfDoval 3 : "<<bfcmdfDoval[3];
         ui->lblHarnessLED->setStyleSheet(YELLOW_DO_STYLESHEET);
     }
     else if(ui->ckHarnessForceDoOff->isChecked() == 1)
@@ -73,10 +231,6 @@ void bfcmdf::processHarnessDiDO()
         }
         else
         {
-            qDebug()<<"else bfcmdfDoval 0 : "<<bfcmdfDoval[0];
-            qDebug()<<"else bfcmdfDoval 1 : "<<bfcmdfDoval[1];
-            qDebug()<<"else bfcmdfDoval 2 : "<<bfcmdfDoval[2];
-            qDebug()<<"else bfcmdfDoval 3 : "<<bfcmdfDoval[3];
             ui->lblHarness->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
             mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 0, bfcmdfDoval);
             ui->lblHarnessLED->setStyleSheet(DEFAULT_DO_STYLESHEET);
@@ -88,15 +242,36 @@ void bfcmdf::processHarnessDiDO()
 
 void bfcmdf::processContinutyProcess()
 {
-    if(ui->ckContinutyJ1_11toJ1_12->isChecked() != 1)
+    for(int i =0; i < BFCMDFResultList.count(); i++)
     {
-        bfcmdfDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bfcmdfDoval[0],(BFCMDFDO1),1);
-        ui->lblJ1_11TOj1_12LED->setStyleSheet("QLabel { color : white; background-color : rgb(73, 202, 66); border-radius:15px;}");
+        if(do_OnCbList.at(i)->isChecked() == 1)
+        {
+            mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 1, bfcmdfDoval);
+            doLabelList.at(i)->setStyleSheet(YELLOW_DO_STYLESHEET);
+        }
+        else if(do_OffCbList.at(i)->isChecked() == 1)
+        {
+            mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 0, bfcmdfDoval);
+            doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+        }
+        else
+        {
+            if(BFCMDFResultList.at(i).Result == 1)
+            {
+                diLabelList.at(i)->setStyleSheet(GREEN_BUTTON_STYLESHEET);
+                if(continutyErrorList.at(i)->isChecked() == 1)
+                {
+                    mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 0, bfcmdfDoval);
+                    doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                }
+                else
+                {
+                    mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 1, bfcmdfDoval);
+                    doLabelList.at(i)->setStyleSheet(DO_GREEN_STYLESHEET);
+                }
+            }
+        }
     }
-    else if(ui->ckContinutyJ1_11toJ1_12->isChecked() == 1)
-    {
-        bfcmdfDoval[0]  = mainAppWin->modbusCommObj->setBitHigh(bfcmdfDoval[0],(BFCMDFDO1),0);
-        ui->lblJ1_11TOj1_12LED->setStyleSheet("QLabel { color : white; background-color : rgb(234, 236, 247); border-radius:15px;}");
-    }
+    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
 
 }

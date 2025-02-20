@@ -11,9 +11,9 @@ BBAT::BBAT(QWidget *parent) :
     ui->dbsJ7aToJ7b->setButtonSymbols(QAbstractSpinBox::NoButtons);
     ui->dbsJ7btoJ7c->setButtonSymbols(QAbstractSpinBox::NoButtons);
     ui->dbsJ7aToJ7c->setButtonSymbols(QAbstractSpinBox::NoButtons);
-    updateUidata = new QTimer(this);
-    connect(updateUidata, SIGNAL(timeout()),this, SLOT(startTest()));
-    //updateUidata->start(100);
+    bbatTimer = new QTimer(this);
+    connect(bbatTimer, SIGNAL(timeout()),this, SLOT(startTest()));
+    //bbatTimer->start(100);
 
 
     uiListappend();

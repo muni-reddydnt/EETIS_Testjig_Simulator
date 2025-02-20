@@ -32,7 +32,8 @@ SOURCES += \
     bfcmdf.cpp \
     rfu.cpp \
     dispopup.cpp \
-    stdp.cpp
+    stdp.cpp \
+    fcu.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     bfcmdf.h \
     rfu.h \
     dispopup.h \
-    stdp.h
+    stdp.h \
+    fcu.h
 
 FORMS += \
         mainwindow.ui \
@@ -51,7 +53,8 @@ FORMS += \
     bfcmdf.ui \
     rfu.ui \
     dispopup.ui \
-    stdp.ui
+    stdp.ui \
+    fcu.ui
 
 RESOURCES += \
     images.qrc

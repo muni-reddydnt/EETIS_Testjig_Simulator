@@ -9,9 +9,9 @@ stdp::stdp(QWidget *parent) :
     ui(new Ui::stdp)
 {
     ui->setupUi(this);
-    updateUidata = new QTimer(this);
-    connect(updateUidata, SIGNAL(timeout()),this, SLOT(startTest()));
-    //updateUidata->start(100);
+    stdpTimer = new QTimer(this);
+    connect(stdpTimer, SIGNAL(timeout()),this, SLOT(startTest()));
+    //stdpTimer->start(100);
 
     aiSendTimer = new QTimer(this);
     connect(aiSendTimer, SIGNAL(timeout()),this, SLOT(sendAoData()));
@@ -236,7 +236,7 @@ void stdp::startTest()
     {
         aiStartCount = 0;
         aiSendTimer->start(100);
-        updateUidata->stop();
+        stdpTimer->stop();
     }
 
 
@@ -518,7 +518,7 @@ void stdp::sendAoData()
     }
     if(aiStartCount >= AI_TIME_OUT - 30)
     {
-        updateUidata->start(100);
+        stdpTimer->start(100);
         aiSendTimer->stop();
         aiSend = true;
         aiStopCount = 0;

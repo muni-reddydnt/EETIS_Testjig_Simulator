@@ -10,9 +10,9 @@ rfu::rfu(QWidget *parent) :
     ui->setupUi(this);
     addDiDoStructInList();
     uiListappend();
-    displayUPdata = new QTimer(this);
-    connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
-    //displayUPdata->start(100);
+    rfuTimer = new QTimer(this);
+    connect(rfuTimer, SIGNAL(timeout()),this, SLOT(startTest()));
+    //rfuTimer->start(100);
 }
 
 rfu::~rfu()

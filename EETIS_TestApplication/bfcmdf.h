@@ -113,6 +113,7 @@ protected:
     void uiListappend();
     void checkPoweronDI();
     void checkDIs();
+    void sendTestDos();
 
 protected slots:
     void startTest();
@@ -121,7 +122,8 @@ protected slots:
 
 private:
     Ui::bfcmdf *ui;
-    QTimer *displayUPdata;
+    QTimer *bfcmdfTimer;
+    int testDiCount = 0;
 };
 
 #endif // BFCMDF_H

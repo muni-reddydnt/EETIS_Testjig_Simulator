@@ -181,7 +181,7 @@ private:
     int diData[4] = {0};
     int doData[4] = {0};
     bool btnDiEnalbeDisable[16] = {0};
-    QTimer *displayUPdata;
+    QTimer *bdobusTimer;
     int tempSafteyConnectorCheck = 0;
     int temp = 0;
     bool flag =false;

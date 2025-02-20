@@ -170,7 +170,7 @@ protected slots:
 
 private:
     Ui::BBAT *ui;
-    QTimer *updateUidata;
+    QTimer *bbatTimer;
     QTimer *updateUidataTimer;
     int timerChkCount = 0;
     int timerChkCount1 = 0;

@@ -174,7 +174,7 @@ private slots:
 
 private:
     Ui::stdp *ui;
-    QTimer *updateUidata;
+    QTimer *stdpTimer;
     QTimer *aiSendTimer;
     bool deadManSts= false, unlockingSts = false, grfdSts = false, grrdSts = false, litSts = false;
     bool lcwUpSts = false,  lcwDnSts = false, rcwUpSts = false,  rcwDnSts = false, lsUpSts = false;

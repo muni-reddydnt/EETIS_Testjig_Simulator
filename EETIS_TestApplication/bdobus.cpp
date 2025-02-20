@@ -19,8 +19,8 @@ bdobus::bdobus(QWidget *parent) :
     {
         btnDiEnalbeDisable[i] = true;
     }
-    displayUPdata = new QTimer(this);
-    connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
+    bdobusTimer = new QTimer(this);
+    connect(bdobusTimer, SIGNAL(timeout()),this, SLOT(startTest()));
     //displayUPdata->start(100);
 
     uiListappend();

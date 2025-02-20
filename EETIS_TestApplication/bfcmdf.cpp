@@ -8,9 +8,9 @@ bfcmdf::bfcmdf(QWidget *parent) :
     ui(new Ui::bfcmdf)
 {
     ui->setupUi(this);
-    displayUPdata = new QTimer(this);
-    connect(displayUPdata, SIGNAL(timeout()),this, SLOT(startTest()));
-    displayUPdata->start(100);
+    bfcmdfTimer = new QTimer(this);
+    connect(bfcmdfTimer, SIGNAL(timeout()),this, SLOT(startTest()));
+    bfcmdfTimer->start(100);
     uiListappend();
 }
 
@@ -136,18 +136,11 @@ void bfcmdf::checkPoweronDI()
     if(powerOn == 1)
     {
         ui->lblPowerOn->setStyleSheet(GREEN_BUTTON_STYLESHEET);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 1,bfcmdfDoval);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 1,bfcmdfDoval);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 1,bfcmdfDoval);
     }
     else
     {
         ui->lblPowerOn->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 0,bfcmdfDoval);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 0,bfcmdfDoval);
-        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 0,bfcmdfDoval);
     }
-    mainAppWin->modbusCommObj->sendDoAoData(DI_TRANS_ID,4, bfcmdfDoval);
 }
 
 void bfcmdf::checkDIs()
@@ -183,6 +176,27 @@ void bfcmdf::checkDIs()
     }
 }
 
+void bfcmdf::sendTestDos()
+{
+    if(BFCMDFResultList.at(3).Result == 1)
+    {
+        testDiCount = 1;
+    }
+
+    if(testDiCount == 1 && BFCMDFResultList.at(3).Result == 0)
+    {
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 1,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 1,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 1,bfcmdfDoval);
+    }
+    else
+    {
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIREREADY_DO, 0,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_FIRE_FORBIDDEN_LED_DO, 0,bfcmdfDoval);
+        mainAppWin->modbusCommObj->setRegisterHIgh(BFCMDF_SHELLLOADING_LED_DO, 0,bfcmdfDoval);
+    }
+}
+
 void bfcmdf::startTest()
 {
     BFCMDFResultList.clear();
@@ -195,6 +209,7 @@ void bfcmdf::startTest()
     checkPoweronDI();
     checkDIs();
     processContinutyProcess();
+    sendTestDos();
 }
 
 void bfcmdf::processHarnessDiDO()
@@ -202,10 +217,6 @@ void bfcmdf::processHarnessDiDO()
     if(ui->ckHarnessForceDoOn->isChecked() == 1)
     {
         mainAppWin->modbusCommObj->setRegisterHIgh(HARNESS_BFCMD_CHK_DO1, 1,bfcmdfDoval);
-//        qDebug()<<"bfcmdfDoval 0 : "<<bfcmdfDoval[0];
-//        qDebug()<<"bfcmdfDoval 1 : "<<bfcmdfDoval[1];
-//        qDebug()<<"bfcmdfDoval 2 : "<<bfcmdfDoval[2];
-//        qDebug()<<"bfcmdfDoval 3 : "<<bfcmdfDoval[3];
         ui->lblHarnessLED->setStyleSheet(YELLOW_DO_STYLESHEET);
     }
     else if(ui->ckHarnessForceDoOff->isChecked() == 1)
@@ -269,6 +280,12 @@ void bfcmdf::processContinutyProcess()
                     mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 1, bfcmdfDoval);
                     doLabelList.at(i)->setStyleSheet(DO_GREEN_STYLESHEET);
                 }
+            }
+            else
+            {
+                doLabelList.at(i)->setStyleSheet(DEFAULT_DO_STYLESHEET);
+                mainAppWin->modbusCommObj->setRegisterHIgh(doBFCMDFList.at(i).doNum, 0, bfcmdfDoval);
+                diLabelList.at(i)->setStyleSheet(DEFAULT_BUTTON_STYLESHEET);
             }
         }
     }

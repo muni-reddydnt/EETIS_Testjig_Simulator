@@ -125,7 +125,7 @@ protected:
     void ckForceDoOffListAppend();
 private:
     Ui::rfu *ui;
-    QTimer *displayUPdata;
+    QTimer *rfuTimer;
 };
 
 #endif // RFU_H

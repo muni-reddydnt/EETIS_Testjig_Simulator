@@ -40,7 +40,7 @@ void modbusComm::sendDiData(short *diVal)
 
     if (clientSocket->state() != QAbstractSocket::ConnectedState)
     {
-//        qDebug() << "Socket is not connected!";
+        //        qDebug() << "Socket is not connected!";
         return;
     }
 
@@ -110,7 +110,7 @@ void modbusComm::sendDoAoData(int transId, int regLength, short *inputArr)
     }
     if (clientSocket->state() != QAbstractSocket::ConnectedState)
     {
-//        qDebug() << "Socket is not connected!";
+        //        qDebug() << "Socket is not connected!";
         return;
     }
 
@@ -308,18 +308,41 @@ bool modbusComm::getBitValFrmReg(unsigned short regValue, int bitPosition)
 
 int modbusComm::getDiValue(int diChannel)
 {
-    return (receivDIs[diChannel]);
+    int diValue = 0;
+
+    if(diChannel > 0)
+    {
+        diValue = plcDOs[diChannel - 1];
+    }
+
+    return (diValue);
 }
 
 int modbusComm::getAiValue(int aiChannel)
 {
-    return (plcAIs[aiChannel]);
+    short aiData = 0;
+    unsigned char temp1;
+    unsigned char temp2;
+
+    if(aiChannel > 0)
+    {
+        temp1 = plcAIs[aiChannel - 1] & 0xFF;
+        temp2 = (plcAIs[aiChannel - 1] >> 8) & 0xFF;
+        aiData = temp1 * 256 + temp2;
+    }
+
+    return(aiData);
+   // return (plcAIs[aiChannel]);
 }
 
 void modbusComm::setDoValue(int doChannel, char data)
 {
-    sendDOVals[doChannel] = data;
+    //sendDOVals[doChannel] = data;
     //qDebug("sendDOVals[%d] = %d", doChannel,sendDOVals[doChannel]);
+    if(doChannel > 0)
+    {
+        plcDOs[doChannel - 1] = data;
+    }
 }
 
 
